@@ -1,0 +1,26 @@
+meta {
+  name: Mark Notification as Read
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/api/notifications/inbox
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+body:json {
+{
+  "notificationId": "{{notificationId}}",
+  "action": "read"
+}
+}
+
+docs {
+  Updates notification status to read.
+}

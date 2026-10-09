@@ -1,0 +1,19 @@
+meta {
+  name: Get Payments History
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/api/finance/payments?limit=10
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+docs {
+  Transaction history and payment confirmation references.
+}

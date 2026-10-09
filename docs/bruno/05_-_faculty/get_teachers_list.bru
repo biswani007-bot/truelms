@@ -1,0 +1,19 @@
+meta {
+  name: Get Teachers List
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/api/teachers?limit=10
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+docs {
+  List of faculty members and subject assignments.
+}

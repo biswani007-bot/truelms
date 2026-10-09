@@ -1,0 +1,19 @@
+meta {
+  name: Get Live Classes List
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/api/live-classes?limit=10&sort=startDate&order=asc
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+docs {
+  Live class sessions filtered by batch, teacher, or date.
+}

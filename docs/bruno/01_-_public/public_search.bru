@@ -1,0 +1,19 @@
+meta {
+  name: Public Search
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{baseUrl}}/api/public/search?q=foundation
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+docs {
+  Searches public courses, blogs, and events.
+}

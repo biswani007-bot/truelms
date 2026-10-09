@@ -1,0 +1,19 @@
+meta {
+  name: Get Child Assessments
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{baseUrl}}/api/parent/children/{{childStudentId}}/assessments
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+docs {
+  Assessment scores, passing status, and percentage results (questions/answers sanitized).
+}

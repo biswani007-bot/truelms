@@ -1,0 +1,19 @@
+meta {
+  name: Export Calendar ICS Feed
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/api/calendar/ics
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+docs {
+  Generates iCalendar standard (.ics) stream for live classes and assignment due dates.
+}

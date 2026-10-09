@@ -1,0 +1,87 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+*.zip
+*.tar.gz
+*.tgz
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files (allow .env.example)
+.env*
+!.env.example
+
+# scratch scripts and test outputs
+/scratch/
+scratch-*.js
+scratch-*.ts
+test-*.js
+test-*.ts
+verify-*.js
+verify-*.ts
+fix-*.js
+fix_*.js
+patch-*.js
+patch_*.js
+setup_*.js
+seed_m4b.js
+get-creds.js
+reset_pwd.js
+assignment-test.js
+cleanup-mutations.js
+inspect-mutations.js
+inspect-references.js
+*.log
+*.xlsx
+*.txt
+*.pdf
+/public/uploads/
+
+# agent outputs
+/brain/
+/storage/media/
+/storage/test-sample.*
+/docker/jitsi/recordings/
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# reference/migration sources — do NOT commit as production
+/temp_educa/
+/temp_truelern/
+
+# docker runtime state & sockets
+docker/jitsi/config/prosody/config/data/
+docker/jitsi/config/*/data/
+
+

@@ -1,0 +1,19 @@
+meta {
+  name: Get Assignment Detail
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/api/assignments/{{assignmentId}}
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+docs {
+  Assignment instructions, due date, total marks, and attachments.
+}

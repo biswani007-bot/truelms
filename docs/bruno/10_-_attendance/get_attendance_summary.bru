@@ -1,0 +1,19 @@
+meta {
+  name: Get Attendance Summary
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/api/attendance/summary?student={{studentId}}
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+docs {
+  Calculated summary with total sessions, present, absent, late counts, and percentage.
+}

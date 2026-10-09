@@ -1,0 +1,29 @@
+meta {
+  name: Mark Attendance (Teacher/Admin)
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/api/attendance
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+body:json {
+{
+  "student": "{{studentId}}",
+  "batch": "{{batchId}}",
+  "liveClass": "{{liveClassId}}",
+  "status": "present",
+  "remarks": "Active in discussion"
+}
+}
+
+docs {
+  Marks individual student attendance record.
+}

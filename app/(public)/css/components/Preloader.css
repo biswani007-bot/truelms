@@ -1,0 +1,133 @@
+/* ======================================================
+   Preloader — Light-mode TrueLern branded loading screen
+   Uses /TrueernLogo_primary.png as focal branding
+   ====================================================== */
+
+/* ── Overlay ─────────────────────────────────────────── */
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  background: #F5F7FA;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+.preloader--hide {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* ── Content wrapper ─────────────────────────────────── */
+.preloader__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  animation: preloaderFadeIn 0.8s ease-out both;
+}
+
+/* ── Real logo image ─────────────────────────────────── */
+.preloader__logo-img {
+  width: clamp(220px, 40vw, 340px);
+  height: auto;
+  object-fit: contain;
+  animation: preloaderLogoReveal 1s ease-out both;
+  filter: drop-shadow(0 4px 12px rgba(30, 78, 216, 0.08));
+}
+
+/* ── Loading progress bar ────────────────────────────── */
+.preloader__bar {
+  width: min(240px, 60vw);
+  height: 4px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(15, 23, 42, 0.06);
+}
+
+.preloader__bar span {
+  display: block;
+  height: 100%;
+  width: 40%;
+  background: linear-gradient(90deg, #1E4ED8 0%, #10B981 100%);
+  border-radius: 999px;
+  animation: preloaderProgress 1.8s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* ── "Loading..." text ───────────────────────────────── */
+.preloader__text {
+  margin: 0;
+  color: #475569;
+  font-family: 'Inter', 'Poppins', system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+/* ── Animations ──────────────────────────────────────── */
+@keyframes preloaderFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes preloaderLogoReveal {
+  0% {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes preloaderProgress {
+  0%   { transform: translateX(-150%); }
+  50%  { transform: translateX(100%);  }
+  100% { transform: translateX(300%); }
+}
+
+/* ── Mobile adjustments ──────────────────────────────── */
+@media (max-width: 640px) {
+  .preloader__logo-img {
+    width: clamp(180px, 55vw, 260px);
+  }
+
+  .preloader__bar {
+    width: 200px;
+  }
+
+  .preloader__text {
+    font-size: 13px;
+  }
+}
+
+/* ── Reduced motion accessibility ───────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .preloader__logo-img {
+    animation-duration: 0.01s;
+  }
+  .preloader__content {
+    animation-duration: 0.01s;
+  }
+  .preloader__bar span {
+    animation-duration: 3s;
+  }
+}

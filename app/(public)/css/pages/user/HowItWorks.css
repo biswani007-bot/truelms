@@ -1,0 +1,1673 @@
+/* ==========================================================================
+   How It Works Page Styles
+   Theme: Blue + Purple + Teal + White
+   ========================================================================== */
+
+.hiw-page {
+  --primary: #2563eb;       /* Royal Blue */
+  --primary-glow: rgba(37, 99, 235, 0.15);
+  --primary-dark: #1d4ed8;
+  
+  --purple: #8b5cf6;        /* Vivid Purple */
+  --purple-glow: rgba(139, 92, 246, 0.15);
+  --purple-dark: #6d28d9;
+
+  --teal: #14b8a6;          /* Bright Teal */
+  --teal-glow: rgba(20, 184, 166, 0.15);
+  --teal-dark: #0f766e;
+
+  --text-main: #0f172a;     /* Slate 900 */
+  --text-muted: #475569;    /* Slate 600 */
+  --bg-light: #f8fafc;      /* Slate 50 */
+  
+  width: 100%;
+  overflow-x: hidden;
+  position: relative;
+
+  /* ── Colorful kid-friendly pastel gradient ── */
+  background:
+    /* Soft radial colour blobs — overlaid on the gradient */
+    radial-gradient(circle at 15% 20%, rgba(255, 182, 193, 0.18) 0%, transparent 30%),
+    radial-gradient(circle at 85% 15%, rgba(173, 216, 230, 0.18) 0%, transparent 30%),
+    radial-gradient(circle at 20% 80%, rgba(152, 251, 152, 0.18) 0%, transparent 35%),
+    radial-gradient(circle at 90% 85%, rgba(255, 218, 185, 0.18) 0%, transparent 35%),
+    /* Base pastel diagonal gradient */
+    linear-gradient(
+      135deg,
+      #EAF7FF 0%,
+      #F5EEFF 25%,
+      #FFF6D9 50%,
+      #EFFFF5 75%,
+      #EAF4FF 100%
+    );
+
+  color: var(--text-main);
+  font-family: var(--font-body, 'Inter', sans-serif);
+}
+
+/* ── Decorative floating micro-elements layer ── */
+.hiw-page::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  /* Tiny stars, circles & sparkle dots at 4–7% opacity */
+  background-image:
+    /* Stars row 1 */
+    radial-gradient(circle, rgba(139, 92, 246, 0.07) 1.5px, transparent 1.5px),
+    radial-gradient(circle, rgba(37, 99, 235, 0.06) 1px,   transparent 1px),
+    radial-gradient(circle, rgba(20, 184, 166, 0.06) 2px,  transparent 2px),
+    /* Stars row 2 */
+    radial-gradient(circle, rgba(251, 191, 36, 0.05) 1.5px, transparent 1.5px),
+    radial-gradient(circle, rgba(244, 63, 94, 0.04) 1px,    transparent 1px),
+    radial-gradient(circle, rgba(139, 92, 246, 0.05) 2px,   transparent 2px),
+    /* Sparkle dots */
+    radial-gradient(circle, rgba(37, 99, 235, 0.06) 1px, transparent 1px),
+    radial-gradient(circle, rgba(20, 184, 166, 0.05) 2px, transparent 2px);
+  background-size:
+    340px 340px,
+    220px 220px,
+    460px 460px,
+    280px 280px,
+    390px 390px,
+    510px 510px,
+    170px 170px,
+    620px 620px;
+  background-position:
+    42px  80px,
+    130px 200px,
+    260px 50px,
+    70px  310px,
+    350px 150px,
+    180px 420px,
+    500px 90px,
+    90px  500px;
+}
+
+/* ── REUSABLE DESIGN COMPONENTS ── */
+.hiw-section-header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 4rem;
+}
+
+.hiw-section-tag {
+  display: inline-block;
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--purple);
+  margin-bottom: 0.75rem;
+  background: var(--purple-glow);
+  padding: 4px 12px;
+  border-radius: 99px;
+}
+
+.hiw-section-header h2 {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 2.75rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text-main);
+  margin-bottom: 1rem;
+}
+
+.hiw-section-sub {
+  font-size: 1.125rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* Glassmorphism Panel base */
+.hiw-journey-panel,
+.hiw-step-card,
+.hiw-diff-card,
+.hiw-method-card,
+.hiw-report-mock {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.08),
+              inset 0 1px 1px rgba(255, 255, 255, 0.8);
+}
+
+/* Buttons */
+.hiw-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2rem;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--purple) 100%);
+  color: #ffffff !important;
+  font-weight: 700;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+  transition: all 0.25s ease;
+  text-decoration: none;
+}
+
+.hiw-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.45);
+}
+
+.hiw-btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.875rem 2rem;
+  background: transparent;
+  color: var(--text-main) !important;
+  border: 2px solid rgba(15, 23, 42, 0.15);
+  font-weight: 600;
+  border-radius: 12px;
+  transition: all 0.25s ease;
+  text-decoration: none;
+}
+
+.hiw-btn-ghost:hover {
+  background: rgba(15, 23, 42, 0.03);
+  border-color: rgba(15, 23, 42, 0.3);
+}
+
+.hiw-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: rgba(37, 99, 235, 0.08);
+  color: var(--primary) !important;
+  font-weight: 600;
+  border-radius: 10px;
+  transition: all 0.25s ease;
+  text-decoration: none;
+}
+
+.hiw-btn-secondary:hover {
+  background: rgba(37, 99, 235, 0.15);
+  transform: translateX(4px);
+}
+
+/* ── HERO SECTION ── */
+.hiw-hero {
+  position: relative;
+  padding: 8rem 0 6rem;
+  overflow: hidden;
+  /* Transparent so page gradient shows beneath the hero image overlay */
+  background: transparent;
+}
+
+.hiw-hero-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hiw-hero-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/img/public/vibrant_kids_hero_bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.9;
+  z-index: -1;
+}
+
+.hiw-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(130px);
+  opacity: 0.45;
+}
+
+.hiw-orb-1 {
+  width: 450px;
+  height: 450px;
+  background: var(--primary-glow);
+  top: -100px;
+  left: -100px;
+}
+
+.hiw-orb-2 {
+  width: 500px;
+  height: 500px;
+  background: var(--purple-glow);
+  bottom: -150px;
+  right: -100px;
+}
+
+.hiw-orb-3 {
+  width: 350px;
+  height: 350px;
+  background: var(--teal-glow);
+  top: 40%;
+  left: 35%;
+}
+
+.hiw-float-icon {
+  position: absolute;
+  font-size: 1.8rem;
+  z-index: 2;
+  opacity: 0.85;
+}
+
+.hiw-hero-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: 4rem;
+  position: relative;
+  z-index: 5;
+}
+
+.hiw-badge-pill {
+  display: inline-block;
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--primary-dark);
+  background: var(--primary-glow);
+  padding: 6px 16px;
+  border-radius: 99px;
+  margin-bottom: 1.5rem;
+}
+
+.hiw-hero-content h1 {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 3.8rem;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: var(--text-main);
+  margin-bottom: 1.5rem;
+}
+
+.hiw-hero-sub {
+  font-size: 1.25rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 2.5rem;
+}
+
+.hiw-hero-actions {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 3.5rem;
+}
+
+.hiw-hero-stats {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.hiw-stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.hiw-stat strong {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--primary);
+  line-height: 1.2;
+}
+
+.hiw-stat span {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.hiw-stat-divider {
+  width: 1px;
+  height: 35px;
+  background: rgba(15, 23, 42, 0.1);
+}
+
+/* Interactive Journey Panel */
+.hiw-hero-visual {
+  position: relative;
+}
+
+.hiw-journey-panel {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.hiw-panel-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+  padding-bottom: 1rem;
+}
+
+.hiw-panel-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.hiw-panel-dot.blue { background: var(--primary); }
+.hiw-panel-dot.purple { background: var(--purple); }
+.hiw-panel-dot.teal { background: var(--teal); }
+
+.hiw-panel-title {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  margin-left: 6px;
+}
+
+.hiw-panel-live {
+  margin-left: auto;
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: #ef4444;
+  letter-spacing: 0.05em;
+  animation: pulse-op 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse-op {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+.hiw-tab-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
+}
+
+.hiw-tab-btn {
+  padding: 8px 4px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  background: rgba(15, 23, 42, 0.02);
+  cursor: pointer;
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  border-radius: 8px;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.hiw-tab-btn:hover {
+  background: rgba(15, 23, 42, 0.05);
+}
+
+.hiw-tab-btn.active {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--purple) 100%);
+  color: #ffffff;
+  border-color: transparent;
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.25);
+}
+
+.hiw-tab-body {
+  padding: 0.5rem 0.25rem;
+}
+
+.hiw-tab-body h3 {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 1.15rem;
+  font-weight: 750;
+  color: var(--text-main);
+  margin-bottom: 0.5rem;
+}
+
+.hiw-tab-body p {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 1.25rem;
+}
+
+.hiw-tab-rewards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  border-top: 1px dashed rgba(15, 23, 42, 0.1);
+  padding-top: 1rem;
+}
+
+.hiw-xp-tag {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.1);
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+.hiw-badge-tag {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--primary);
+  background: var(--primary-glow);
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+.hiw-panel-progress {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 0.25rem;
+}
+
+.hiw-prog-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(15, 23, 42, 0.15);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.2s ease;
+}
+
+.hiw-prog-dot.active {
+  width: 20px;
+  border-radius: 99px;
+  background: var(--purple);
+}
+
+/* Floating visual badges in Hero */
+.hiw-float-card {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 10px 16px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  z-index: 10;
+}
+
+.hiw-float-card-1 {
+  top: 4%;
+  right: -40px;
+}
+
+.hiw-float-card-2 {
+  bottom: 10%;
+  left: -30px;
+}
+
+.hiw-float-card span {
+  font-size: 1.5rem;
+}
+
+.hiw-float-card div {
+  display: flex;
+  flex-direction: column;
+}
+
+.hiw-float-card strong {
+  font-size: 0.85rem;
+  color: var(--text-main);
+  font-weight: 700;
+}
+
+.hiw-float-card small {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* ── PLAYFUL PREMIUM BACKGROUND WRAPPER ── */
+.hiw-playful-journey-wrap {
+  position: relative;
+  overflow: hidden;
+  /* Transparent — the .hiw-page gradient is the single page background source */
+  background: transparent;
+}
+
+/* ALL sections transparent — page gradient shows through everywhere */
+.hiw-hero,
+.hiw-journey-section,
+.hiw-flow-section,
+.hiw-different-section,
+.hiw-parent-section,
+.hiw-cta-section {
+  background: transparent !important;
+}
+
+/* ── Ambient background blur blobs (richer pastel colors, 7–8% opacity) ── */
+.hiw-bg-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.08;
+  pointer-events: none;
+  z-index: 0;
+  will-change: transform;
+}
+
+/* Lavender — top-right */
+.hiw-bg-blob-lavender {
+  width: 680px;
+  height: 680px;
+  background: radial-gradient(circle, #e9d5ff 0%, #c4b5fd 100%);
+  top: 2%;
+  right: -220px;
+}
+
+/* Sky blue — upper-left */
+.hiw-bg-blob-blue {
+  width: 750px;
+  height: 750px;
+  background: radial-gradient(circle, #bae6fd 0%, #7dd3fc 100%);
+  top: 22%;
+  left: -270px;
+}
+
+/* Mint green — mid-right */
+.hiw-bg-blob-mint {
+  width: 640px;
+  height: 640px;
+  background: radial-gradient(circle, #bbf7d0 0%, #86efac 100%);
+  top: 52%;
+  right: -210px;
+}
+
+/* Peach — bottom-left */
+.hiw-bg-blob-peach {
+  width: 580px;
+  height: 580px;
+  background: radial-gradient(circle, #fed7aa 0%, #fbbf24 100%);
+  bottom: 4%;
+  left: -160px;
+}
+
+/* ── Decorative CSS micro-elements inside the wrapper ── */
+.hiw-playful-journey-wrap::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  /* Tiny scattered circles & sparkle dots */
+  background-image:
+    radial-gradient(circle, rgba(139, 92, 246, 0.07) 2px,   transparent 2px),
+    radial-gradient(circle, rgba(37, 99, 235, 0.06) 1.5px,  transparent 1.5px),
+    radial-gradient(circle, rgba(20, 184, 166, 0.07) 2.5px, transparent 2.5px),
+    radial-gradient(circle, rgba(251, 191, 36, 0.06) 1.5px, transparent 1.5px),
+    radial-gradient(circle, rgba(244, 63, 94, 0.05) 1px,    transparent 1px),
+    radial-gradient(circle, rgba(37, 99, 235, 0.05) 3px,    transparent 3px);
+  background-size:
+    320px 320px,
+    210px 210px,
+    440px 440px,
+    270px 270px,
+    380px 380px,
+    560px 560px;
+  background-position:
+    55px  100px,
+    160px 240px,
+    290px 60px,
+    80px  370px,
+    420px 180px,
+    200px 500px;
+}
+
+/* ── Star / sparkle shapes via ::after ── */
+.hiw-playful-journey-wrap::after {
+  content: '✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧ ✦ ✧';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-around;
+  justify-content: space-around;
+  font-size: 0.6rem;
+  letter-spacing: 6rem;
+  line-height: 14rem;
+  color: rgba(139, 92, 246, 0.05);
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+  user-select: none;
+}
+
+/* ── SECTION 2: THE COMPLETE JOURNEY (9 Steps) ── */
+.hiw-journey-section {
+  padding: 6rem 0;
+  position: relative;
+}
+
+.hiw-steps-wrapper {
+  position: relative;
+  max-width: 900px;
+  margin: 3rem auto 0;
+}
+
+.hiw-spine {
+  position: absolute;
+  left: 50%;
+  top: 40px;
+  bottom: 40px;
+  width: 4px;
+  background: linear-gradient(180deg, var(--primary) 0%, var(--purple) 50%, var(--teal) 100%);
+  transform: translateX(-50%);
+  opacity: 0.2;
+}
+
+.hiw-step-row {
+  display: grid;
+  grid-template-columns: 1fr 60px 1fr;
+  align-items: center;
+  margin-bottom: 2.5rem;
+  position: relative;
+}
+
+/* Left step alignment */
+.hiw-step-row.step-left .hiw-step-card {
+  grid-column: 1;
+}
+
+.hiw-step-row.step-left .hiw-step-label-side {
+  grid-column: 3;
+  text-align: left;
+  padding-left: 2rem;
+}
+
+/* Right step alignment */
+.hiw-step-row.step-right .hiw-step-card {
+  grid-column: 3;
+}
+
+.hiw-step-row.step-right .hiw-step-label-side {
+  grid-column: 1;
+  text-align: right;
+  padding-right: 2rem;
+}
+
+.hiw-step-row.step-right {
+  direction: ltr; /* keep grid order consistent */
+}
+
+/* Step cards styling */
+.hiw-step-card {
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+.hiw-step-card-inner {
+  display: flex;
+  padding: 1.5rem;
+  gap: 1rem;
+}
+
+.hiw-step-icon {
+  font-size: 2rem;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.hiw-step-num {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--purple);
+  margin-bottom: 0.25rem;
+  display: block;
+}
+
+.hiw-step-card h3 {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text-main);
+  line-height: 1.3;
+}
+
+.hiw-step-card p {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-top: 0.75rem;
+}
+
+/* Central Node */
+.hiw-node {
+  grid-column: 2;
+  justify-self: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 4px solid var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--text-main);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  z-index: 5;
+  transition: all 0.25s ease;
+}
+
+.hiw-step-row.step-right .hiw-node {
+  border-color: var(--purple);
+}
+
+.hiw-step-row:nth-child(3n) .hiw-node {
+  border-color: var(--teal);
+}
+
+.hiw-step-card:hover + .hiw-node,
+.hiw-step-card.step-active + .hiw-node {
+  background: var(--primary);
+  color: #ffffff;
+  transform: scale(1.15);
+}
+
+.hiw-step-row.step-right .hiw-step-card:hover + .hiw-node,
+.hiw-step-row.step-right .hiw-step-card.step-active + .hiw-node {
+  background: var(--purple);
+}
+
+.hiw-step-row:nth-child(3n) .hiw-step-card:hover + .hiw-node,
+.hiw-step-row:nth-child(3n) .hiw-step-card.step-active + .hiw-node {
+  background: var(--teal);
+}
+
+/* Label on opposite side */
+.hiw-step-label {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: rgba(15, 23, 42, 0.45);
+}
+
+.hiw-step-card.step-active {
+  background: #ffffff;
+  border-color: rgba(139, 92, 246, 0.4);
+  box-shadow: 0 15px 30px -10px rgba(139, 92, 246, 0.15);
+}
+
+.hiw-journey-hint {
+  text-align: center;
+  margin-top: 3rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+/* ── SECTION 3: VISUAL PROCESS FLOW ── */
+.hiw-flow-section {
+  padding: 6rem 0;
+  background: #ffffff;
+}
+
+.hiw-flow-track {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  max-width: 1100px;
+  margin: 3rem auto 0;
+  padding: 1rem 0;
+}
+
+.hiw-flow-item-wrap {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.hiw-flow-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 1.8rem 1.1rem;
+  border-radius: 24px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+  height: 170px;
+  box-sizing: border-box;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hiw-flow-card:hover {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+}
+
+.hiw-flow-card.flow-blue {
+  background: linear-gradient(135deg, #ffffff 30%, #f0f4ff 100%);
+  border: 2px solid rgba(37, 99, 235, 0.22);
+}
+.hiw-flow-card.flow-blue:hover {
+  border-color: rgba(37, 99, 235, 0.45);
+}
+
+.hiw-flow-card.flow-purple {
+  background: linear-gradient(135deg, #ffffff 30%, #f5f0ff 100%);
+  border: 2px solid rgba(139, 92, 246, 0.22);
+}
+.hiw-flow-card.flow-purple:hover {
+  border-color: rgba(139, 92, 246, 0.45);
+}
+
+.hiw-flow-card.flow-teal {
+  background: linear-gradient(135deg, #ffffff 30%, #effaf8 100%);
+  border: 2px solid rgba(20, 184, 166, 0.22);
+}
+.hiw-flow-card.flow-teal:hover {
+  border-color: rgba(20, 184, 166, 0.45);
+}
+
+.hiw-flow-icon {
+  font-size: 2.2rem;
+  margin-bottom: 0.75rem;
+}
+
+.hiw-flow-label {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 0.9rem;
+  font-weight: 850;
+  color: var(--text-main);
+  line-height: 1.3;
+}
+
+.hiw-flow-arrow {
+  font-size: 1.5rem;
+  color: rgba(15, 23, 42, 0.25);
+  margin: 0 8px;
+  font-weight: 800;
+  transform-origin: center;
+}
+
+.hiw-achievement-row {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 4rem;
+  flex-wrap: wrap;
+}
+
+.hiw-achievement-badge {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 0.9rem;
+  font-weight: 750;
+  color: var(--text-main);
+  background: rgba(15, 23, 42, 0.04);
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  padding: 8px 20px;
+  border-radius: 99px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+}
+
+/* ── SECTION 4: WHAT MAKES THIS DIFFERENT ── */
+.hiw-different-section {
+  padding: 6rem 0;
+  background: var(--bg-light);
+}
+
+.hiw-diff-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 3.5rem;
+}
+
+.hiw-diff-card {
+  padding: 38px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: all 0.3s ease;
+  border-radius: 24px;
+  border: 1.5px solid rgba(120, 140, 255, 0.15);
+  box-shadow: 0 14px 40px rgba(15, 23, 42, 0.08);
+  background: linear-gradient(180deg, #FFFFFF 0%, #FCFDFF 100%);
+  min-height: 260px;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.hiw-diff-card:hover {
+  box-shadow: 0 22px 50px rgba(15, 23, 42, 0.12);
+}
+
+.hiw-diff-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1.25rem;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.05));
+}
+
+.hiw-diff-card h3 {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 0.75rem;
+}
+
+.hiw-diff-card p {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+/* 3-Column Method highlights */
+.hiw-method-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  border-top: 1px solid rgba(15, 23, 42, 0.08);
+  padding-top: 4rem;
+}
+
+.hiw-method-card {
+  padding: 2.25rem 2rem !important;
+  text-align: center !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  background: #ffffff !important;
+  border: 1.5px solid rgba(226, 232, 240, 0.9) !important;
+  border-radius: 28px !important;
+  box-shadow:
+    0 12px 30px rgba(15, 23, 42, 0.08),
+    0 4px 12px rgba(15, 23, 42, 0.05),
+    0 0 0 1px rgba(99, 102, 241, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+.hiw-method-card:hover {
+  box-shadow:
+    0 18px 38px rgba(15, 23, 42, 0.12),
+    0 6px 16px rgba(15, 23, 42, 0.08),
+    0 0 0 1px rgba(99, 102, 241, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+}
+
+.hiw-method-emoji {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+}
+
+.hiw-method-card h3 {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 0.75rem;
+}
+
+.hiw-method-card p {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* ── SECTION 5: PARENT VISIBILITY ── */
+.hiw-parent-section {
+  padding: 6rem 0 0 0;
+  margin-bottom: -3.5rem;
+  background: #ffffff;
+}
+
+.hiw-parent-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.05fr;
+  gap: 5rem;
+  align-items: center;
+}
+
+.hiw-parent-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.hiw-parent-text h2 {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 2.75rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: var(--text-main);
+  margin: 0.75rem 0 1.25rem;
+  line-height: 1.15;
+}
+
+.hiw-parent-text p {
+  font-size: 1.125rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.hiw-benefits-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.hiw-benefits-list li {
+  display: flex;
+  gap: 1rem;
+}
+
+.hiw-list-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.hiw-benefits-list strong {
+  font-size: 1.05rem;
+  color: var(--text-main);
+  font-weight: 700;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.hiw-benefits-list li div {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* Parent dashboard mockup */
+.hiw-parent-visual {
+  position: relative;
+}
+
+.hiw-report-mock {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.hiw-report-header {
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+  padding-bottom: 1rem;
+}
+
+.hiw-report-header h3 {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--purple-dark);
+  margin-bottom: 2px;
+}
+
+.hiw-student-tag {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.hiw-report-metrics {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.hiw-metric-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.hiw-metric-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.hiw-metric-label strong {
+  color: var(--primary);
+}
+
+.hiw-report-metrics .hiw-prog-track {
+  width: 100%;
+  height: 8px;
+  background: rgba(15, 23, 42, 0.05);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.hiw-prog-fill {
+  height: 100%;
+  border-radius: 99px;
+}
+
+.hiw-prog-fill.fill-blue {
+  background: linear-gradient(90deg, var(--primary) 0%, var(--purple) 100%);
+}
+.hiw-prog-fill.fill-purple {
+  background: linear-gradient(90deg, var(--purple) 0%, var(--teal) 100%);
+}
+.hiw-prog-fill.fill-teal {
+  background: linear-gradient(90deg, var(--teal) 0%, var(--primary) 100%);
+}
+
+.hiw-report-coach {
+  display: flex;
+  gap: 12px;
+  background: rgba(15, 23, 42, 0.02);
+  padding: 1rem;
+  border-radius: 12px;
+  border: 1px solid rgba(15, 23, 42, 0.04);
+}
+
+.hiw-coach-avatar {
+  font-size: 1.75rem;
+  flex-shrink: 0;
+}
+
+.hiw-report-coach h5 {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 2px;
+}
+
+.hiw-report-coach p {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+  font-style: italic;
+  margin: 0;
+}
+
+.hiw-report-footer {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.hiw-badge-pill-sm {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: rgba(15, 23, 42, 0.04);
+  padding: 4px 10px;
+  border-radius: 6px;
+  color: var(--text-muted);
+}
+
+/* Floating milestone metrics cards */
+.hiw-milestone-cards {
+  position: absolute;
+  right: -25px;
+  top: 15%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.hiw-milestone-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #ffffff;
+  padding: 8px 16px;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(15, 23, 42, 0.04);
+}
+
+.hiw-milestone-card span {
+  font-size: 1.25rem;
+}
+
+.hiw-milestone-card div {
+  display: flex;
+  flex-direction: column;
+}
+
+.hiw-milestone-card small {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.hiw-milestone-card strong {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #10b981;
+}
+
+/* ── SECTION 6: FINAL CTA ── */
+.hiw-cta-section {
+  position: relative;
+  padding: 7rem 0 8rem;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.hiw-cta-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hiw-cta-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.35;
+}
+
+.hiw-cta-orb-1 {
+  width: 400px;
+  height: 400px;
+  background: var(--purple-glow);
+  top: -100px;
+  left: 20%;
+}
+
+.hiw-cta-orb-2 {
+  width: 450px;
+  height: 450px;
+  background: var(--primary-glow);
+  bottom: -150px;
+  right: 15%;
+}
+
+.hiw-cta-float-icon {
+  position: absolute;
+  font-size: 1.75rem;
+  z-index: 2;
+}
+
+.hiw-cta-inner {
+  position: relative;
+  z-index: 5;
+}
+
+.hiw-cta-content {
+  text-align: center;
+  max-width: 850px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1.5px solid rgba(147, 197, 253, 0.25);
+  padding: 4.5rem 3rem;
+  border-radius: 32px;
+  box-shadow:
+    0 20px 60px rgba(15, 23, 42, 0.10),
+    0 8px 24px rgba(99, 102, 241, 0.08),
+    0 0 40px rgba(99, 102, 241, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.hiw-trust-row {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.hiw-trust-chip {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 0.85rem;
+  font-weight: 750;
+  color: var(--purple-dark);
+  background: var(--purple-glow);
+  padding: 6px 14px;
+  border-radius: 99px;
+}
+
+.hiw-cta-content h2 {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 3.25rem;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  color: var(--text-main);
+  line-height: 1.15;
+  margin-bottom: 1.25rem;
+}
+
+.hiw-cta-content p {
+  font-size: 1.25rem;
+  color: var(--text-muted);
+  margin-bottom: 2.5rem;
+}
+
+.hiw-cta-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.25rem;
+  margin-bottom: 3.5rem;
+}
+
+.hiw-btn-cta {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 1rem 2.5rem;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--purple) 100%);
+  color: #ffffff !important;
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 1.1rem;
+  font-weight: 800;
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.35);
+  text-decoration: none;
+  overflow: hidden;
+}
+
+.hiw-btn-shine {
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+  transition: all 0.6s ease;
+  animation: shine-effect 4s infinite linear;
+}
+
+@keyframes shine-effect {
+  0% { left: -100%; }
+  20% { left: 100%; }
+  100% { left: 100%; }
+}
+
+.hiw-btn-ghost-white {
+  display: inline-flex;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: transparent;
+  color: var(--primary) !important;
+  font-weight: 700;
+  border-radius: 14px;
+  transition: all 0.25s ease;
+  text-decoration: none;
+}
+
+.hiw-btn-ghost-white:hover {
+  background: rgba(37, 99, 235, 0.05);
+}
+
+.hiw-social-proof {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  border-top: 1px solid rgba(15, 23, 42, 0.06);
+  padding-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.hiw-proof-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+/* ── RESPONSIVE DESIGN BREAKPOINTS ── */
+@media (max-width: 1024px) {
+  .hiw-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+    text-align: center;
+  }
+
+  .hiw-hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hiw-hero-actions {
+    justify-content: center;
+  }
+
+  .hiw-hero-stats {
+    justify-content: center;
+  }
+
+  .hiw-hero-visual {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .hiw-diff-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .hiw-method-row {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .hiw-parent-grid {
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+  }
+
+  .hiw-parent-text {
+    align-items: center;
+    text-align: center;
+  }
+
+  .hiw-parent-visual {
+    max-width: 500px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .hiw-flow-track {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .hiw-flow-item-wrap {
+    width: 100%;
+    max-width: 320px;
+    flex-direction: column;
+  }
+
+  .hiw-flow-arrow {
+    transform: rotate(90deg);
+    margin: 10px 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .hiw-hero-content h1 {
+    font-size: 2.8rem;
+  }
+
+  .hiw-hero-sub {
+    font-size: 1.15rem;
+  }
+
+  .hiw-section-header h2 {
+    font-size: 2.2rem;
+  }
+
+  .hiw-spine {
+    left: 28px;
+  }
+
+  .hiw-step-row {
+    grid-template-columns: 60px 1fr;
+    gap: 0;
+    margin-bottom: 2rem;
+  }
+
+  .hiw-step-row.step-left .hiw-step-card,
+  .hiw-step-row.step-right .hiw-step-card {
+    grid-column: 2;
+  }
+
+  .hiw-step-row.step-left .hiw-step-label-side,
+  .hiw-step-row.step-right .hiw-step-label-side {
+    display: none; /* Hide ghost labels on mobile to save space */
+  }
+
+  .hiw-node {
+    grid-column: 1;
+    width: 38px;
+    height: 38px;
+  }
+
+  .hiw-step-card-inner {
+    padding: 1.25rem;
+  }
+
+  .hiw-diff-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hiw-parent-text h2 {
+    font-size: 2.2rem;
+  }
+
+  .hiw-cta-content {
+    padding: 3rem 1.5rem;
+  }
+
+  .hiw-cta-content h2 {
+    font-size: 2.2rem;
+  }
+
+  .hiw-cta-actions {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .hiw-btn-cta, .hiw-btn-ghost-white {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 576px) {
+  .hiw-hero-actions {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.75rem;
+  }
+
+  .hiw-btn-primary, .hiw-btn-ghost {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hiw-hero-stats {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .hiw-stat-divider {
+    display: none;
+  }
+
+  .hiw-tab-row {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ── STEP PROGRESS STRIP ── */
+.hiw-step-progress-strip {
+  width: 100%;
+  height: 4px;
+  background: rgba(37, 99, 235, 0.10);
+  border-radius: 99px;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+}
+
+.hiw-step-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #2563eb, #8b5cf6);
+  border-radius: 99px;
+  transition: width 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ── STEP DETAIL PANEL consistent min-height ── */
+.hiw-step-detail-panel {
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* ── STEP NAV BUTTON ordering fix ── */
+.hiw-step-nav-btn .step-nav-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(37, 99, 235, 0.08);
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: #2563eb;
+  flex-shrink: 0;
+  transition: background 0.2s, color 0.2s;
+}
+
+.hiw-step-nav-btn.active .step-nav-num {
+  background: linear-gradient(135deg, #2563eb, #8b5cf6);
+  color: #fff;
+}
+
+/* ── PREVIOUS BUTTON ── */
+.hiw-prev-btn {
+  margin-right: auto;
+}
+
+/* Ensure step detail actions row is flex */
+.step-detail-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: auto;
+  padding-top: 1rem;
+}
+

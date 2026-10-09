@@ -1,0 +1,19 @@
+meta {
+  name: Get Receipts
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{baseUrl}}/api/finance/receipts?limit=10
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+docs {
+  Downloadable payment receipt records.
+}

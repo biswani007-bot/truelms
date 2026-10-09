@@ -1,0 +1,104 @@
+
+:root {
+  /* ── FONTS ── */
+  --font-display: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-body:    'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* ── FONT SIZES ── */
+  --font-xxs: 0.75rem;    /* 12px */
+  --font-xs:  0.875rem;   /* 14px */
+  --font-sm:  1rem;       /* 16px */
+  --font-md:  1.125rem;   /* 18px */
+  --font-lg:  1.3125rem;  /* 21px */
+  --font-xl:  1.5rem;     /* 24px */
+  --font-2xl: 1.875rem;   /* 30px */
+  --font-3xl: 2.25rem;    /* 36px */
+  --font-4xl: 2.75rem;    /* 44px */
+  --font-5xl: 3.5rem;     /* 56px */
+  --font-6xl: 4.375rem;   /* 70px */
+  --font-7xl: 5.25rem;    /* 84px */
+
+  /* ── FONT WEIGHTS ── */
+  --weight-regular:  400;
+  --weight-medium:   500;
+  --weight-semibold: 600;
+  --weight-bold:     700;
+  --weight-extrabold: 800;
+  --weight-black:    900;
+
+  /* ── LINE HEIGHTS ── */
+  --lh-none:    1;
+  --lh-tight:   1.15;
+  --lh-snug:    1.3;
+  --lh-normal:  1.5;
+  --lh-relaxed: 1.7;
+  --lh-loose:   2;
+}
+
+/* ── BASE TYPOGRAPHY ── */
+.public-layout-root {
+  font-family: var(--font-body);
+  font-size: var(--font-md);
+  line-height: var(--lh-relaxed);
+  font-weight: var(--weight-semibold);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* ── HEADINGS ── */
+.public-layout-root h1, 
+.public-layout-root h2, 
+.public-layout-root h3, 
+.public-layout-root h4, 
+.public-layout-root h5, 
+.public-layout-root h6 {
+  font-family: var(--font-display);
+  font-weight: var(--weight-extrabold);
+  line-height: var(--lh-tight);
+  color: var(--text-primary-light);
+  letter-spacing: -0.03em;
+}
+
+:where(.public-layout-root) h1 { font-size: clamp(var(--font-5xl), 6.5vw, var(--font-7xl)); }
+:where(.public-layout-root) h2 { font-size: clamp(var(--font-4xl), 5vw, var(--font-6xl)); }
+:where(.public-layout-root) h3 { font-size: clamp(var(--font-2xl), 2.8vw, var(--font-4xl)); }
+:where(.public-layout-root) h4 { font-size: clamp(var(--font-xl), 2vw, var(--font-2xl)); }
+:where(.public-layout-root) h5 { font-size: var(--font-lg); }
+:where(.public-layout-root) h6 { font-size: var(--font-md); }
+
+:where(.public-layout-root) p {
+  font-size: var(--font-md);
+  line-height: var(--lh-relaxed);
+}
+
+@media (prefers-color-scheme: dark-disabled-in-light-phase) {
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--text-primary-dark);
+  }
+}
+
+/* ── GRADIENT TEXT UTILITIES ── */
+.text-gradient {
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline;
+}
+
+.text-gradient-primary {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline;
+}
+
+.text-gradient-hero {
+  background: var(--gradient-hero);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline;
+}

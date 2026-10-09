@@ -1,0 +1,19 @@
+meta {
+  name: Get Live Class Resources
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{baseUrl}}/api/live-classes/{{liveClassId}}/resources
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+docs {
+  Slide decks, reference PDFs, and downloadable materials attached to the class.
+}

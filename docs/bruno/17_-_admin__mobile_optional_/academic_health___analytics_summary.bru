@@ -1,0 +1,19 @@
+meta {
+  name: Academic Health & Analytics Summary
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/api/analytics/academic
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+docs {
+  High-level summary of active cohort health, attendance rates, and retention.
+}

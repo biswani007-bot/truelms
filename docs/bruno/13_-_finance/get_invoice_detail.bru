@@ -1,0 +1,19 @@
+meta {
+  name: Get Invoice Detail
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/api/finance/invoices/{{invoiceId}}
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+docs {
+  Invoice breakdown, total amount, amount paid, and balance due.
+}

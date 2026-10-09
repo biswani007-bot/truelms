@@ -1,0 +1,19 @@
+meta {
+  name: Get Batches List
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/api/batches?limit=10
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+docs {
+  Cohort batches with capacity and teacher assignment.
+}

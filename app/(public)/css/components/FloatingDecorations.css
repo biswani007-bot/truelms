@@ -1,0 +1,21 @@
+.floating-decorations-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.floating-decor-item {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+  will-change: transform;
+  transition: opacity 0.3s ease;
+}
+
+/* Float animations are defined in global.css */
+/* Additional helper for medium speed */
+.float-medium {
+  animation: float 7.5s ease-in-out infinite;
+}

@@ -1,0 +1,19 @@
+meta {
+  name: Get Courses List
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/api/courses?limit=10&status=active
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+docs {
+  Paginated list of active courses.
+}

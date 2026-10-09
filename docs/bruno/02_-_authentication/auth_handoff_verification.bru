@@ -1,0 +1,19 @@
+meta {
+  name: Auth Handoff Verification
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{baseUrl}}/api/auth/handoff?token={{handoffToken}}
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+docs {
+  Validates short-lived checkout handoff token after public enrollment.
+}

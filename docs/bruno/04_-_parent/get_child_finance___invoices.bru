@@ -1,0 +1,19 @@
+meta {
+  name: Get Child Finance & Invoices
+  type: http
+  seq: 9
+}
+
+get {
+  url: {{baseUrl}}/api/parent/children/{{childStudentId}}/finance
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+docs {
+  Invoices, paid amounts, balance due, and receipt records for selected ward.
+}

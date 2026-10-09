@@ -1,0 +1,19 @@
+meta {
+  name: List Course Categories
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/api/public/categories
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+docs {
+  Fetches course categories for mobile course discovery.
+}

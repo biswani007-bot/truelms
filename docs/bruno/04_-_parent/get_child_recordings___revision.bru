@@ -1,0 +1,19 @@
+meta {
+  name: Get Child Recordings & Revision
+  type: http
+  seq: 8
+}
+
+get {
+  url: {{baseUrl}}/api/parent/children/{{childStudentId}}/recordings
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+docs {
+  Recorded classroom sessions available for review and study.
+}

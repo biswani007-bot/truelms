@@ -1,0 +1,19 @@
+meta {
+  name: Get Teacher Availability Schedule
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/api/teachers/{{teacherId}}/availability
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+docs {
+  Weekly availability schedule and max teaching hours.
+}

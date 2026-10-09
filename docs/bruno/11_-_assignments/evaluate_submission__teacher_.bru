@@ -1,0 +1,28 @@
+meta {
+  name: Evaluate Submission (Teacher)
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{baseUrl}}/api/assignments/{{assignmentId}}/evaluate
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+body:json {
+{
+  "submissionId": "{{submissionId}}",
+  "marksAwarded": 95,
+  "feedback": "Excellent solution and clean structure.",
+  "status": "graded"
+}
+}
+
+docs {
+  Grades student submission with marks and feedback.
+}

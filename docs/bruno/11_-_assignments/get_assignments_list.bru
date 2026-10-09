@@ -1,0 +1,19 @@
+meta {
+  name: Get Assignments List
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/api/assignments?limit=10&status=published
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+docs {
+  List of published assignments.
+}

@@ -1,0 +1,23 @@
+meta {
+  name: Generate Live Classroom Jitsi Token (HIGH PRIORITY)
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/api/live-classes/{{liveClassId}}/token
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+body:json {
+{}
+}
+
+docs {
+  Generates secure JWT room token for Jitsi Meet integration. Grants moderator permissions to Teachers/Admins, and attendee permissions to enrolled Students.
+}

@@ -1,0 +1,19 @@
+meta {
+  name: Get Live Class Detail
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/api/live-classes/{{liveClassId}}
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+docs {
+  Class title, scheduled start/end, duration, teacher, and status.
+}

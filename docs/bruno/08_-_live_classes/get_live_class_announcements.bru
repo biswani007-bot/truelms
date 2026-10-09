@@ -1,0 +1,19 @@
+meta {
+  name: Get Live Class Announcements
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{baseUrl}}/api/live-classes/{{liveClassId}}/announcements
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+docs {
+  Announcements posted by faculty for a specific live session.
+}

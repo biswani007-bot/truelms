@@ -1,0 +1,19 @@
+meta {
+  name: Public Portal Configuration
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{baseUrl}}/api/v1/public/portal-config?portalId=student-portal
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+docs {
+  Fetches mobile app governance, branding colors, min app version, maintenance mode, and feature flags.
+}

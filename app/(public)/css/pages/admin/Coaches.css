@@ -1,0 +1,25 @@
+/* Admin Coaches Styles */
+
+.admin-coaches-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.coaches-sections-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+}
+
+.coaches-table-card {
+  padding: var(--space-xl);
+  border-radius: var(--radius-lg);
+}
+
+.coaches-table-card h4 {
+  font-family: var(--font-display);
+  font-size: var(--font-md);
+  font-weight: var(--weight-extrabold);
+  margin: 0 0 var(--space-lg);
+}

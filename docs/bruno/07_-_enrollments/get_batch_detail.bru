@@ -1,0 +1,19 @@
+meta {
+  name: Get Batch Detail
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/api/batches/{{batchId}}
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+docs {
+  Batch schedule, roster count, assigned instructor, and course.
+}

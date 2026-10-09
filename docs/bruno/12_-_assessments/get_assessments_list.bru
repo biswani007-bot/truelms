@@ -1,0 +1,19 @@
+meta {
+  name: Get Assessments List
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/api/assessments?limit=10&status=published
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+docs {
+  List of active quizzes and exams.
+}

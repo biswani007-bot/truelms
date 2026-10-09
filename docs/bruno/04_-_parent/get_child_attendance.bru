@@ -1,0 +1,19 @@
+meta {
+  name: Get Child Attendance
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/api/parent/children/{{childStudentId}}/attendance
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+docs {
+  Attendance summary and session breakdown for selected ward.
+}

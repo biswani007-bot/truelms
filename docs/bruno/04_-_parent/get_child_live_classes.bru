@@ -1,0 +1,19 @@
+meta {
+  name: Get Child Live Classes
+  type: http
+  seq: 7
+}
+
+get {
+  url: {{baseUrl}}/api/parent/children/{{childStudentId}}/live-classes
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+docs {
+  Upcoming and past live classroom schedules for selected ward.
+}

@@ -1,0 +1,23 @@
+meta {
+  name: Start Assessment Attempt (Student)
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/api/assessments/{{assessmentId}}/start
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+body:json {
+{}
+}
+
+docs {
+  Initiates a timed assessment attempt session.
+}

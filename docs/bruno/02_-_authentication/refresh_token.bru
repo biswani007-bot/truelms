@@ -1,0 +1,25 @@
+meta {
+  name: Refresh Token
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{baseUrl}}/api/auth/refresh
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+body:json {
+{
+  "refreshToken": "{{refreshToken}}"
+}
+}
+
+docs {
+  Silent rotation of JWT accessToken using stored refreshToken.
+}

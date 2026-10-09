@@ -1,0 +1,19 @@
+meta {
+  name: Get Student List (Admin/Counsellor view)
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/api/students?limit=10&page=1
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+docs {
+  Paginated list of students.
+}

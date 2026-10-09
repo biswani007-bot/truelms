@@ -1,0 +1,35 @@
+meta {
+  name: Submit Assessment Answers (Student)
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{baseUrl}}/api/assessments/{{assessmentId}}/submit
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+body:json {
+{
+  "attemptId": "{{attemptId}}",
+  "answers": [
+    {
+      "questionId": "q1",
+      "selectedOption": "A"
+    },
+    {
+      "questionId": "q2",
+      "writtenAnswer": "Inheritance allows code reuse across classes."
+    }
+  ]
+}
+}
+
+docs {
+  Submits completed answers for grading.
+}

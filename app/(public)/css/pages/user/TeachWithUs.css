@@ -1,0 +1,366 @@
+/* ==========================================================================
+   Teach With Us Page Styles
+   Theme: Blue + Purple + White
+   ========================================================================== */
+
+.tp-teach-page {
+  --primary: #2563eb;
+  --primary-glow: rgba(37, 99, 235, 0.12);
+  --primary-dark: #1d4ed8;
+
+  --purple: #8b5cf6;
+  --purple-glow: rgba(139, 92, 246, 0.12);
+  --purple-dark: #6d28d9;
+
+  --text-main: #0f172a;
+  --text-muted: #475569;
+  --bg-light: #f8fafc;
+
+  width: 100%;
+  overflow-x: hidden;
+  background: #EFFFF4;
+  color: var(--text-main);
+  font-family: var(--font-body, 'Inter', sans-serif);
+}
+
+.tp-section-tag {
+  display: inline-block;
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--purple);
+  margin-bottom: 0.75rem;
+  background: var(--purple-glow);
+  padding: 4px 12px;
+  border-radius: 99px;
+}
+
+.tp-section-header h2 {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 2.5rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text-main);
+  margin-bottom: 1rem;
+}
+
+.tp-section-sub {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* Glassmorphism bases */
+.tp-pipeline-node,
+.tp-form-card {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 24px;
+  box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.08);
+}
+
+/* Hero */
+.tp-hero {
+  position: relative;
+  padding: 8rem 0 5rem;
+  overflow: hidden;
+  background: transparent;
+}
+
+.tp-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/img/public/teach_hero_banner.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.65;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* White center overlay — keeps headline text crisp and readable */
+.tp-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 70% at 50% 50%, rgba(255,255,255,0.72) 0%, transparent 80%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.tp-hero-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.tp-hero-container {
+  position: relative;
+  z-index: 4;
+}
+
+.tp-hero-content h1 {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 3.5rem;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  color: var(--text-main);
+  max-width: 950px;
+  margin: 0 auto 1.5rem;
+}
+
+.tp-hero-sub {
+  font-size: 1.25rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  max-width: 750px;
+  margin: 0 auto 2.5rem;
+}
+
+.tp-hero-actions {
+  display: flex;
+  justify-content: center;
+}
+
+.tp-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2.5rem;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--purple) 100%);
+  color: #ffffff !important;
+  font-weight: 700;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+  transition: all 0.25s ease;
+  text-decoration: none;
+}
+
+.tp-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+}
+
+.tp-badge-pill {
+  display: inline-block;
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--primary-dark);
+  background: var(--primary-glow);
+  padding: 6px 16px;
+  border-radius: 99px;
+  margin-bottom: 1.5rem;
+}
+
+/* Sections */
+.tp-section {
+  padding: 5rem 0;
+}
+
+/* Hiring Process Timeline Grid */
+.tp-pipeline-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.tp-pipeline-node {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+  transition: all 0.25s ease;
+}
+
+.tp-pipeline-node:hover {
+  transform: translateY(-4px);
+  border-color: rgba(139, 92, 246, 0.25);
+  box-shadow: 0 15px 30px -10px rgba(139, 92, 246, 0.15);
+}
+
+.tp-node-num {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--purple) 0%, var(--primary) 100%);
+  color: #ffffff;
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 1.1rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(139, 92, 246, 0.25);
+}
+
+.tp-pipeline-node h4 {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--text-main);
+  line-height: 1.3;
+}
+
+/* Application Form */
+.tp-container-form {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.tp-form-card {
+  padding: 4rem 3.5rem;
+  background: #ffffff;
+}
+
+.tp-form-header {
+  margin-bottom: 2.5rem;
+}
+
+.tp-form-header h3 {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 2rem;
+  font-weight: 850;
+  margin-bottom: 0.5rem;
+}
+
+.tp-form-header p {
+  font-size: 1rem;
+  color: var(--text-muted);
+}
+
+.tp-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.tp-grid-full {
+  grid-column: span 2;
+}
+
+.tp-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.tp-input-group label {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.tp-input-group input,
+.tp-input-group select,
+.tp-input-group textarea {
+  padding: 0.85rem 1rem;
+  border: 1.5px solid rgba(15, 23, 42, 0.08);
+  border-radius: 10px;
+  background: rgba(15, 23, 42, 0.01);
+  color: var(--text-main);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 0.95rem;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.tp-input-group input:focus,
+.tp-input-group select:focus,
+.tp-input-group textarea:focus {
+  border-color: var(--purple);
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.1);
+}
+
+.tp-btn-submit {
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--purple) 100%) !important;
+  color: #ffffff !important;
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 1.1rem;
+  font-weight: 800;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.25);
+  transition: all 0.2s ease;
+}
+
+.tp-btn-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.35);
+}
+
+.tp-btn-submit:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+/* Alerts */
+.tp-alert {
+  padding: 1.25rem 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.tp-alert-success {
+  background: rgba(34, 197, 94, 0.1);
+  color: #166534;
+  border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+.tp-alert-danger {
+  background: rgba(239, 68, 68, 0.1);
+  color: #991b1b;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .tp-pipeline-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .tp-hero-content h1 {
+    font-size: 2.6rem;
+  }
+
+  .tp-form-card {
+    padding: 2.5rem 1.5rem;
+  }
+
+  .tp-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tp-grid-full {
+    grid-column: span 1;
+  }
+}
+
+@media (max-width: 576px) {
+  .tp-pipeline-grid {
+    grid-template-columns: 1fr;
+  }
+}

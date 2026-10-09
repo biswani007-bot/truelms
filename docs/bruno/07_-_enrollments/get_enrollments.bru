@@ -1,0 +1,19 @@
+meta {
+  name: Get Enrollments
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/api/enrollments?limit=10
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+docs {
+  Active enrollment records.
+}

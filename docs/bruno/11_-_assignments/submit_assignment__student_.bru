@@ -1,0 +1,28 @@
+meta {
+  name: Submit Assignment (Student)
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/api/assignments/{{assignmentId}}/submit
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+body:json {
+{
+  "submissionText": "Completed exercises on conditional logic and loops.",
+  "attachments": [
+    "https://storage.truelern.com/uploads/homework_submission_1.pdf"
+  ]
+}
+}
+
+docs {
+  Submits student assignment text and file attachment URLs.
+}

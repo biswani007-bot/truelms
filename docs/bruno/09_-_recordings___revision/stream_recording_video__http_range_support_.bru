@@ -1,0 +1,19 @@
+meta {
+  name: Stream Recording Video (HTTP Range Support)
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/api/recordings/{{recordingId}}/stream
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+docs {
+  Streams video recording with HTTP 206 Partial Content support for mobile video players (ExoPlayer / AVPlayer).
+}

@@ -1,0 +1,19 @@
+meta {
+  name: Get Parent Notifications
+  type: http
+  seq: 10
+}
+
+get {
+  url: {{baseUrl}}/api/parent/notifications
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+docs {
+  Notifications directed to the parent concerning attendance alerts, fee reminders, and class schedules.
+}

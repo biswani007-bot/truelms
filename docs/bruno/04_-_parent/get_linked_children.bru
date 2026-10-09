@@ -1,0 +1,19 @@
+meta {
+  name: Get Linked Children
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/api/parent/children
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+docs {
+  Returns all verified wards linked to the authenticated parent (e.g. Alex Mercer, Mia Mercer).
+}

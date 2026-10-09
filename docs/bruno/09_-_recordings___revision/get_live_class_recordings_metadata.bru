@@ -1,0 +1,19 @@
+meta {
+  name: Get Live Class Recordings Metadata
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/api/live-classes/{{liveClassId}}/recordings
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+docs {
+  List of recordings associated with a completed live class session.
+}

@@ -1,0 +1,19 @@
+meta {
+  name: CRM Leads List (Admin Mobile View)
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/api/crm/leads?limit=10&page=1
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+docs {
+  Real-time admissions leads monitoring.
+}

@@ -1,0 +1,19 @@
+meta {
+  name: Get Invoices List
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/api/finance/invoices?limit=10
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+docs {
+  List of tuition invoices and billing statements.
+}

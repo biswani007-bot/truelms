@@ -1,0 +1,19 @@
+meta {
+  name: Get Child Dashboard Context
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/api/parent/children/{{childStudentId}}/dashboard
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+docs {
+  Aggregated overview of child attendance percentage, upcoming live classes, enrolled batches, pending assignments, and fee status.
+}

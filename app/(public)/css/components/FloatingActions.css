@@ -1,0 +1,249 @@
+/* ==========================================================================
+   Floating Action Buttons — FloatingActions.css
+   Fixed bottom-right stack, visible on all pages via UserLayout
+   ========================================================================== */
+
+/* ── STACK CONTAINER ── */
+.floating-actions-stack {
+  position: fixed;
+  bottom: 28px;
+  right: 24px;
+  z-index: 9000;
+  display: flex;
+  flex-direction: column-reverse;   /* WhatsApp on bottom, Demo on top */
+  gap: 12px;
+  align-items: center;
+
+  /* Slide-in entrance — starts hidden */
+  opacity: 0;
+  transform: translateX(80px);
+  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  pointer-events: none;
+}
+
+.floating-actions-stack.fab-visible {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+/* Stagger each button's entrance */
+.floating-actions-stack.fab-visible .fab-item-wrapper:nth-child(1) { transition-delay: 0s;   }
+.floating-actions-stack.fab-visible .fab-item-wrapper:nth-child(2) { transition-delay: 0.08s; }
+.floating-actions-stack.fab-visible .fab-item-wrapper:nth-child(3) { transition-delay: 0.16s; }
+
+/* ── ITEM WRAPPER (button + tooltip pair) ── */
+.fab-item-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* ── BASE BUTTON ── */
+.fab-btn {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  flex-shrink: 0;
+
+  /* Floating shadow + glass depth */
+  box-shadow:
+    0 6px 20px rgba(0, 0, 0, 0.18),
+    0 2px 6px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+
+  transition:
+    transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.22s ease,
+    filter 0.22s ease;
+
+  /* Continuous gentle float */
+  animation: fab-float 4s ease-in-out infinite;
+}
+
+.fab-btn:hover {
+  transform: scale(1.15) translateY(-3px);
+  box-shadow:
+    0 12px 32px rgba(0, 0, 0, 0.22),
+    0 4px 12px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  filter: brightness(1.08);
+}
+
+.fab-btn:active {
+  transform: scale(0.96);
+  box-shadow:
+    0 3px 10px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Stagger float phase per button */
+.fab-whatsapp { animation-delay: 0s;    }
+.fab-call      { animation-delay: 1.3s; }
+.fab-demo      { animation-delay: 2.6s; }
+
+@keyframes fab-float {
+  0%   { transform: translateY(0px);   }
+  50%  { transform: translateY(-5px);  }
+  100% { transform: translateY(0px);   }
+}
+
+/* ── WHATSAPP BUTTON ── */
+.fab-whatsapp {
+  background: #25D366;
+  box-shadow:
+    0 6px 20px rgba(37, 211, 102, 0.40),
+    0 2px 6px rgba(37, 211, 102, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.fab-whatsapp:hover {
+  box-shadow:
+    0 12px 32px rgba(37, 211, 102, 0.55),
+    0 4px 12px rgba(37, 211, 102, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* Pulse ring on WhatsApp only */
+.fab-whatsapp::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background: rgba(37, 211, 102, 0.35);
+  animation: fab-pulse 2.5s ease-out infinite;
+  z-index: -1;
+}
+
+/* ── CALL BUTTON ── */
+.fab-call {
+  background: linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%);
+  box-shadow:
+    0 6px 20px rgba(59, 130, 246, 0.40),
+    0 2px 6px rgba(59, 130, 246, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.fab-call:hover {
+  box-shadow:
+    0 12px 32px rgba(59, 130, 246, 0.55),
+    0 4px 12px rgba(59, 130, 246, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* ── DEMO BUTTON ── */
+.fab-demo {
+  background: linear-gradient(135deg, #8B5CF6 0%, #6D28D9 100%);
+  box-shadow:
+    0 6px 20px rgba(139, 92, 246, 0.40),
+    0 2px 6px rgba(139, 92, 246, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.fab-demo:hover {
+  box-shadow:
+    0 12px 32px rgba(139, 92, 246, 0.55),
+    0 4px 12px rgba(139, 92, 246, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* ── PULSE RING KEYFRAMES ── */
+@keyframes fab-pulse {
+  0%   { transform: scale(1);    opacity: 0.7; }
+  70%  { transform: scale(1.55); opacity: 0;   }
+  100% { transform: scale(1.55); opacity: 0;   }
+}
+
+/* ── TOOLTIP ── */
+.fab-tooltip {
+  position: absolute;
+  right: calc(100% + 12px);
+  top: 50%;
+  transform: translateY(-50%);
+  white-space: nowrap;
+
+  background: rgba(15, 15, 25, 0.88);
+  color: #fff;
+  font-family: var(--font-display, 'Inter', sans-serif);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 8px;
+  letter-spacing: 0.3px;
+
+  /* Glass depth */
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+
+  /* Arrow pointing right */
+  pointer-events: none;
+  animation: tooltip-in 0.18s ease forwards;
+}
+
+.fab-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: -6px;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-left: 6px solid rgba(15, 15, 25, 0.88);
+}
+
+@keyframes tooltip-in {
+  from { opacity: 0; transform: translateY(-50%) translateX(6px); }
+  to   { opacity: 1; transform: translateY(-50%) translateX(0);   }
+}
+
+/* ── RESPONSIVE: MOBILE ── */
+@media (max-width: 768px) {
+  .floating-actions-stack {
+    bottom: max(20px, calc(env(safe-area-inset-bottom, 0px) + 20px));
+    right: max(16px, env(safe-area-inset-right, 16px));
+    gap: 10px;
+  }
+
+  .fab-btn {
+    width: 48px;
+    height: 48px;
+  }
+
+  /* Hide tooltips on touch devices */
+  .fab-tooltip {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .floating-actions-stack {
+    bottom: max(24px, calc(env(safe-area-inset-bottom, 0px) + 24px));
+    right: max(16px, env(safe-area-inset-right, 16px));
+    gap: 12px;
+  }
+
+  .fab-btn {
+    width: 44px;
+    height: 44px;
+  }
+
+  /* Float & pulse consume battery — tone them down on small screens */
+  .fab-btn {
+    animation: none;
+  }
+  .fab-whatsapp::before {
+    animation: fab-pulse 3.5s ease-out infinite;
+  }
+}

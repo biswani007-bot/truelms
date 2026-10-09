@@ -1,0 +1,745 @@
+/* ==========================================================================
+   Coaches Page Styles
+   Theme: Blue + Purple + White
+   ========================================================================== */
+
+.cp-coaches-page {
+  --primary: #2563eb;
+  --primary-glow: rgba(37, 99, 235, 0.12);
+  --primary-dark: #1d4ed8;
+
+  --purple: #8b5cf6;
+  --purple-glow: rgba(139, 92, 246, 0.12);
+  --purple-dark: #6d28d9;
+
+  --gold: #f59e0b;
+  --gold-glow: rgba(245, 158, 11, 0.12);
+  --gold-dark: #d97706;
+
+  --text-main: #0f172a;
+  --text-muted: #475569;
+  --bg-light: #f8fafc;
+
+  width: 100%;
+  overflow-x: hidden;
+  background: #FFF4E8;
+  color: var(--text-main);
+  font-family: var(--font-body, 'Inter', sans-serif);
+}
+
+.cp-section-tag {
+  display: inline-block;
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--purple);
+  margin-bottom: 0.75rem;
+  background: var(--purple-glow);
+  padding: 4px 12px;
+  border-radius: 99px;
+}
+
+.cp-section-header h2 {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 2.5rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text-main);
+  margin-bottom: 1rem;
+}
+
+.cp-section-sub {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* Glassmorphism bases */
+.cp-visual-wrapper,
+.cp-cat-card,
+.cp-standard-box,
+.cp-timeline-details,
+.cp-roster-wrapper,
+.cp-cta-card {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 24px;
+  box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.08);
+}
+
+/* Hero */
+.cp-hero {
+  position: relative;
+  padding: 8rem 0 5rem;
+  overflow: hidden;
+  background: transparent;
+}
+
+.cp-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/img/public/coaches_hero_banner.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.65;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* White center overlay — keeps headline text crisp and readable */
+.cp-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 70% at 50% 50%, rgba(255,255,255,0.72) 0%, transparent 80%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.cp-hero-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.cp-hero-container {
+  position: relative;
+  z-index: 4;
+}
+
+.cp-hero-content h1 {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 3.5rem;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  color: var(--text-main);
+  max-width: 950px;
+  margin: 0 auto 1.5rem;
+}
+
+.cp-hero-sub {
+  font-size: 1.25rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  max-width: 750px;
+  margin: 0 auto 2.5rem;
+}
+
+.cp-hero-actions {
+  display: flex;
+  justify-content: center;
+}
+
+.cp-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2.5rem;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--purple) 100%);
+  color: #ffffff !important;
+  font-weight: 700;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+  transition: all 0.25s ease;
+  text-decoration: none;
+}
+
+.cp-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+}
+
+.cp-badge-pill {
+  display: inline-block;
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--primary-dark);
+  background: var(--primary-glow);
+  padding: 6px 16px;
+  border-radius: 99px;
+  margin-bottom: 1.5rem;
+}
+
+/* Sections */
+.cp-section {
+  padding: 5rem 0;
+}
+
+/* Section grids */
+.cp-grid-selection,
+.cp-grid-standards {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: 4rem;
+}
+
+.cp-grid-standards {
+  grid-template-columns: 0.9fr 1.1fr;
+}
+
+.cp-selection-content h2,
+.cp-standards-content h2 {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: var(--text-main);
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+}
+
+.cp-selection-content p,
+.cp-standards-desc {
+  font-size: 1.15rem;
+  line-height: 1.65;
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+}
+
+.cp-criteria-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.cp-criteria-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.cp-crit-emoji {
+  font-size: 2.2rem;
+}
+
+.cp-criteria-list strong {
+  display: block;
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--text-main);
+}
+
+.cp-criteria-list span {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+}
+
+.cp-visual-wrapper {
+  padding: 1.5rem;
+  position: relative;
+}
+
+.cp-3d-visual {
+  max-width: 100%;
+  transform: scale(1.25);
+  transform-origin: center;
+}
+
+.cp-visual-overlay {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 2.5rem;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(8px);
+  padding: 8px 16px;
+  border-radius: 8px;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.cp-visual-overlay strong {
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.cp-visual-overlay span {
+  font-size: 0.75rem;
+  color: #10b981;
+}
+
+/* Category Cards */
+.cp-categories-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.cp-cat-card {
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.cp-card-highlight {
+  border: 2px solid var(--purple);
+  box-shadow: 0 20px 40px -15px rgba(139, 92, 246, 0.2);
+}
+
+.cp-cat-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 99px;
+}
+
+.cp-cat-badge.badge-blue {
+  background: var(--primary-glow);
+  color: var(--primary-dark);
+}
+
+.cp-cat-badge.badge-purple {
+  background: var(--purple-glow);
+  color: var(--purple-dark);
+}
+
+.cp-cat-badge.badge-gold {
+  background: var(--gold-glow);
+  color: var(--gold-dark);
+}
+
+.cp-cat-card h3 {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin: 0;
+}
+
+.cp-cat-text {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* Teaching Standards */
+.cp-standards-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.cp-standard-box {
+  padding: 1.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cp-standard-box strong {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--text-main);
+}
+
+.cp-standard-box p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+  margin: 0;
+}
+
+/* Timeline/Training Process */
+.cp-timeline {
+  max-width: 900px;
+  margin: 3rem auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.cp-timeline-row {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.cp-timeline-number {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--primary-glow);
+  color: var(--primary-dark);
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 1.1rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.cp-timeline-arrow {
+  font-size: 1.25rem;
+  color: var(--text-muted);
+  font-weight: 800;
+}
+
+.cp-timeline-details {
+  padding: 1.25rem 2rem;
+  flex-grow: 1;
+}
+
+.cp-timeline-details h4 {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 1.15rem;
+  font-weight: 800;
+  margin-bottom: 0.25rem;
+}
+
+.cp-timeline-details p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Roster Spotlight */
+.cp-roster-wrapper {
+  padding: 3rem;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 3rem;
+}
+
+.cp-roster-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cp-tab-btn {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 12px;
+  background: transparent;
+  color: var(--text-muted);
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 1rem;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cp-tab-btn:hover {
+  background: rgba(15, 23, 42, 0.03);
+}
+
+.cp-tab-btn.active {
+  background: linear-gradient(135deg, var(--purple) 0%, var(--primary) 100%);
+  color: #ffffff;
+  border-color: transparent;
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.2);
+}
+
+.cp-roster-display {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.cp-display-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cp-display-header h3 {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.cp-display-tag {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--purple-dark);
+  background: var(--purple-glow);
+  padding: 3px 10px;
+  border-radius: 99px;
+  text-transform: uppercase;
+}
+
+.cp-display-specialty {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.cp-display-quote {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 1.15rem;
+  line-height: 1.5;
+  color: var(--text-main);
+  font-style: italic;
+  border-left: 3px solid var(--purple);
+  padding-left: 12px;
+  margin: 0;
+}
+
+.cp-display-bio {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* CTA */
+.cp-cta-card {
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 4.5rem 3rem;
+  background: radial-gradient(100% 100% at 50% 0%, rgba(37, 99, 235, 0.03) 0%, rgba(139, 92, 246, 0.03) 100%);
+  border: 1px solid rgba(139, 92, 246, 0.12);
+  box-shadow: 0 20px 50px -15px rgba(139, 92, 246, 0.08);
+}
+
+.cp-cta-card h2 {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 2.75rem;
+  font-weight: 900;
+  margin-bottom: 1rem;
+}
+
+.cp-cta-card p {
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  margin-bottom: 2.5rem;
+}
+
+.cp-btn-cta {
+  display: inline-flex;
+  align-items: center;
+  padding: 1rem 2.5rem;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--purple) 100%);
+  color: #ffffff !important;
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 1.1rem;
+  font-weight: 800;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.35);
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.cp-btn-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(37, 99, 235, 0.45);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .cp-grid-selection,
+  .cp-grid-standards {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 3rem;
+  }
+
+  .cp-selection-content,
+  .cp-standards-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cp-criteria-list {
+    align-items: center;
+  }
+
+  .cp-criteria-list li {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .cp-categories-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .cp-roster-wrapper {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .cp-hero-content h1 {
+    font-size: 2.6rem;
+  }
+
+  .cp-selection-content h2,
+  .cp-standards-content h2 {
+    font-size: 2.2rem;
+  }
+
+  .cp-categories-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cp-cta-card h2 {
+    font-size: 2.2rem;
+  }
+}
+
+/* ── FINAL CTA SECTION SPACING ── */
+.cp-cta {
+  padding: 5rem 0 7.5rem; /* desktop: 120px bottom gap */
+}
+
+@media (max-width: 1024px) {
+  .cp-cta {
+    padding: 4rem 0 5rem; /* tablet: 80px bottom gap */
+  }
+}
+
+@media (max-width: 768px) {
+  .cp-cta {
+    padding: 2.5rem 0 3.5rem; /* mobile: 56px bottom gap */
+  }
+}
+
+/* ==========================================================================
+   COACHES TRAINING TIMELINE — Enhanced vertical connector
+   ========================================================================== */
+
+/* Outer wrapper holds the vertical connector line */
+.cp-timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-top: 2.5rem;
+  padding-left: 2.5rem; /* space for the connector line */
+}
+
+/* The vertical connector line behind all steps */
+.cp-timeline::before {
+  content: '';
+  position: absolute;
+  top: 24px;
+  bottom: 24px;
+  left: 22.5px;
+  width: 3px;
+  background: linear-gradient(180deg, #2563eb 0%, #8b5cf6 50%, #14b8a6 100%);
+  border-radius: 99px;
+  z-index: 0;
+}
+
+/* Each timeline row */
+.cp-timeline-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Numbered step dot */
+.cp-timeline-dot {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2563eb, #8b5cf6);
+  color: #fff;
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-weight: 900;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+  border: 3px solid #fff;
+  flex-shrink: 0;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+  z-index: 2;
+  margin-left: -2.5rem; /* aligns the dot to the connector line */
+}
+
+.cp-timeline-item:nth-child(even) .cp-timeline-dot {
+  background: linear-gradient(135deg, #8b5cf6, #14b8a6);
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.35);
+}
+
+.cp-timeline-item:hover .cp-timeline-dot {
+  transform: scale(1.1);
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.45);
+}
+
+/* Card content */
+.cp-timeline-content {
+  flex-grow: 1;
+  padding: 1.25rem 1.5rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1.5px solid rgba(37, 99, 235, 0.10);
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.06);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.cp-timeline-item:hover .cp-timeline-content {
+  transform: translateX(5px);
+  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.12);
+  border-color: rgba(37, 99, 235, 0.22);
+}
+
+.cp-timeline-content h4 {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #1E293B;
+  margin-bottom: 0.35rem;
+}
+
+.cp-timeline-content p {
+  font-size: 0.9rem;
+  color: #475569;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Responsive: narrow on mobile */
+@media (max-width: 640px) {
+  .cp-timeline {
+    padding-left: 1.75rem;
+  }
+  .cp-timeline::before {
+    left: 16.5px;
+  }
+  .cp-timeline-dot {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    font-size: 0.85rem;
+    margin-left: -1.75rem;
+  }
+}
+

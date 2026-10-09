@@ -1,0 +1,19 @@
+meta {
+  name: Get Notification Preferences
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{baseUrl}}/api/notifications/preferences
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+docs {
+  User channel preferences for email, SMS, and in-app alerts.
+}

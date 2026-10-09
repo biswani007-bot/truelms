@@ -1,0 +1,19 @@
+meta {
+  name: Get Child Academics & Courses
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{baseUrl}}/api/parent/children/{{childStudentId}}/academics
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+docs {
+  Enrolled courses, syllabus details, and curriculum progress for selected ward.
+}

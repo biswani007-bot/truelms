@@ -1,0 +1,19 @@
+meta {
+  name: Get Certificates List
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/api/certificates?limit=10
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+docs {
+  Earned certificates of completion.
+}

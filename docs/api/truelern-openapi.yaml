@@ -1,0 +1,6645 @@
+openapi: 3.0.0
+info:
+  title: TrueLern Production API
+  version: 1.0.0
+  description: >-
+    Complete OpenAPI 3.0 specification for TrueLern Backend. Formal contract for
+    Android mobile development.
+  contact:
+    name: TrueLern Engineering
+    email: support@truelern.com
+servers:
+  - url: https://360api.vnvision.in
+    description: Production Server
+  - url: http://localhost:3000
+    description: Local Development Server
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT Bearer token from /api/auth/login
+security: []
+paths:
+  /api/workflows:
+    post:
+      summary: Auto-generated summary for POST /api/workflows
+      tags:
+        - workflows
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/workflows
+      tags:
+        - workflows
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/workflows/{id}:
+    delete:
+      summary: Auto-generated summary for DELETE /api/workflows/{id}
+      tags:
+        - workflows
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    put:
+      summary: Auto-generated summary for PUT /api/workflows/{id}
+      tags:
+        - workflows
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/workflows/{id}
+      tags:
+        - workflows
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/workflows/{id}/pause:
+    post:
+      summary: Auto-generated summary for POST /api/workflows/{id}/pause
+      tags:
+        - workflows
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/workflows/{id}/execute:
+    post:
+      summary: Auto-generated summary for POST /api/workflows/{id}/execute
+      tags:
+        - workflows
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/workflows/{id}/activate:
+    post:
+      summary: Auto-generated summary for POST /api/workflows/{id}/activate
+      tags:
+        - workflows
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/workflows/templates:
+    post:
+      summary: Auto-generated summary for POST /api/workflows/templates
+      tags:
+        - workflows
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/workflows/templates
+      tags:
+        - workflows
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/workflows/executions:
+    get:
+      summary: Auto-generated summary for GET /api/workflows/executions
+      tags:
+        - workflows
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/workflows/executions/logs:
+    get:
+      summary: Auto-generated summary for GET /api/workflows/executions/logs
+      tags:
+        - workflows
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/v1/public/{...resource}:
+    get:
+      summary: Auto-generated summary for GET /api/v1/public/{...resource}
+      tags:
+        - v1
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/v1/public/portal-config:
+    get:
+      summary: Auto-generated summary for GET /api/v1/public/portal-config
+      tags:
+        - v1
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/test/protected:
+    post:
+      summary: Auto-generated summary for POST /api/test/protected
+      tags:
+        - test
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/test/protected
+      tags:
+        - test
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/teachers:
+    post:
+      summary: Auto-generated summary for POST /api/teachers
+      tags:
+        - teachers
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/teachers
+      tags:
+        - teachers
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/teachers/{id}:
+    delete:
+      summary: Auto-generated summary for DELETE /api/teachers/{id}
+      tags:
+        - teachers
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    put:
+      summary: Auto-generated summary for PUT /api/teachers/{id}
+      tags:
+        - teachers
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/teachers/{id}
+      tags:
+        - teachers
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/teachers/{id}/leaves:
+    post:
+      summary: Auto-generated summary for POST /api/teachers/{id}/leaves
+      tags:
+        - teachers
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/teachers/{id}/leaves
+      tags:
+        - teachers
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/teachers/{id}/availability:
+    post:
+      summary: Auto-generated summary for POST /api/teachers/{id}/availability
+      tags:
+        - teachers
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/teachers/{id}/availability
+      tags:
+        - teachers
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/students:
+    post:
+      summary: Auto-generated summary for POST /api/students
+      tags:
+        - students
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/students
+      tags:
+        - students
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/students/{id}:
+    delete:
+      summary: Auto-generated summary for DELETE /api/students/{id}
+      tags:
+        - students
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    put:
+      summary: Auto-generated summary for PUT /api/students/{id}
+      tags:
+        - students
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/students/{id}
+      tags:
+        - students
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/students/{id}/timeline:
+    get:
+      summary: Auto-generated summary for GET /api/students/{id}/timeline
+      tags:
+        - students
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/reports:
+    post:
+      summary: Auto-generated summary for POST /api/reports
+      tags:
+        - reports
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/reports
+      tags:
+        - reports
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/reports/{id}:
+    delete:
+      summary: Auto-generated summary for DELETE /api/reports/{id}
+      tags:
+        - reports
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    put:
+      summary: Auto-generated summary for PUT /api/reports/{id}
+      tags:
+        - reports
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/reports/{id}
+      tags:
+        - reports
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/reports/snapshot:
+    post:
+      summary: Auto-generated summary for POST /api/reports/snapshot
+      tags:
+        - reports
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/reports/snapshot
+      tags:
+        - reports
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/reports/schedule:
+    post:
+      summary: Auto-generated summary for POST /api/reports/schedule
+      tags:
+        - reports
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/reports/schedule
+      tags:
+        - reports
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/reports/schedule/{id}:
+    delete:
+      summary: Auto-generated summary for DELETE /api/reports/schedule/{id}
+      tags:
+        - reports
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    put:
+      summary: Auto-generated summary for PUT /api/reports/schedule/{id}
+      tags:
+        - reports
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/reports/run:
+    post:
+      summary: Auto-generated summary for POST /api/reports/run
+      tags:
+        - reports
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/reports/export:
+    post:
+      summary: Auto-generated summary for POST /api/reports/export
+      tags:
+        - reports
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/recordings/{id}/stream:
+    get:
+      summary: Auto-generated summary for GET /api/recordings/{id}/stream
+      tags:
+        - recordings
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/public/search:
+    get:
+      summary: Auto-generated summary for GET /api/public/search
+      tags:
+        - public
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/public/partners:
+    get:
+      summary: Auto-generated summary for GET /api/public/partners
+      tags:
+        - public
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/public/newsletter:
+    post:
+      summary: Auto-generated summary for POST /api/public/newsletter
+      tags:
+        - public
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/public/newsletter
+      tags:
+        - public
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/public/newsletter/unsubscribe:
+    post:
+      summary: Auto-generated summary for POST /api/public/newsletter/unsubscribe
+      tags:
+        - public
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/public/newsletter/unsubscribe
+      tags:
+        - public
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/public/lead:
+    post:
+      summary: Auto-generated summary for POST /api/public/lead
+      tags:
+        - public
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/public/events:
+    get:
+      summary: Auto-generated summary for GET /api/public/events
+      tags:
+        - public
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/public/events/{slug}:
+    get:
+      summary: Auto-generated summary for GET /api/public/events/{slug}
+      tags:
+        - public
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/public/events/{slug}/register:
+    post:
+      summary: Auto-generated summary for POST /api/public/events/{slug}/register
+      tags:
+        - public
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/public/enroll:
+    post:
+      summary: Auto-generated summary for POST /api/public/enroll
+      tags:
+        - public
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/public/enroll/status:
+    get:
+      summary: Auto-generated summary for GET /api/public/enroll/status
+      tags:
+        - public
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/public/enroll/invoice:
+    get:
+      summary: Auto-generated summary for GET /api/public/enroll/invoice
+      tags:
+        - public
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/public/enroll/checkout:
+    post:
+      summary: Auto-generated summary for POST /api/public/enroll/checkout
+      tags:
+        - public
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/public/courses:
+    get:
+      summary: Auto-generated summary for GET /api/public/courses
+      tags:
+        - public
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/public/categories:
+    get:
+      summary: Auto-generated summary for GET /api/public/categories
+      tags:
+        - public
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/parent/notifications:
+    get:
+      summary: Auto-generated summary for GET /api/parent/notifications
+      tags:
+        - parent
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/parent/children:
+    get:
+      summary: Auto-generated summary for GET /api/parent/children
+      tags:
+        - parent
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/parent/children/{id}/recordings:
+    get:
+      summary: Auto-generated summary for GET /api/parent/children/{id}/recordings
+      tags:
+        - parent
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/parent/children/{id}/live-classes:
+    get:
+      summary: Auto-generated summary for GET /api/parent/children/{id}/live-classes
+      tags:
+        - parent
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/parent/children/{id}/finance:
+    get:
+      summary: Auto-generated summary for GET /api/parent/children/{id}/finance
+      tags:
+        - parent
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/parent/children/{id}/dashboard:
+    get:
+      summary: Auto-generated summary for GET /api/parent/children/{id}/dashboard
+      tags:
+        - parent
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/parent/children/{id}/attendance:
+    get:
+      summary: Auto-generated summary for GET /api/parent/children/{id}/attendance
+      tags:
+        - parent
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/parent/children/{id}/assignments:
+    get:
+      summary: Auto-generated summary for GET /api/parent/children/{id}/assignments
+      tags:
+        - parent
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/parent/children/{id}/assessments:
+    get:
+      summary: Auto-generated summary for GET /api/parent/children/{id}/assessments
+      tags:
+        - parent
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/parent/children/{id}/academics:
+    get:
+      summary: Auto-generated summary for GET /api/parent/children/{id}/academics
+      tags:
+        - parent
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/notifications/timeline:
+    get:
+      summary: Auto-generated summary for GET /api/notifications/timeline
+      tags:
+        - notifications
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/notifications/templates:
+    post:
+      summary: Auto-generated summary for POST /api/notifications/templates
+      tags:
+        - notifications
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/notifications/templates
+      tags:
+        - notifications
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/notifications/templates/{id}:
+    delete:
+      summary: Auto-generated summary for DELETE /api/notifications/templates/{id}
+      tags:
+        - notifications
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    put:
+      summary: Auto-generated summary for PUT /api/notifications/templates/{id}
+      tags:
+        - notifications
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/notifications/templates/{id}
+      tags:
+        - notifications
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/notifications/queue:
+    get:
+      summary: Auto-generated summary for GET /api/notifications/queue
+      tags:
+        - notifications
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/notifications/queue/{id}/retry:
+    post:
+      summary: Auto-generated summary for POST /api/notifications/queue/{id}/retry
+      tags:
+        - notifications
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/notifications/queue/{id}/cancel:
+    post:
+      summary: Auto-generated summary for POST /api/notifications/queue/{id}/cancel
+      tags:
+        - notifications
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/notifications/preferences:
+    post:
+      summary: Auto-generated summary for POST /api/notifications/preferences
+      tags:
+        - notifications
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/notifications/preferences
+      tags:
+        - notifications
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/notifications/preferences/{id}:
+    put:
+      summary: Auto-generated summary for PUT /api/notifications/preferences/{id}
+      tags:
+        - notifications
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/notifications/preferences/{id}
+      tags:
+        - notifications
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/notifications/inbox:
+    post:
+      summary: Auto-generated summary for POST /api/notifications/inbox
+      tags:
+        - notifications
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/notifications/inbox
+      tags:
+        - notifications
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/notifications/history:
+    get:
+      summary: Auto-generated summary for GET /api/notifications/history
+      tags:
+        - notifications
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/live-classes:
+    post:
+      summary: Auto-generated summary for POST /api/live-classes
+      tags:
+        - live-classes
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/live-classes
+      tags:
+        - live-classes
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/live-classes/{id}:
+    delete:
+      summary: Auto-generated summary for DELETE /api/live-classes/{id}
+      tags:
+        - live-classes
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    put:
+      summary: Auto-generated summary for PUT /api/live-classes/{id}
+      tags:
+        - live-classes
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/live-classes/{id}
+      tags:
+        - live-classes
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/live-classes/{id}/token:
+    post:
+      summary: Auto-generated summary for POST /api/live-classes/{id}/token
+      tags:
+        - live-classes
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/live-classes/{id}/timeline:
+    get:
+      summary: Auto-generated summary for GET /api/live-classes/{id}/timeline
+      tags:
+        - live-classes
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/live-classes/{id}/resources:
+    post:
+      summary: Auto-generated summary for POST /api/live-classes/{id}/resources
+      tags:
+        - live-classes
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/live-classes/{id}/resources
+      tags:
+        - live-classes
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/live-classes/{id}/reschedule:
+    post:
+      summary: Auto-generated summary for POST /api/live-classes/{id}/reschedule
+      tags:
+        - live-classes
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/live-classes/{id}/recordings:
+    post:
+      summary: Auto-generated summary for POST /api/live-classes/{id}/recordings
+      tags:
+        - live-classes
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/live-classes/{id}/recordings
+      tags:
+        - live-classes
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/live-classes/{id}/duplicate:
+    post:
+      summary: Auto-generated summary for POST /api/live-classes/{id}/duplicate
+      tags:
+        - live-classes
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/live-classes/{id}/complete:
+    post:
+      summary: Auto-generated summary for POST /api/live-classes/{id}/complete
+      tags:
+        - live-classes
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/live-classes/{id}/clone-schedule:
+    post:
+      summary: Auto-generated summary for POST /api/live-classes/{id}/clone-schedule
+      tags:
+        - live-classes
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/live-classes/{id}/cancel:
+    post:
+      summary: Auto-generated summary for POST /api/live-classes/{id}/cancel
+      tags:
+        - live-classes
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/live-classes/{id}/announcements:
+    post:
+      summary: Auto-generated summary for POST /api/live-classes/{id}/announcements
+      tags:
+        - live-classes
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/live-classes/{id}/announcements
+      tags:
+        - live-classes
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/health:
+    get:
+      summary: Auto-generated summary for GET /api/health
+      tags:
+        - health
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/gateway/webhooks:
+    post:
+      summary: Auto-generated summary for POST /api/gateway/webhooks
+      tags:
+        - gateway
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/gateway/webhooks
+      tags:
+        - gateway
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/gateway/webhooks/{id}/deliveries:
+    get:
+      summary: Auto-generated summary for GET /api/gateway/webhooks/{id}/deliveries
+      tags:
+        - gateway
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/gateway/webhooks/deliveries/{id}/retry:
+    post:
+      summary: >-
+        Auto-generated summary for POST
+        /api/gateway/webhooks/deliveries/{id}/retry
+      tags:
+        - gateway
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/gateway/usage:
+    get:
+      summary: Auto-generated summary for GET /api/gateway/usage
+      tags:
+        - gateway
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/gateway/keys:
+    post:
+      summary: Auto-generated summary for POST /api/gateway/keys
+      tags:
+        - gateway
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/gateway/keys
+      tags:
+        - gateway
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/gateway/keys/{id}/rotate:
+    post:
+      summary: Auto-generated summary for POST /api/gateway/keys/{id}/rotate
+      tags:
+        - gateway
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/gateway/keys/{id}/revoke:
+    post:
+      summary: Auto-generated summary for POST /api/gateway/keys/{id}/revoke
+      tags:
+        - gateway
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/gateway/clients:
+    post:
+      summary: Auto-generated summary for POST /api/gateway/clients
+      tags:
+        - gateway
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/gateway/clients
+      tags:
+        - gateway
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/gateway/audit-logs:
+    get:
+      summary: Auto-generated summary for GET /api/gateway/audit-logs
+      tags:
+        - gateway
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/finance/refunds:
+    post:
+      summary: Auto-generated summary for POST /api/finance/refunds
+      tags:
+        - finance
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/finance/refunds
+      tags:
+        - finance
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/finance/refunds/{id}:
+    get:
+      summary: Auto-generated summary for GET /api/finance/refunds/{id}
+      tags:
+        - finance
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/finance/refunds/{id}/reject:
+    post:
+      summary: Auto-generated summary for POST /api/finance/refunds/{id}/reject
+      tags:
+        - finance
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/finance/refunds/{id}/approve:
+    post:
+      summary: Auto-generated summary for POST /api/finance/refunds/{id}/approve
+      tags:
+        - finance
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/finance/receipts:
+    get:
+      summary: Auto-generated summary for GET /api/finance/receipts
+      tags:
+        - finance
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/finance/receipts/{id}:
+    get:
+      summary: Auto-generated summary for GET /api/finance/receipts/{id}
+      tags:
+        - finance
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/finance/payments:
+    post:
+      summary: Auto-generated summary for POST /api/finance/payments
+      tags:
+        - finance
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/finance/payments
+      tags:
+        - finance
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/finance/payments/{id}:
+    get:
+      summary: Auto-generated summary for GET /api/finance/payments/{id}
+      tags:
+        - finance
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/finance/invoices:
+    post:
+      summary: Auto-generated summary for POST /api/finance/invoices
+      tags:
+        - finance
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/finance/invoices
+      tags:
+        - finance
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/finance/invoices/{id}:
+    delete:
+      summary: Auto-generated summary for DELETE /api/finance/invoices/{id}
+      tags:
+        - finance
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/finance/invoices/{id}
+      tags:
+        - finance
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/finance/invoice-items:
+    post:
+      summary: Auto-generated summary for POST /api/finance/invoice-items
+      tags:
+        - finance
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/finance/invoice-items
+      tags:
+        - finance
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/finance/installments:
+    post:
+      summary: Auto-generated summary for POST /api/finance/installments
+      tags:
+        - finance
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/finance/installments
+      tags:
+        - finance
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/finance/fee-plans:
+    post:
+      summary: Auto-generated summary for POST /api/finance/fee-plans
+      tags:
+        - finance
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/finance/fee-plans
+      tags:
+        - finance
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/finance/fee-plans/{id}:
+    delete:
+      summary: Auto-generated summary for DELETE /api/finance/fee-plans/{id}
+      tags:
+        - finance
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    put:
+      summary: Auto-generated summary for PUT /api/finance/fee-plans/{id}
+      tags:
+        - finance
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/finance/fee-plans/{id}
+      tags:
+        - finance
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/finance/dashboard:
+    get:
+      summary: Auto-generated summary for GET /api/finance/dashboard
+      tags:
+        - finance
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/enrollments:
+    post:
+      summary: Auto-generated summary for POST /api/enrollments
+      tags:
+        - enrollments
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/enrollments
+      tags:
+        - enrollments
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/enrollments/{id}:
+    delete:
+      summary: Auto-generated summary for DELETE /api/enrollments/{id}
+      tags:
+        - enrollments
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    put:
+      summary: Auto-generated summary for PUT /api/enrollments/{id}
+      tags:
+        - enrollments
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/enrollments/{id}
+      tags:
+        - enrollments
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/enrollments/{id}/timeline:
+    get:
+      summary: Auto-generated summary for GET /api/enrollments/{id}/timeline
+      tags:
+        - enrollments
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/docs-json:
+    get:
+      summary: Auto-generated summary for GET /api/docs-json
+      tags:
+        - docs-json
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/crm/leads:
+    post:
+      summary: Auto-generated summary for POST /api/crm/leads
+      tags:
+        - crm
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/crm/leads
+      tags:
+        - crm
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/crm/leads/{id}:
+    delete:
+      summary: Auto-generated summary for DELETE /api/crm/leads/{id}
+      tags:
+        - crm
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    put:
+      summary: Auto-generated summary for PUT /api/crm/leads/{id}
+      tags:
+        - crm
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/crm/leads/{id}
+      tags:
+        - crm
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/crm/leads/{id}/timeline:
+    get:
+      summary: Auto-generated summary for GET /api/crm/leads/{id}/timeline
+      tags:
+        - crm
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/crm/leads/{id}/tasks:
+    post:
+      summary: Auto-generated summary for POST /api/crm/leads/{id}/tasks
+      tags:
+        - crm
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/crm/leads/{id}/tasks
+      tags:
+        - crm
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/crm/leads/{id}/followups:
+    post:
+      summary: Auto-generated summary for POST /api/crm/leads/{id}/followups
+      tags:
+        - crm
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/crm/leads/{id}/followups
+      tags:
+        - crm
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/crm/leads/{id}/enroll:
+    post:
+      summary: Auto-generated summary for POST /api/crm/leads/{id}/enroll
+      tags:
+        - crm
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/courses:
+    post:
+      summary: Auto-generated summary for POST /api/courses
+      tags:
+        - courses
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/courses
+      tags:
+        - courses
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/courses/{id}:
+    delete:
+      summary: Auto-generated summary for DELETE /api/courses/{id}
+      tags:
+        - courses
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    put:
+      summary: Auto-generated summary for PUT /api/courses/{id}
+      tags:
+        - courses
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/courses/{id}
+      tags:
+        - courses
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/courses/{id}/curriculum:
+    post:
+      summary: Auto-generated summary for POST /api/courses/{id}/curriculum
+      tags:
+        - courses
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/courses/{id}/curriculum
+      tags:
+        - courses
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/cohorts:
+    post:
+      summary: Auto-generated summary for POST /api/cohorts
+      tags:
+        - cohorts
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/cohorts
+      tags:
+        - cohorts
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/cohorts/{id}:
+    delete:
+      summary: Auto-generated summary for DELETE /api/cohorts/{id}
+      tags:
+        - cohorts
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    put:
+      summary: Auto-generated summary for PUT /api/cohorts/{id}
+      tags:
+        - cohorts
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/cohorts/{id}
+      tags:
+        - cohorts
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/cohorts/{id}/timeline:
+    get:
+      summary: Auto-generated summary for GET /api/cohorts/{id}/timeline
+      tags:
+        - cohorts
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/cms/{model}:
+    post:
+      summary: Auto-generated summary for POST /api/cms/{model}
+      tags:
+        - cms
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/cms/{model}
+      tags:
+        - cms
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/cms/{model}/{id}:
+    delete:
+      summary: Auto-generated summary for DELETE /api/cms/{model}/{id}
+      tags:
+        - cms
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    put:
+      summary: Auto-generated summary for PUT /api/cms/{model}/{id}
+      tags:
+        - cms
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/cms/{model}/{id}
+      tags:
+        - cms
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/certificates:
+    post:
+      summary: Auto-generated summary for POST /api/certificates
+      tags:
+        - certificates
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/certificates
+      tags:
+        - certificates
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/certificates/{id}:
+    delete:
+      summary: Auto-generated summary for DELETE /api/certificates/{id}
+      tags:
+        - certificates
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    put:
+      summary: Auto-generated summary for PUT /api/certificates/{id}
+      tags:
+        - certificates
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/certificates/{id}
+      tags:
+        - certificates
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/certificates/{id}/timeline:
+    get:
+      summary: Auto-generated summary for GET /api/certificates/{id}/timeline
+      tags:
+        - certificates
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/certificates/{id}/revoke:
+    post:
+      summary: Auto-generated summary for POST /api/certificates/{id}/revoke
+      tags:
+        - certificates
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/certificates/{id}/reject:
+    post:
+      summary: Auto-generated summary for POST /api/certificates/{id}/reject
+      tags:
+        - certificates
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/certificates/{id}/issue:
+    post:
+      summary: Auto-generated summary for POST /api/certificates/{id}/issue
+      tags:
+        - certificates
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/certificates/{id}/generate:
+    post:
+      summary: Auto-generated summary for POST /api/certificates/{id}/generate
+      tags:
+        - certificates
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/certificates/{id}/approve:
+    post:
+      summary: Auto-generated summary for POST /api/certificates/{id}/approve
+      tags:
+        - certificates
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/certificates/verify:
+    get:
+      summary: Auto-generated summary for GET /api/certificates/verify
+      tags:
+        - certificates
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/calendar/ics:
+    get:
+      summary: Auto-generated summary for GET /api/calendar/ics
+      tags:
+        - calendar
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/batches:
+    post:
+      summary: Auto-generated summary for POST /api/batches
+      tags:
+        - batches
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/batches
+      tags:
+        - batches
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/batches/{id}:
+    delete:
+      summary: Auto-generated summary for DELETE /api/batches/{id}
+      tags:
+        - batches
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    put:
+      summary: Auto-generated summary for PUT /api/batches/{id}
+      tags:
+        - batches
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/batches/{id}
+      tags:
+        - batches
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/batches/{id}/waiting-list:
+    post:
+      summary: Auto-generated summary for POST /api/batches/{id}/waiting-list
+      tags:
+        - batches
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/batches/{id}/waiting-list
+      tags:
+        - batches
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/batches/{id}/waiting-list/{entryId}:
+    delete:
+      summary: >-
+        Auto-generated summary for DELETE
+        /api/batches/{id}/waiting-list/{entryId}
+      tags:
+        - batches
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    post:
+      summary: Auto-generated summary for POST /api/batches/{id}/waiting-list/{entryId}
+      tags:
+        - batches
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/batches/{id}/timeline:
+    get:
+      summary: Auto-generated summary for GET /api/batches/{id}/timeline
+      tags:
+        - batches
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/batches/{id}/teachers:
+    post:
+      summary: Auto-generated summary for POST /api/batches/{id}/teachers
+      tags:
+        - batches
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/batches/{id}/teachers
+      tags:
+        - batches
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/batches/{id}/students:
+    post:
+      summary: Auto-generated summary for POST /api/batches/{id}/students
+      tags:
+        - batches
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/batches/{id}/students
+      tags:
+        - batches
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/batches/{id}/students/{studentId}:
+    delete:
+      summary: Auto-generated summary for DELETE /api/batches/{id}/students/{studentId}
+      tags:
+        - batches
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/batches/{id}/students/transfer:
+    post:
+      summary: Auto-generated summary for POST /api/batches/{id}/students/transfer
+      tags:
+        - batches
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/batches/{id}/students/swap:
+    post:
+      summary: Auto-generated summary for POST /api/batches/{id}/students/swap
+      tags:
+        - batches
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/batches/{id}/recommendations:
+    post:
+      summary: Auto-generated summary for POST /api/batches/{id}/recommendations
+      tags:
+        - batches
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/batches/{id}/recommendations
+      tags:
+        - batches
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/batches/{id}/capacity:
+    get:
+      summary: Auto-generated summary for GET /api/batches/{id}/capacity
+      tags:
+        - batches
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/auth/reset-password:
+    post:
+      summary: Auto-generated summary for POST /api/auth/reset-password
+      tags:
+        - auth
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/auth/refresh:
+    post:
+      summary: Auto-generated summary for POST /api/auth/refresh
+      tags:
+        - auth
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/auth/logout:
+    post:
+      summary: Auto-generated summary for POST /api/auth/logout
+      tags:
+        - auth
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/auth/login:
+    post:
+      summary: Auto-generated summary for POST /api/auth/login
+      tags:
+        - auth
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/auth/handoff:
+    get:
+      summary: Auto-generated summary for GET /api/auth/handoff
+      tags:
+        - auth
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/auth/forgot-password:
+    post:
+      summary: Auto-generated summary for POST /api/auth/forgot-password
+      tags:
+        - auth
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/auth/change-password:
+    post:
+      summary: Auto-generated summary for POST /api/auth/change-password
+      tags:
+        - auth
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/auth/activate:
+    post:
+      summary: Auto-generated summary for POST /api/auth/activate
+      tags:
+        - auth
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/attendance:
+    post:
+      summary: Auto-generated summary for POST /api/attendance
+      tags:
+        - attendance
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/attendance
+      tags:
+        - attendance
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/attendance/{id}:
+    delete:
+      summary: Auto-generated summary for DELETE /api/attendance/{id}
+      tags:
+        - attendance
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    put:
+      summary: Auto-generated summary for PUT /api/attendance/{id}
+      tags:
+        - attendance
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/attendance/{id}
+      tags:
+        - attendance
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/attendance/summary:
+    get:
+      summary: Auto-generated summary for GET /api/attendance/summary
+      tags:
+        - attendance
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/attendance/session/reopen:
+    post:
+      summary: Auto-generated summary for POST /api/attendance/session/reopen
+      tags:
+        - attendance
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/attendance/session/open:
+    post:
+      summary: Auto-generated summary for POST /api/attendance/session/open
+      tags:
+        - attendance
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/attendance/session/freeze:
+    post:
+      summary: Auto-generated summary for POST /api/attendance/session/freeze
+      tags:
+        - attendance
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/attendance/session/close:
+    post:
+      summary: Auto-generated summary for POST /api/attendance/session/close
+      tags:
+        - attendance
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/attendance/bulk-update:
+    post:
+      summary: Auto-generated summary for POST /api/attendance/bulk-update
+      tags:
+        - attendance
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/attendance/bulk-mark:
+    post:
+      summary: Auto-generated summary for POST /api/attendance/bulk-mark
+      tags:
+        - attendance
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/assignments:
+    post:
+      summary: Auto-generated summary for POST /api/assignments
+      tags:
+        - assignments
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/assignments
+      tags:
+        - assignments
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/assignments/{id}:
+    delete:
+      summary: Auto-generated summary for DELETE /api/assignments/{id}
+      tags:
+        - assignments
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    put:
+      summary: Auto-generated summary for PUT /api/assignments/{id}
+      tags:
+        - assignments
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/assignments/{id}
+      tags:
+        - assignments
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/assignments/{id}/timeline:
+    get:
+      summary: Auto-generated summary for GET /api/assignments/{id}/timeline
+      tags:
+        - assignments
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/assignments/{id}/submit:
+    post:
+      summary: Auto-generated summary for POST /api/assignments/{id}/submit
+      tags:
+        - assignments
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/assignments/{id}/submissions:
+    get:
+      summary: Auto-generated summary for GET /api/assignments/{id}/submissions
+      tags:
+        - assignments
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/assignments/{id}/publish-grades:
+    post:
+      summary: Auto-generated summary for POST /api/assignments/{id}/publish-grades
+      tags:
+        - assignments
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/assignments/{id}/publish:
+    post:
+      summary: Auto-generated summary for POST /api/assignments/{id}/publish
+      tags:
+        - assignments
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/assignments/{id}/evaluate:
+    post:
+      summary: Auto-generated summary for POST /api/assignments/{id}/evaluate
+      tags:
+        - assignments
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/assignments/{id}/close:
+    post:
+      summary: Auto-generated summary for POST /api/assignments/{id}/close
+      tags:
+        - assignments
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/assignments/{id}/archive:
+    post:
+      summary: Auto-generated summary for POST /api/assignments/{id}/archive
+      tags:
+        - assignments
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/assessments:
+    post:
+      summary: Auto-generated summary for POST /api/assessments
+      tags:
+        - assessments
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/assessments
+      tags:
+        - assessments
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/assessments/{id}:
+    delete:
+      summary: Auto-generated summary for DELETE /api/assessments/{id}
+      tags:
+        - assessments
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    put:
+      summary: Auto-generated summary for PUT /api/assessments/{id}
+      tags:
+        - assessments
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/assessments/{id}
+      tags:
+        - assessments
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/assessments/{id}/timeline:
+    get:
+      summary: Auto-generated summary for GET /api/assessments/{id}/timeline
+      tags:
+        - assessments
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/assessments/{id}/submit:
+    post:
+      summary: Auto-generated summary for POST /api/assessments/{id}/submit
+      tags:
+        - assessments
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/assessments/{id}/start:
+    post:
+      summary: Auto-generated summary for POST /api/assessments/{id}/start
+      tags:
+        - assessments
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/assessments/{id}/publish-results:
+    post:
+      summary: Auto-generated summary for POST /api/assessments/{id}/publish-results
+      tags:
+        - assessments
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/assessments/{id}/publish:
+    post:
+      summary: Auto-generated summary for POST /api/assessments/{id}/publish
+      tags:
+        - assessments
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/assessments/{id}/evaluate:
+    post:
+      summary: Auto-generated summary for POST /api/assessments/{id}/evaluate
+      tags:
+        - assessments
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/assessments/{id}/attempts:
+    get:
+      summary: Auto-generated summary for GET /api/assessments/{id}/attempts
+      tags:
+        - assessments
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/analytics/widgets:
+    post:
+      summary: Auto-generated summary for POST /api/analytics/widgets
+      tags:
+        - analytics
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/analytics/widgets
+      tags:
+        - analytics
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/analytics/widgets/{id}:
+    delete:
+      summary: Auto-generated summary for DELETE /api/analytics/widgets/{id}
+      tags:
+        - analytics
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    put:
+      summary: Auto-generated summary for PUT /api/analytics/widgets/{id}
+      tags:
+        - analytics
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/analytics/widgets/{id}
+      tags:
+        - analytics
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/analytics/finance:
+    get:
+      summary: Auto-generated summary for GET /api/analytics/finance
+      tags:
+        - analytics
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/analytics/executive:
+    get:
+      summary: Auto-generated summary for GET /api/analytics/executive
+      tags:
+        - analytics
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/analytics/dashboards:
+    post:
+      summary: Auto-generated summary for POST /api/analytics/dashboards
+      tags:
+        - analytics
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/analytics/dashboards
+      tags:
+        - analytics
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/analytics/dashboards/{id}:
+    delete:
+      summary: Auto-generated summary for DELETE /api/analytics/dashboards/{id}
+      tags:
+        - analytics
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    put:
+      summary: Auto-generated summary for PUT /api/analytics/dashboards/{id}
+      tags:
+        - analytics
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/analytics/dashboards/{id}
+      tags:
+        - analytics
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/analytics/admissions:
+    get:
+      summary: Auto-generated summary for GET /api/analytics/admissions
+      tags:
+        - analytics
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/analytics/academic:
+    get:
+      summary: Auto-generated summary for GET /api/analytics/academic
+      tags:
+        - analytics
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/admin/users:
+    get:
+      summary: Auto-generated summary for GET /api/admin/users
+      tags:
+        - admin
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/admin/system/jobs/trigger:
+    post:
+      summary: Auto-generated summary for POST /api/admin/system/jobs/trigger
+      tags:
+        - admin
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/admin/system/jobs/trigger
+      tags:
+        - admin
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/admin/storage/stats:
+    get:
+      summary: Auto-generated summary for GET /api/admin/storage/stats
+      tags:
+        - admin
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/admin/settings:
+    put:
+      summary: Auto-generated summary for PUT /api/admin/settings
+      tags:
+        - admin
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/admin/settings
+      tags:
+        - admin
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/admin/settings/validate:
+    post:
+      summary: Auto-generated summary for POST /api/admin/settings/validate
+      tags:
+        - admin
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/admin/settings/reset:
+    post:
+      summary: Auto-generated summary for POST /api/admin/settings/reset
+      tags:
+        - admin
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/admin/settings/parent-portal:
+    put:
+      summary: Auto-generated summary for PUT /api/admin/settings/parent-portal
+      tags:
+        - admin
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/admin/settings/parent-portal
+      tags:
+        - admin
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/admin/security:
+    get:
+      summary: Auto-generated summary for GET /api/admin/security
+      tags:
+        - admin
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/admin/security/revoke-session:
+    post:
+      summary: Auto-generated summary for POST /api/admin/security/revoke-session
+      tags:
+        - admin
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/admin/search:
+    get:
+      summary: Auto-generated summary for GET /api/admin/search
+      tags:
+        - admin
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/admin/roles:
+    post:
+      summary: Auto-generated summary for POST /api/admin/roles
+      tags:
+        - admin
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/admin/roles
+      tags:
+        - admin
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/admin/roles/{id}:
+    delete:
+      summary: Auto-generated summary for DELETE /api/admin/roles/{id}
+      tags:
+        - admin
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    put:
+      summary: Auto-generated summary for PUT /api/admin/roles/{id}
+      tags:
+        - admin
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/admin/reports/system:
+    get:
+      summary: Auto-generated summary for GET /api/admin/reports/system
+      tags:
+        - admin
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/admin/parents:
+    post:
+      summary: Auto-generated summary for POST /api/admin/parents
+      tags:
+        - admin
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/admin/parents
+      tags:
+        - admin
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/admin/parents/{id}:
+    delete:
+      summary: Auto-generated summary for DELETE /api/admin/parents/{id}
+      tags:
+        - admin
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    put:
+      summary: Auto-generated summary for PUT /api/admin/parents/{id}
+      tags:
+        - admin
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/admin/parents/{id}
+      tags:
+        - admin
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/admin/parents/link:
+    delete:
+      summary: Auto-generated summary for DELETE /api/admin/parents/link
+      tags:
+        - admin
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    post:
+      summary: Auto-generated summary for POST /api/admin/parents/link
+      tags:
+        - admin
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/admin/parents/approvals:
+    post:
+      summary: Auto-generated summary for POST /api/admin/parents/approvals
+      tags:
+        - admin
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/admin/parents/approvals
+      tags:
+        - admin
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/admin/metrics:
+    get:
+      summary: Auto-generated summary for GET /api/admin/metrics
+      tags:
+        - admin
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/admin/health:
+    get:
+      summary: Auto-generated summary for GET /api/admin/health
+      tags:
+        - admin
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/admin/governance/portals:
+    put:
+      summary: Auto-generated summary for PUT /api/admin/governance/portals
+      tags:
+        - admin
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/admin/governance/portals
+      tags:
+        - admin
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/admin/governance/audit-logs:
+    get:
+      summary: Auto-generated summary for GET /api/admin/governance/audit-logs
+      tags:
+        - admin
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/admin/cms/pages:
+    post:
+      summary: Auto-generated summary for POST /api/admin/cms/pages
+      tags:
+        - admin
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/admin/cms/pages
+      tags:
+        - admin
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/admin/cms/pages/{id}:
+    delete:
+      summary: Auto-generated summary for DELETE /api/admin/cms/pages/{id}
+      tags:
+        - admin
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    put:
+      summary: Auto-generated summary for PUT /api/admin/cms/pages/{id}
+      tags:
+        - admin
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/admin/cms/pages/{id}
+      tags:
+        - admin
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/admin/cms/pages/bulk:
+    post:
+      summary: Auto-generated summary for POST /api/admin/cms/pages/bulk
+      tags:
+        - admin
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/admin/cms/navigation:
+    put:
+      summary: Auto-generated summary for PUT /api/admin/cms/navigation
+      tags:
+        - admin
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/admin/cms/navigation
+      tags:
+        - admin
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/admin/cms/media:
+    post:
+      summary: Auto-generated summary for POST /api/admin/cms/media
+      tags:
+        - admin
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/admin/cms/media
+      tags:
+        - admin
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/admin/cms/media/{id}:
+    delete:
+      summary: Auto-generated summary for DELETE /api/admin/cms/media/{id}
+      tags:
+        - admin
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    put:
+      summary: Auto-generated summary for PUT /api/admin/cms/media/{id}
+      tags:
+        - admin
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/admin/cms/media/{id}
+      tags:
+        - admin
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/admin/cms/blogs:
+    post:
+      summary: Auto-generated summary for POST /api/admin/cms/blogs
+      tags:
+        - admin
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/admin/cms/blogs
+      tags:
+        - admin
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/admin/cms/blogs/{id}:
+    delete:
+      summary: Auto-generated summary for DELETE /api/admin/cms/blogs/{id}
+      tags:
+        - admin
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    put:
+      summary: Auto-generated summary for PUT /api/admin/cms/blogs/{id}
+      tags:
+        - admin
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+    get:
+      summary: Auto-generated summary for GET /api/admin/cms/blogs/{id}
+      tags:
+        - admin
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/admin/cms/blogs/bulk:
+    post:
+      summary: Auto-generated summary for POST /api/admin/cms/blogs/bulk
+      tags:
+        - admin
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+  /api/admin/cms/analytics:
+    get:
+      summary: Auto-generated summary for GET /api/admin/cms/analytics
+      tags:
+        - admin
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+tags: []

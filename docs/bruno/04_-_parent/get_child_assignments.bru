@@ -1,0 +1,19 @@
+meta {
+  name: Get Child Assignments
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{baseUrl}}/api/parent/children/{{childStudentId}}/assignments
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+docs {
+  Assignment submissions, pending homework, teacher marks, and feedback for selected ward.
+}

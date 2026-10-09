@@ -1,0 +1,19 @@
+/* Admin Demo Bookings Styles */
+
+.admin-bookings-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.bookings-table-container {
+  padding: var(--space-xl);
+  border-radius: var(--radius-lg);
+}
+
+.btn-xs {
+  padding: var(--space-2xs) var(--space-xs);
+  font-size: var(--font-2xs);
+  font-weight: var(--weight-bold);
+  border-radius: var(--radius-sm);
+}

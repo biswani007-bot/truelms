@@ -1,0 +1,19 @@
+meta {
+  name: Get Course Curriculum
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/api/courses/{{courseId}}/curriculum
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+docs {
+  Structured curriculum breakdown into modules, topics, and lessons.
+}

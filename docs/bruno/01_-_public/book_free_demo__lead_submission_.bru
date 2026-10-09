@@ -1,0 +1,34 @@
+meta {
+  name: Book Free Demo (Lead Submission)
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/api/public/lead
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+body:json {
+{
+  "fullName": "Sarah Jenkins",
+  "parentName": "Sarah Jenkins",
+  "childName": "Tommy Jenkins",
+  "childAge": 9,
+  "email": "sarah.jenkins@example.com",
+  "phone": "+1-555-0199",
+  "interestedCourse": "Junior Foundation, Ages 6 to 10",
+  "preferredSchedule": "Weekend Morning (9 AM - 12 PM)",
+  "source": "mobile_app_demo",
+  "message": "Interested in weekend batch for 9 year old"
+}
+}
+
+docs {
+  Submits a verified lead from the public mobile onboarding flow. Verified against real Atlas database.
+}

@@ -1,0 +1,26 @@
+meta {
+  name: Parent Login
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/api/auth/login
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+body:json {
+{
+  "email": "parent@truelern.com",
+  "password": "password123"
+}
+}
+
+docs {
+  Authenticates parent account with multi-ward linked access.
+}

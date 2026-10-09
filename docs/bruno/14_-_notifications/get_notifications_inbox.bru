@@ -1,0 +1,19 @@
+meta {
+  name: Get Notifications Inbox
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/api/notifications/inbox?limit=20&page=1
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+docs {
+  User notification feed with unread indicators.
+}

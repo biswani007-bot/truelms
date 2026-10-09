@@ -1,0 +1,474 @@
+/* ==========================================================================
+   Referral Page Styles
+   Theme: Blue + Purple + White
+   ========================================================================== */
+
+.rp-referral-page {
+  --primary: #2563eb;
+  --primary-glow: rgba(37, 99, 235, 0.12);
+  --primary-dark: #1d4ed8;
+
+  --purple: #8b5cf6;
+  --purple-glow: rgba(139, 92, 246, 0.12);
+  --purple-dark: #6d28d9;
+
+  --text-main: #0f172a;
+  --text-muted: #475569;
+  --bg-light: #f8fafc;
+
+  width: 100%;
+  overflow-x: hidden;
+  background-color: var(--bg-light);
+  color: var(--text-main);
+  font-family: var(--font-body, 'Inter', sans-serif);
+}
+
+.rp-section-tag {
+  display: inline-block;
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--purple);
+  margin-bottom: 0.75rem;
+  background: var(--purple-glow);
+  padding: 4px 12px;
+  border-radius: 99px;
+}
+
+.rp-section-header h2 {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 2.5rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text-main);
+  margin-bottom: 1rem;
+}
+
+.rp-section-sub {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* Glassmorphism bases */
+.rp-explanation-card,
+.rp-benefit-box,
+.rp-form-card {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 24px;
+  box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.08);
+}
+
+/* Hero */
+.rp-hero {
+  position: relative;
+  padding: 8rem 0 5rem;
+  overflow: hidden;
+  background: var(--bg-light, #f8fafc);
+}
+
+.rp-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(at 15% 15%, rgba(244, 63, 94, 0.18) 0px, transparent 50%),
+              radial-gradient(at 85% 85%, rgba(6, 182, 212, 0.12) 0px, transparent 50%);
+  pointer-events: none;
+}
+
+.rp-hero-content h1 {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 3.5rem;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  color: var(--text-main);
+  max-width: 950px;
+  margin: 0 auto 1.5rem;
+}
+
+.rp-hero-sub {
+  font-size: 1.25rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  max-width: 750px;
+  margin: 0 auto 2.5rem;
+}
+
+.rp-hero-actions {
+  display: flex;
+  justify-content: center;
+}
+
+.rp-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2.5rem;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--purple) 100%);
+  color: #ffffff !important;
+  font-weight: 700;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+  transition: all 0.25s ease;
+  text-decoration: none;
+}
+
+.rp-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+}
+
+.rp-badge-pill {
+  display: inline-block;
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--primary-dark);
+  background: var(--primary-glow);
+  padding: 6px 16px;
+  border-radius: 99px;
+  margin-bottom: 1.5rem;
+}
+
+/* Sections */
+.rp-section {
+  padding: 4rem 0;
+}
+
+/* Explanation */
+.rp-explanation-card {
+  padding: 3rem 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+  border-left: 5px solid var(--purple);
+}
+
+.rp-explanation-card h3 {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 1.6rem;
+  font-weight: 850;
+  margin-bottom: 1rem;
+}
+
+.rp-highlight-desc {
+  font-size: 1.2rem;
+  line-height: 1.65;
+  color: var(--text-muted);
+  font-style: italic;
+  margin: 0;
+}
+
+/* Rewards Grid */
+.rp-grid-rewards {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  align-items: center;
+  gap: 4rem;
+}
+
+.rp-rewards-visual {
+  display: flex;
+  justify-content: center;
+}
+
+.rp-3d-visual {
+  max-width: 350px;
+}
+
+.rp-rewards-visual .rp-3d-visual {
+  max-width: 480px;
+}
+
+.rp-benefits-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-top: 2rem;
+}
+
+.rp-benefit-box {
+  padding: 1.5rem 2rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+}
+
+.rp-benefit-emoji {
+  font-size: 2.2rem;
+}
+
+.rp-benefit-box h4 {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 0.25rem;
+}
+
+.rp-benefit-box p {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Form Section Grid */
+.rp-grid-form {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  align-items: center;
+  gap: 4rem;
+}
+
+.rp-form-visual {
+  display: flex;
+  justify-content: center;
+}
+
+.rp-container-form {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.rp-form-card {
+  padding: 3.5rem 4rem;
+  background: #ffffff;
+}
+
+.rp-form-header {
+  margin-bottom: 2rem;
+}
+
+.rp-form-header h3 {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 1.85rem;
+  font-weight: 850;
+  margin-bottom: 0.5rem;
+}
+
+.rp-form-header p {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.rp-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.rp-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+
+.rp-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: left;
+}
+
+.rp-input-group label {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 0.85rem;
+  font-weight: 750;
+  color: var(--text-main);
+}
+
+.rp-input-group input,
+.rp-input-group select {
+  box-sizing: border-box;
+  height: 48px;
+  padding: 0 1rem;
+  border: 1.5px solid rgba(15, 23, 42, 0.08);
+  border-radius: 10px;
+  background: rgba(15, 23, 42, 0.01);
+  color: var(--text-main);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 0.95rem;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.rp-input-group input:focus,
+.rp-input-group select:focus {
+  border-color: var(--purple);
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.1);
+}
+
+/* Checkbox Permission */
+.rp-checkbox-group {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 0.5rem;
+}
+
+.rp-checkbox-group input {
+  margin-top: 4px;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.rp-checkbox-group label {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+.rp-btn-submit {
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--purple) 100%);
+  color: #ffffff;
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 1.05rem;
+  font-weight: 800;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.25);
+  transition: all 0.2s ease;
+  margin-top: 1rem;
+}
+
+.rp-btn-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.35);
+}
+
+.rp-btn-submit:disabled,
+.rp-btn-submit--disabled {
+  background: #94a3b8;
+  box-shadow: 0 4px 0 #64748b;
+  color: #fff !important;
+  cursor: not-allowed;
+  opacity: 1; /* keep full opacity so the text stays legible */
+  font-size: 0.88rem;
+  letter-spacing: 0;
+}
+
+.rp-btn-submit:disabled:hover,
+.rp-btn-submit--disabled:hover {
+  transform: none;
+  box-shadow: 0 4px 0 #64748b;
+  background: #94a3b8;
+}
+
+/* Input / select focus states */
+.rp-input-group input:focus,
+.rp-input-group select:focus {
+  border-color: var(--purple) !important;
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15) !important;
+  outline: none;
+}
+
+/* Checkbox row alignment */
+.rp-checkbox-group {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.rp-checkbox-group input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  min-width: 18px;
+  accent-color: var(--purple);
+  margin-top: 2px;
+  cursor: pointer;
+}
+
+.rp-checkbox-group label {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+/* Alerts */
+.rp-alert {
+  padding: 1.25rem 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.rp-alert-success {
+  background: rgba(34, 197, 94, 0.1);
+  color: #166534;
+  border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+.rp-alert-danger {
+  background: rgba(239, 68, 68, 0.1);
+  color: #991b1b;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .rp-grid-rewards,
+  .rp-grid-form {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 3rem;
+  }
+
+  .rp-rewards-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .rp-benefits-list {
+    align-items: center;
+  }
+
+  .rp-benefit-box {
+    text-align: left;
+  }
+
+  .rp-grid-form {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .rp-form-card {
+    padding: 3.5rem 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .rp-hero-content h1 {
+    font-size: 2.6rem;
+  }
+
+  .rp-form-card {
+    padding: 2.5rem 1.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .rp-form-row {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+}
+

@@ -1,0 +1,97 @@
+/* Admin Settings Styles */
+
+.admin-settings-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.settings-card-wrapper {
+  max-width: 600px;
+  width: 100%;
+}
+
+.settings-form-card {
+  padding: var(--space-xl);
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.settings-form-card h4 {
+  font-family: var(--font-display);
+  font-size: var(--font-md);
+  font-weight: var(--weight-extrabold);
+  margin: 0;
+}
+
+.settings-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.settings-form .form-input-box {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.settings-form label {
+  font-family: var(--font-body);
+  font-size: var(--font-xs);
+  font-weight: var(--weight-bold);
+  color: var(--text-muted-light);
+}
+
+.settings-form input[type="text"],
+.settings-form input[type="email"] {
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid var(--light-surface-elevated);
+  background: var(--light-bg);
+  color: var(--text-primary-light);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: var(--font-sm);
+  transition: all var(--transition-fast);
+}
+
+.settings-form input[type="text"]:focus,
+.settings-form input[type="email"]:focus {
+  border-color: var(--primary);
+  outline: none;
+}
+
+.settings-form .checkbox-form-box {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.settings-form .checkbox-form-box input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.settings-form .checkbox-form-box label {
+  font-weight: var(--weight-normal);
+  color: var(--text-secondary-light);
+  cursor: pointer;
+}
+
+@media (prefers-color-scheme: dark-disabled-in-light-phase) {
+  .settings-form label {
+    color: var(--text-muted-dark);
+  }
+  .settings-form input[type="text"],
+  .settings-form input[type="email"] {
+    background: var(--dark-surface-elevated);
+    border-color: var(--dark-surface-elevated);
+    color: var(--text-primary-dark);
+  }
+  .settings-form .checkbox-form-box label {
+    color: var(--text-secondary-dark);
+  }
+}

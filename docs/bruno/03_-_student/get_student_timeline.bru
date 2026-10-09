@@ -1,0 +1,19 @@
+meta {
+  name: Get Student Timeline
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/api/students/{{studentId}}/timeline
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+docs {
+  Chronological audit timeline of student registration, enrollment, and status changes.
+}

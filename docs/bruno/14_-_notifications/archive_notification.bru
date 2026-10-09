@@ -1,0 +1,26 @@
+meta {
+  name: Archive Notification
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/api/notifications/inbox
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+body:json {
+{
+  "notificationId": "{{notificationId}}",
+  "action": "archive"
+}
+}
+
+docs {
+  Archives notification from active inbox.
+}

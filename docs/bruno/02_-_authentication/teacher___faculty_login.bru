@@ -1,0 +1,26 @@
+meta {
+  name: Teacher / Faculty Login
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/api/auth/login
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+body:json {
+{
+  "email": "teacher@truelern.com",
+  "password": "password123"
+}
+}
+
+docs {
+  Authenticates faculty/teacher account for live class instruction and grading.
+}

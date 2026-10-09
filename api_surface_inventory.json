@@ -1,0 +1,3217 @@
+[
+  {
+    "path": "/api/admin/cms/analytics",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/admin/cms/analytics/route.ts"
+  },
+  {
+    "path": "/api/admin/cms/blogs",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/admin/cms/blogs/route.ts"
+  },
+  {
+    "path": "/api/admin/cms/blogs/[id]",
+    "methods": [
+      "GET",
+      "PUT",
+      "DELETE"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/admin/cms/blogs/[id]/route.ts"
+  },
+  {
+    "path": "/api/admin/cms/blogs/bulk",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/admin/cms/blogs/bulk/route.ts"
+  },
+  {
+    "path": "/api/admin/cms/media",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/admin/cms/media/route.ts"
+  },
+  {
+    "path": "/api/admin/cms/media/[id]",
+    "methods": [
+      "GET",
+      "PUT",
+      "DELETE"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/admin/cms/media/[id]/route.ts"
+  },
+  {
+    "path": "/api/admin/cms/navigation",
+    "methods": [
+      "GET",
+      "PUT"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/admin/cms/navigation/route.ts"
+  },
+  {
+    "path": "/api/admin/cms/pages",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/admin/cms/pages/route.ts"
+  },
+  {
+    "path": "/api/admin/cms/pages/[id]",
+    "methods": [
+      "GET",
+      "PUT",
+      "DELETE"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/admin/cms/pages/[id]/route.ts"
+  },
+  {
+    "path": "/api/admin/cms/pages/bulk",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/admin/cms/pages/bulk/route.ts"
+  },
+  {
+    "path": "/api/admin/governance/audit-logs",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/admin/governance/audit-logs/route.ts"
+  },
+  {
+    "path": "/api/admin/governance/portals",
+    "methods": [
+      "GET",
+      "PUT"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Teacher",
+      "Parent",
+      "Student"
+    ],
+    "file": "app/api/admin/governance/portals/route.ts"
+  },
+  {
+    "path": "/api/admin/health",
+    "methods": [
+      "GET"
+    ],
+    "auth": false,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/admin/health/route.ts"
+  },
+  {
+    "path": "/api/admin/metrics",
+    "methods": [
+      "GET"
+    ],
+    "auth": false,
+    "roles": [
+      "Admin",
+      "Teacher",
+      "Student"
+    ],
+    "file": "app/api/admin/metrics/route.ts"
+  },
+  {
+    "path": "/api/admin/parents",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Parent"
+    ],
+    "file": "app/api/admin/parents/route.ts"
+  },
+  {
+    "path": "/api/admin/parents/[id]",
+    "methods": [
+      "GET",
+      "PUT",
+      "DELETE"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Parent",
+      "Student"
+    ],
+    "file": "app/api/admin/parents/[id]/route.ts"
+  },
+  {
+    "path": "/api/admin/parents/approvals",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Parent"
+    ],
+    "file": "app/api/admin/parents/approvals/route.ts"
+  },
+  {
+    "path": "/api/admin/parents/link",
+    "methods": [
+      "POST",
+      "DELETE"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Parent",
+      "Student"
+    ],
+    "file": "app/api/admin/parents/link/route.ts"
+  },
+  {
+    "path": "/api/admin/reports/system",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Student"
+    ],
+    "file": "app/api/admin/reports/system/route.ts"
+  },
+  {
+    "path": "/api/admin/roles",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": false,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/admin/roles/route.ts"
+  },
+  {
+    "path": "/api/admin/roles/[id]",
+    "methods": [
+      "PUT",
+      "DELETE"
+    ],
+    "auth": false,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/admin/roles/[id]/route.ts"
+  },
+  {
+    "path": "/api/admin/search",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Student"
+    ],
+    "file": "app/api/admin/search/route.ts"
+  },
+  {
+    "path": "/api/admin/security",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/admin/security/route.ts"
+  },
+  {
+    "path": "/api/admin/security/revoke-session",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/admin/security/revoke-session/route.ts"
+  },
+  {
+    "path": "/api/admin/settings",
+    "methods": [
+      "GET",
+      "PUT"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/admin/settings/route.ts"
+  },
+  {
+    "path": "/api/admin/settings/parent-portal",
+    "methods": [
+      "GET",
+      "PUT"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Parent"
+    ],
+    "file": "app/api/admin/settings/parent-portal/route.ts"
+  },
+  {
+    "path": "/api/admin/settings/reset",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/admin/settings/reset/route.ts"
+  },
+  {
+    "path": "/api/admin/settings/validate",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/admin/settings/validate/route.ts"
+  },
+  {
+    "path": "/api/admin/storage/stats",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/admin/storage/stats/route.ts"
+  },
+  {
+    "path": "/api/admin/system/jobs/trigger",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Superadmin"
+    ],
+    "file": "app/api/admin/system/jobs/trigger/route.ts"
+  },
+  {
+    "path": "/api/admin/users",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": false,
+    "roles": [
+      "Admin",
+      "Teacher",
+      "Parent",
+      "Student"
+    ],
+    "file": "app/api/admin/users/route.ts"
+  },
+  {
+    "path": "/api/admin/users/[id]",
+    "methods": [
+      "GET",
+      "PUT"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/admin/users/[id]/route.ts"
+  },
+  {
+    "path": "/api/analytics/academic",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/analytics/academic/route.ts"
+  },
+  {
+    "path": "/api/analytics/admissions",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/analytics/admissions/route.ts"
+  },
+  {
+    "path": "/api/analytics/dashboards",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/analytics/dashboards/route.ts"
+  },
+  {
+    "path": "/api/analytics/dashboards/[id]",
+    "methods": [
+      "GET",
+      "PUT",
+      "DELETE"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/analytics/dashboards/[id]/route.ts"
+  },
+  {
+    "path": "/api/analytics/executive",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/analytics/executive/route.ts"
+  },
+  {
+    "path": "/api/analytics/finance",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/analytics/finance/route.ts"
+  },
+  {
+    "path": "/api/analytics/widgets",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/analytics/widgets/route.ts"
+  },
+  {
+    "path": "/api/analytics/widgets/[id]",
+    "methods": [
+      "GET",
+      "PUT",
+      "DELETE"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/analytics/widgets/[id]/route.ts"
+  },
+  {
+    "path": "/api/assessments",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Teacher",
+      "Student"
+    ],
+    "file": "app/api/assessments/route.ts"
+  },
+  {
+    "path": "/api/assessments/[id]",
+    "methods": [
+      "GET",
+      "PUT",
+      "DELETE"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Teacher",
+      "Student"
+    ],
+    "file": "app/api/assessments/[id]/route.ts"
+  },
+  {
+    "path": "/api/assessments/[id]/attempts",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Teacher",
+      "Student"
+    ],
+    "file": "app/api/assessments/[id]/attempts/route.ts"
+  },
+  {
+    "path": "/api/assessments/[id]/evaluate",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Teacher"
+    ],
+    "file": "app/api/assessments/[id]/evaluate/route.ts"
+  },
+  {
+    "path": "/api/assessments/[id]/publish",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Teacher"
+    ],
+    "file": "app/api/assessments/[id]/publish/route.ts"
+  },
+  {
+    "path": "/api/assessments/[id]/publish-results",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Teacher"
+    ],
+    "file": "app/api/assessments/[id]/publish-results/route.ts"
+  },
+  {
+    "path": "/api/assessments/[id]/questions",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Teacher",
+      "Parent",
+      "Student"
+    ],
+    "file": "app/api/assessments/[id]/questions/route.ts"
+  },
+  {
+    "path": "/api/assessments/[id]/start",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Student"
+    ],
+    "file": "app/api/assessments/[id]/start/route.ts"
+  },
+  {
+    "path": "/api/assessments/[id]/submit",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Student"
+    ],
+    "file": "app/api/assessments/[id]/submit/route.ts"
+  },
+  {
+    "path": "/api/assessments/[id]/timeline",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Teacher"
+    ],
+    "file": "app/api/assessments/[id]/timeline/route.ts"
+  },
+  {
+    "path": "/api/assignments",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Teacher",
+      "Student"
+    ],
+    "file": "app/api/assignments/route.ts"
+  },
+  {
+    "path": "/api/assignments/[id]",
+    "methods": [
+      "GET",
+      "PUT",
+      "DELETE"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Teacher",
+      "Student"
+    ],
+    "file": "app/api/assignments/[id]/route.ts"
+  },
+  {
+    "path": "/api/assignments/[id]/archive",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/assignments/[id]/archive/route.ts"
+  },
+  {
+    "path": "/api/assignments/[id]/close",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Teacher"
+    ],
+    "file": "app/api/assignments/[id]/close/route.ts"
+  },
+  {
+    "path": "/api/assignments/[id]/evaluate",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Teacher"
+    ],
+    "file": "app/api/assignments/[id]/evaluate/route.ts"
+  },
+  {
+    "path": "/api/assignments/[id]/publish",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Teacher"
+    ],
+    "file": "app/api/assignments/[id]/publish/route.ts"
+  },
+  {
+    "path": "/api/assignments/[id]/publish-grades",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Teacher"
+    ],
+    "file": "app/api/assignments/[id]/publish-grades/route.ts"
+  },
+  {
+    "path": "/api/assignments/[id]/submissions",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Teacher",
+      "Student"
+    ],
+    "file": "app/api/assignments/[id]/submissions/route.ts"
+  },
+  {
+    "path": "/api/assignments/[id]/submit",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Student"
+    ],
+    "file": "app/api/assignments/[id]/submit/route.ts"
+  },
+  {
+    "path": "/api/assignments/[id]/timeline",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Teacher"
+    ],
+    "file": "app/api/assignments/[id]/timeline/route.ts"
+  },
+  {
+    "path": "/api/attendance",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Teacher",
+      "Student"
+    ],
+    "file": "app/api/attendance/route.ts"
+  },
+  {
+    "path": "/api/attendance/[id]",
+    "methods": [
+      "GET",
+      "PUT",
+      "DELETE"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Teacher",
+      "Student"
+    ],
+    "file": "app/api/attendance/[id]/route.ts"
+  },
+  {
+    "path": "/api/attendance/bulk-mark",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Teacher"
+    ],
+    "file": "app/api/attendance/bulk-mark/route.ts"
+  },
+  {
+    "path": "/api/attendance/bulk-update",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Teacher"
+    ],
+    "file": "app/api/attendance/bulk-update/route.ts"
+  },
+  {
+    "path": "/api/attendance/session/close",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Teacher"
+    ],
+    "file": "app/api/attendance/session/close/route.ts"
+  },
+  {
+    "path": "/api/attendance/session/freeze",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/attendance/session/freeze/route.ts"
+  },
+  {
+    "path": "/api/attendance/session/open",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Teacher"
+    ],
+    "file": "app/api/attendance/session/open/route.ts"
+  },
+  {
+    "path": "/api/attendance/session/reopen",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/attendance/session/reopen/route.ts"
+  },
+  {
+    "path": "/api/attendance/summary",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Teacher",
+      "Student"
+    ],
+    "file": "app/api/attendance/summary/route.ts"
+  },
+  {
+    "path": "/api/auth/activate",
+    "methods": [
+      "POST"
+    ],
+    "auth": false,
+    "roles": [
+      "Student"
+    ],
+    "file": "app/api/auth/activate/route.ts"
+  },
+  {
+    "path": "/api/auth/callback/google",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Teacher",
+      "Parent",
+      "Student",
+      "Superadmin",
+      "Financemanager",
+      "Academicmanager"
+    ],
+    "file": "app/api/auth/callback/google/route.ts"
+  },
+  {
+    "path": "/api/auth/callback/microsoft",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Teacher",
+      "Parent",
+      "Student",
+      "Superadmin",
+      "Financemanager",
+      "Academicmanager"
+    ],
+    "file": "app/api/auth/callback/microsoft/route.ts"
+  },
+  {
+    "path": "/api/auth/change-password",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [],
+    "file": "app/api/auth/change-password/route.ts"
+  },
+  {
+    "path": "/api/auth/devices",
+    "methods": [
+      "GET",
+      "DELETE"
+    ],
+    "auth": false,
+    "roles": [],
+    "file": "app/api/auth/devices/route.ts"
+  },
+  {
+    "path": "/api/auth/forgot-password",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [],
+    "file": "app/api/auth/forgot-password/route.ts"
+  },
+  {
+    "path": "/api/auth/handoff",
+    "methods": [
+      "GET"
+    ],
+    "auth": false,
+    "roles": [
+      "Student"
+    ],
+    "file": "app/api/auth/handoff/route.ts"
+  },
+  {
+    "path": "/api/auth/login",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [],
+    "file": "app/api/auth/login/route.ts"
+  },
+  {
+    "path": "/api/auth/logout",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": true,
+    "roles": [],
+    "file": "app/api/auth/logout/route.ts"
+  },
+  {
+    "path": "/api/auth/me",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [],
+    "file": "app/api/auth/me/route.ts"
+  },
+  {
+    "path": "/api/auth/oauth/google",
+    "methods": [
+      "GET"
+    ],
+    "auth": false,
+    "roles": [],
+    "file": "app/api/auth/oauth/google/route.ts"
+  },
+  {
+    "path": "/api/auth/oauth/microsoft",
+    "methods": [
+      "GET"
+    ],
+    "auth": false,
+    "roles": [],
+    "file": "app/api/auth/oauth/microsoft/route.ts"
+  },
+  {
+    "path": "/api/auth/oauth/mobile",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [],
+    "file": "app/api/auth/oauth/mobile/route.ts"
+  },
+  {
+    "path": "/api/auth/otp/send",
+    "methods": [
+      "POST"
+    ],
+    "auth": false,
+    "roles": [],
+    "file": "app/api/auth/otp/send/route.ts"
+  },
+  {
+    "path": "/api/auth/otp/verify",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [],
+    "file": "app/api/auth/otp/verify/route.ts"
+  },
+  {
+    "path": "/api/auth/refresh",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [],
+    "file": "app/api/auth/refresh/route.ts"
+  },
+  {
+    "path": "/api/auth/reset-password",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [],
+    "file": "app/api/auth/reset-password/route.ts"
+  },
+  {
+    "path": "/api/batches",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Teacher"
+    ],
+    "file": "app/api/batches/route.ts"
+  },
+  {
+    "path": "/api/batches/[id]",
+    "methods": [
+      "GET",
+      "PUT",
+      "DELETE"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Teacher"
+    ],
+    "file": "app/api/batches/[id]/route.ts"
+  },
+  {
+    "path": "/api/batches/[id]/capacity",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Teacher"
+    ],
+    "file": "app/api/batches/[id]/capacity/route.ts"
+  },
+  {
+    "path": "/api/batches/[id]/recommendations",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/batches/[id]/recommendations/route.ts"
+  },
+  {
+    "path": "/api/batches/[id]/students",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Teacher",
+      "Student"
+    ],
+    "file": "app/api/batches/[id]/students/route.ts"
+  },
+  {
+    "path": "/api/batches/[id]/students/[studentId]",
+    "methods": [
+      "DELETE"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Student"
+    ],
+    "file": "app/api/batches/[id]/students/[studentId]/route.ts"
+  },
+  {
+    "path": "/api/batches/[id]/students/swap",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/batches/[id]/students/swap/route.ts"
+  },
+  {
+    "path": "/api/batches/[id]/students/transfer",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Student"
+    ],
+    "file": "app/api/batches/[id]/students/transfer/route.ts"
+  },
+  {
+    "path": "/api/batches/[id]/teachers",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Teacher"
+    ],
+    "file": "app/api/batches/[id]/teachers/route.ts"
+  },
+  {
+    "path": "/api/batches/[id]/teachers/[assignmentId]",
+    "methods": [
+      "PATCH",
+      "DELETE"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Teacher"
+    ],
+    "file": "app/api/batches/[id]/teachers/[assignmentId]/route.ts"
+  },
+  {
+    "path": "/api/batches/[id]/timeline",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Teacher"
+    ],
+    "file": "app/api/batches/[id]/timeline/route.ts"
+  },
+  {
+    "path": "/api/batches/[id]/waiting-list",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Student"
+    ],
+    "file": "app/api/batches/[id]/waiting-list/route.ts"
+  },
+  {
+    "path": "/api/batches/[id]/waiting-list/[entryId]",
+    "methods": [
+      "POST",
+      "DELETE"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Student"
+    ],
+    "file": "app/api/batches/[id]/waiting-list/[entryId]/route.ts"
+  },
+  {
+    "path": "/api/calendar/ics",
+    "methods": [
+      "GET"
+    ],
+    "auth": false,
+    "roles": [
+      "Admin",
+      "Teacher",
+      "Parent",
+      "Student"
+    ],
+    "file": "app/api/calendar/ics/route.ts"
+  },
+  {
+    "path": "/api/certificates",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Teacher",
+      "Student"
+    ],
+    "file": "app/api/certificates/route.ts"
+  },
+  {
+    "path": "/api/certificates/[id]",
+    "methods": [
+      "GET",
+      "PUT",
+      "DELETE"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Teacher",
+      "Student"
+    ],
+    "file": "app/api/certificates/[id]/route.ts"
+  },
+  {
+    "path": "/api/certificates/[id]/approve",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/certificates/[id]/approve/route.ts"
+  },
+  {
+    "path": "/api/certificates/[id]/download",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Parent",
+      "Student"
+    ],
+    "file": "app/api/certificates/[id]/download/route.ts"
+  },
+  {
+    "path": "/api/certificates/[id]/generate",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/certificates/[id]/generate/route.ts"
+  },
+  {
+    "path": "/api/certificates/[id]/issue",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/certificates/[id]/issue/route.ts"
+  },
+  {
+    "path": "/api/certificates/[id]/reject",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/certificates/[id]/reject/route.ts"
+  },
+  {
+    "path": "/api/certificates/[id]/revoke",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/certificates/[id]/revoke/route.ts"
+  },
+  {
+    "path": "/api/certificates/[id]/timeline",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/certificates/[id]/timeline/route.ts"
+  },
+  {
+    "path": "/api/certificates/verify",
+    "methods": [
+      "GET"
+    ],
+    "auth": false,
+    "roles": [],
+    "file": "app/api/certificates/verify/route.ts"
+  },
+  {
+    "path": "/api/cms/[model]",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": false,
+    "roles": [],
+    "file": "app/api/cms/[model]/route.ts"
+  },
+  {
+    "path": "/api/cms/[model]/[id]",
+    "methods": [
+      "GET",
+      "PUT",
+      "DELETE"
+    ],
+    "auth": false,
+    "roles": [],
+    "file": "app/api/cms/[model]/[id]/route.ts"
+  },
+  {
+    "path": "/api/cohorts",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/cohorts/route.ts"
+  },
+  {
+    "path": "/api/cohorts/[id]",
+    "methods": [
+      "GET",
+      "PUT",
+      "DELETE"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Teacher"
+    ],
+    "file": "app/api/cohorts/[id]/route.ts"
+  },
+  {
+    "path": "/api/cohorts/[id]/timeline",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Teacher"
+    ],
+    "file": "app/api/cohorts/[id]/timeline/route.ts"
+  },
+  {
+    "path": "/api/counselling",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": false,
+    "roles": [
+      "Teacher",
+      "Parent",
+      "Student"
+    ],
+    "file": "app/api/counselling/route.ts"
+  },
+  {
+    "path": "/api/counselling/[requestId]",
+    "methods": [
+      "GET",
+      "PATCH"
+    ],
+    "auth": false,
+    "roles": [
+      "Admin",
+      "Teacher",
+      "Parent",
+      "Student"
+    ],
+    "file": "app/api/counselling/[requestId]/route.ts"
+  },
+  {
+    "path": "/api/counselling/my-requests",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Parent",
+      "Student"
+    ],
+    "file": "app/api/counselling/my-requests/route.ts"
+  },
+  {
+    "path": "/api/courses",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/courses/route.ts"
+  },
+  {
+    "path": "/api/courses/[id]",
+    "methods": [
+      "GET",
+      "PUT",
+      "DELETE"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/courses/[id]/route.ts"
+  },
+  {
+    "path": "/api/courses/[id]/curriculum",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Teacher",
+      "Parent",
+      "Student"
+    ],
+    "file": "app/api/courses/[id]/curriculum/route.ts"
+  },
+  {
+    "path": "/api/crm/demos",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Teacher",
+      "Parent",
+      "Student"
+    ],
+    "file": "app/api/crm/demos/route.ts"
+  },
+  {
+    "path": "/api/crm/demos/availability",
+    "methods": [
+      "GET",
+      "POST",
+      "DELETE"
+    ],
+    "auth": false,
+    "roles": [
+      "Admin",
+      "Teacher",
+      "Superadmin",
+      "Academicmanager"
+    ],
+    "file": "app/api/crm/demos/availability/route.ts"
+  },
+  {
+    "path": "/api/crm/leads",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/crm/leads/route.ts"
+  },
+  {
+    "path": "/api/crm/leads/[id]",
+    "methods": [
+      "GET",
+      "PUT",
+      "DELETE"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/crm/leads/[id]/route.ts"
+  },
+  {
+    "path": "/api/crm/leads/[id]/enroll",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Parent",
+      "Student"
+    ],
+    "file": "app/api/crm/leads/[id]/enroll/route.ts"
+  },
+  {
+    "path": "/api/crm/leads/[id]/followups",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/crm/leads/[id]/followups/route.ts"
+  },
+  {
+    "path": "/api/crm/leads/[id]/tasks",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/crm/leads/[id]/tasks/route.ts"
+  },
+  {
+    "path": "/api/crm/leads/[id]/timeline",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/crm/leads/[id]/timeline/route.ts"
+  },
+  {
+    "path": "/api/docs-json",
+    "methods": [
+      "GET"
+    ],
+    "auth": false,
+    "roles": [],
+    "file": "app/api/docs-json/route.ts"
+  },
+  {
+    "path": "/api/enrollments",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Student"
+    ],
+    "file": "app/api/enrollments/route.ts"
+  },
+  {
+    "path": "/api/enrollments/[id]",
+    "methods": [
+      "GET",
+      "PUT",
+      "DELETE"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Student"
+    ],
+    "file": "app/api/enrollments/[id]/route.ts"
+  },
+  {
+    "path": "/api/enrollments/[id]/timeline",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Student"
+    ],
+    "file": "app/api/enrollments/[id]/timeline/route.ts"
+  },
+  {
+    "path": "/api/finance/dashboard",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/finance/dashboard/route.ts"
+  },
+  {
+    "path": "/api/finance/fee-plans",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/finance/fee-plans/route.ts"
+  },
+  {
+    "path": "/api/finance/fee-plans/[id]",
+    "methods": [
+      "GET",
+      "PUT",
+      "DELETE"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/finance/fee-plans/[id]/route.ts"
+  },
+  {
+    "path": "/api/finance/installments",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Student"
+    ],
+    "file": "app/api/finance/installments/route.ts"
+  },
+  {
+    "path": "/api/finance/invoice-items",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Student"
+    ],
+    "file": "app/api/finance/invoice-items/route.ts"
+  },
+  {
+    "path": "/api/finance/invoices",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Student"
+    ],
+    "file": "app/api/finance/invoices/route.ts"
+  },
+  {
+    "path": "/api/finance/invoices/[id]",
+    "methods": [
+      "GET",
+      "DELETE"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Student"
+    ],
+    "file": "app/api/finance/invoices/[id]/route.ts"
+  },
+  {
+    "path": "/api/finance/payments",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Student"
+    ],
+    "file": "app/api/finance/payments/route.ts"
+  },
+  {
+    "path": "/api/finance/payments/[id]",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Student"
+    ],
+    "file": "app/api/finance/payments/[id]/route.ts"
+  },
+  {
+    "path": "/api/finance/receipts",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Student"
+    ],
+    "file": "app/api/finance/receipts/route.ts"
+  },
+  {
+    "path": "/api/finance/receipts/[id]",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Student"
+    ],
+    "file": "app/api/finance/receipts/[id]/route.ts"
+  },
+  {
+    "path": "/api/finance/refunds",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/finance/refunds/route.ts"
+  },
+  {
+    "path": "/api/finance/refunds/[id]",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/finance/refunds/[id]/route.ts"
+  },
+  {
+    "path": "/api/finance/refunds/[id]/approve",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/finance/refunds/[id]/approve/route.ts"
+  },
+  {
+    "path": "/api/finance/refunds/[id]/reject",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/finance/refunds/[id]/reject/route.ts"
+  },
+  {
+    "path": "/api/gateway/audit-logs",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/gateway/audit-logs/route.ts"
+  },
+  {
+    "path": "/api/gateway/clients",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/gateway/clients/route.ts"
+  },
+  {
+    "path": "/api/gateway/keys",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/gateway/keys/route.ts"
+  },
+  {
+    "path": "/api/gateway/keys/[id]/revoke",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/gateway/keys/[id]/revoke/route.ts"
+  },
+  {
+    "path": "/api/gateway/keys/[id]/rotate",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/gateway/keys/[id]/rotate/route.ts"
+  },
+  {
+    "path": "/api/gateway/usage",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/gateway/usage/route.ts"
+  },
+  {
+    "path": "/api/gateway/webhooks",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/gateway/webhooks/route.ts"
+  },
+  {
+    "path": "/api/gateway/webhooks/[id]/deliveries",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/gateway/webhooks/[id]/deliveries/route.ts"
+  },
+  {
+    "path": "/api/gateway/webhooks/deliveries/[id]/retry",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/gateway/webhooks/deliveries/[id]/retry/route.ts"
+  },
+  {
+    "path": "/api/health",
+    "methods": [
+      "GET"
+    ],
+    "auth": false,
+    "roles": [],
+    "file": "app/api/health/route.ts"
+  },
+  {
+    "path": "/api/live-classes",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Teacher",
+      "Student"
+    ],
+    "file": "app/api/live-classes/route.ts"
+  },
+  {
+    "path": "/api/live-classes/[id]",
+    "methods": [
+      "GET",
+      "PUT",
+      "DELETE"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Teacher",
+      "Student"
+    ],
+    "file": "app/api/live-classes/[id]/route.ts"
+  },
+  {
+    "path": "/api/live-classes/[id]/announcements",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Teacher",
+      "Student"
+    ],
+    "file": "app/api/live-classes/[id]/announcements/route.ts"
+  },
+  {
+    "path": "/api/live-classes/[id]/cancel",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/live-classes/[id]/cancel/route.ts"
+  },
+  {
+    "path": "/api/live-classes/[id]/clone-schedule",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/live-classes/[id]/clone-schedule/route.ts"
+  },
+  {
+    "path": "/api/live-classes/[id]/complete",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Teacher"
+    ],
+    "file": "app/api/live-classes/[id]/complete/route.ts"
+  },
+  {
+    "path": "/api/live-classes/[id]/duplicate",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/live-classes/[id]/duplicate/route.ts"
+  },
+  {
+    "path": "/api/live-classes/[id]/override",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Student",
+      "Superadmin"
+    ],
+    "file": "app/api/live-classes/[id]/override/route.ts"
+  },
+  {
+    "path": "/api/live-classes/[id]/participation",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [],
+    "file": "app/api/live-classes/[id]/participation/route.ts"
+  },
+  {
+    "path": "/api/live-classes/[id]/recordings",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Teacher",
+      "Student",
+      "Superadmin"
+    ],
+    "file": "app/api/live-classes/[id]/recordings/route.ts"
+  },
+  {
+    "path": "/api/live-classes/[id]/reschedule",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/live-classes/[id]/reschedule/route.ts"
+  },
+  {
+    "path": "/api/live-classes/[id]/resources",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Teacher",
+      "Student"
+    ],
+    "file": "app/api/live-classes/[id]/resources/route.ts"
+  },
+  {
+    "path": "/api/live-classes/[id]/timeline",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Teacher"
+    ],
+    "file": "app/api/live-classes/[id]/timeline/route.ts"
+  },
+  {
+    "path": "/api/live-classes/[id]/token",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Teacher",
+      "Parent",
+      "Student",
+      "Superadmin"
+    ],
+    "file": "app/api/live-classes/[id]/token/route.ts"
+  },
+  {
+    "path": "/api/live-classes/webhooks/jitsi",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Student"
+    ],
+    "file": "app/api/live-classes/webhooks/jitsi/route.ts"
+  },
+  {
+    "path": "/api/media/[filename]",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Teacher",
+      "Parent",
+      "Student"
+    ],
+    "file": "app/api/media/[filename]/route.ts"
+  },
+  {
+    "path": "/api/media/upload",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/media/upload/route.ts"
+  },
+  {
+    "path": "/api/messages",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": false,
+    "roles": [
+      "Parent"
+    ],
+    "file": "app/api/messages/route.ts"
+  },
+  {
+    "path": "/api/notifications/history",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/notifications/history/route.ts"
+  },
+  {
+    "path": "/api/notifications/inbox",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": false,
+    "roles": [],
+    "file": "app/api/notifications/inbox/route.ts"
+  },
+  {
+    "path": "/api/notifications/preferences",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": false,
+    "roles": [],
+    "file": "app/api/notifications/preferences/route.ts"
+  },
+  {
+    "path": "/api/notifications/preferences/[id]",
+    "methods": [
+      "GET",
+      "PUT"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/notifications/preferences/[id]/route.ts"
+  },
+  {
+    "path": "/api/notifications/queue",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/notifications/queue/route.ts"
+  },
+  {
+    "path": "/api/notifications/queue/[id]/cancel",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/notifications/queue/[id]/cancel/route.ts"
+  },
+  {
+    "path": "/api/notifications/queue/[id]/retry",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/notifications/queue/[id]/retry/route.ts"
+  },
+  {
+    "path": "/api/notifications/templates",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/notifications/templates/route.ts"
+  },
+  {
+    "path": "/api/notifications/templates/[id]",
+    "methods": [
+      "GET",
+      "PUT",
+      "DELETE"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/notifications/templates/[id]/route.ts"
+  },
+  {
+    "path": "/api/notifications/timeline",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/notifications/timeline/route.ts"
+  },
+  {
+    "path": "/api/parent/children",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Parent"
+    ],
+    "file": "app/api/parent/children/route.ts"
+  },
+  {
+    "path": "/api/parent/children/[id]",
+    "methods": [
+      "DELETE"
+    ],
+    "auth": true,
+    "roles": [
+      "Parent"
+    ],
+    "file": "app/api/parent/children/[id]/route.ts"
+  },
+  {
+    "path": "/api/parent/children/[id]/academics",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Parent"
+    ],
+    "file": "app/api/parent/children/[id]/academics/route.ts"
+  },
+  {
+    "path": "/api/parent/children/[id]/assessments",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Parent"
+    ],
+    "file": "app/api/parent/children/[id]/assessments/route.ts"
+  },
+  {
+    "path": "/api/parent/children/[id]/assignments",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Parent"
+    ],
+    "file": "app/api/parent/children/[id]/assignments/route.ts"
+  },
+  {
+    "path": "/api/parent/children/[id]/assignments/[assignmentId]",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Parent"
+    ],
+    "file": "app/api/parent/children/[id]/assignments/[assignmentId]/route.ts"
+  },
+  {
+    "path": "/api/parent/children/[id]/assignments/[assignmentId]/draft",
+    "methods": [
+      "PUT"
+    ],
+    "auth": true,
+    "roles": [
+      "Parent",
+      "Student"
+    ],
+    "file": "app/api/parent/children/[id]/assignments/[assignmentId]/draft/route.ts"
+  },
+  {
+    "path": "/api/parent/children/[id]/assignments/[assignmentId]/submit",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Parent",
+      "Student"
+    ],
+    "file": "app/api/parent/children/[id]/assignments/[assignmentId]/submit/route.ts"
+  },
+  {
+    "path": "/api/parent/children/[id]/attendance",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Parent"
+    ],
+    "file": "app/api/parent/children/[id]/attendance/route.ts"
+  },
+  {
+    "path": "/api/parent/children/[id]/certificates",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Parent"
+    ],
+    "file": "app/api/parent/children/[id]/certificates/route.ts"
+  },
+  {
+    "path": "/api/parent/children/[id]/classes/[classId]/summary",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Parent"
+    ],
+    "file": "app/api/parent/children/[id]/classes/[classId]/summary/route.ts"
+  },
+  {
+    "path": "/api/parent/children/[id]/dashboard",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Parent"
+    ],
+    "file": "app/api/parent/children/[id]/dashboard/route.ts"
+  },
+  {
+    "path": "/api/parent/children/[id]/finance",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Parent"
+    ],
+    "file": "app/api/parent/children/[id]/finance/route.ts"
+  },
+  {
+    "path": "/api/parent/children/[id]/finance/invoices/[invoiceId]",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Parent",
+      "Student"
+    ],
+    "file": "app/api/parent/children/[id]/finance/invoices/[invoiceId]/route.ts"
+  },
+  {
+    "path": "/api/parent/children/[id]/finance/invoices/[invoiceId]/download",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Parent"
+    ],
+    "file": "app/api/parent/children/[id]/finance/invoices/[invoiceId]/download/route.ts"
+  },
+  {
+    "path": "/api/parent/children/[id]/finance/pay",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Parent"
+    ],
+    "file": "app/api/parent/children/[id]/finance/pay/route.ts"
+  },
+  {
+    "path": "/api/parent/children/[id]/finance/receipts/[receiptId]",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Parent",
+      "Student"
+    ],
+    "file": "app/api/parent/children/[id]/finance/receipts/[receiptId]/route.ts"
+  },
+  {
+    "path": "/api/parent/children/[id]/finance/receipts/[receiptId]/download",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Parent"
+    ],
+    "file": "app/api/parent/children/[id]/finance/receipts/[receiptId]/download/route.ts"
+  },
+  {
+    "path": "/api/parent/children/[id]/invoices",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Parent"
+    ],
+    "file": "app/api/parent/children/[id]/invoices/route.ts"
+  },
+  {
+    "path": "/api/parent/children/[id]/live-classes",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Parent"
+    ],
+    "file": "app/api/parent/children/[id]/live-classes/route.ts"
+  },
+  {
+    "path": "/api/parent/children/[id]/messages",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Parent"
+    ],
+    "file": "app/api/parent/children/[id]/messages/route.ts"
+  },
+  {
+    "path": "/api/parent/children/[id]/messages/[messageId]/read",
+    "methods": [
+      "PATCH"
+    ],
+    "auth": true,
+    "roles": [
+      "Parent"
+    ],
+    "file": "app/api/parent/children/[id]/messages/[messageId]/read/route.ts"
+  },
+  {
+    "path": "/api/parent/children/[id]/program",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Parent"
+    ],
+    "file": "app/api/parent/children/[id]/program/route.ts"
+  },
+  {
+    "path": "/api/parent/children/[id]/progress",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Parent"
+    ],
+    "file": "app/api/parent/children/[id]/progress/route.ts"
+  },
+  {
+    "path": "/api/parent/children/[id]/recordings",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Parent"
+    ],
+    "file": "app/api/parent/children/[id]/recordings/route.ts"
+  },
+  {
+    "path": "/api/parent/children/[id]/schedule",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Parent"
+    ],
+    "file": "app/api/parent/children/[id]/schedule/route.ts"
+  },
+  {
+    "path": "/api/parent/children/[id]/skills",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Parent"
+    ],
+    "file": "app/api/parent/children/[id]/skills/route.ts"
+  },
+  {
+    "path": "/api/parent/children/[id]/topics/[topicId]",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Parent"
+    ],
+    "file": "app/api/parent/children/[id]/topics/[topicId]/route.ts"
+  },
+  {
+    "path": "/api/parent/demo",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Parent",
+      "Student"
+    ],
+    "file": "app/api/parent/demo/route.ts"
+  },
+  {
+    "path": "/api/parent/demo/[id]/complete",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Teacher",
+      "Parent",
+      "Student",
+      "Superadmin"
+    ],
+    "file": "app/api/parent/demo/[id]/complete/route.ts"
+  },
+  {
+    "path": "/api/parent/demo/[id]/token",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Parent"
+    ],
+    "file": "app/api/parent/demo/[id]/token/route.ts"
+  },
+  {
+    "path": "/api/parent/demo/availability",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Parent"
+    ],
+    "file": "app/api/parent/demo/availability/route.ts"
+  },
+  {
+    "path": "/api/parent/notifications",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Parent"
+    ],
+    "file": "app/api/parent/notifications/route.ts"
+  },
+  {
+    "path": "/api/parent/preferences",
+    "methods": [
+      "GET",
+      "PATCH"
+    ],
+    "auth": true,
+    "roles": [
+      "Parent"
+    ],
+    "file": "app/api/parent/preferences/route.ts"
+  },
+  {
+    "path": "/api/parent/profile",
+    "methods": [
+      "GET",
+      "PUT",
+      "PATCH"
+    ],
+    "auth": true,
+    "roles": [
+      "Parent",
+      "Student"
+    ],
+    "file": "app/api/parent/profile/route.ts"
+  },
+  {
+    "path": "/api/parent/status",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Parent"
+    ],
+    "file": "app/api/parent/status/route.ts"
+  },
+  {
+    "path": "/api/parent/timezone",
+    "methods": [
+      "PUT"
+    ],
+    "auth": false,
+    "roles": [
+      "Parent"
+    ],
+    "file": "app/api/parent/timezone/route.ts"
+  },
+  {
+    "path": "/api/public/categories",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [],
+    "file": "app/api/public/categories/route.ts"
+  },
+  {
+    "path": "/api/public/courses",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [],
+    "file": "app/api/public/courses/route.ts"
+  },
+  {
+    "path": "/api/public/enroll",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Student"
+    ],
+    "file": "app/api/public/enroll/route.ts"
+  },
+  {
+    "path": "/api/public/enroll/checkout",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Student"
+    ],
+    "file": "app/api/public/enroll/checkout/route.ts"
+  },
+  {
+    "path": "/api/public/enroll/invoice",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Student"
+    ],
+    "file": "app/api/public/enroll/invoice/route.ts"
+  },
+  {
+    "path": "/api/public/enroll/status",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Student"
+    ],
+    "file": "app/api/public/enroll/status/route.ts"
+  },
+  {
+    "path": "/api/public/events",
+    "methods": [
+      "GET"
+    ],
+    "auth": false,
+    "roles": [],
+    "file": "app/api/public/events/route.ts"
+  },
+  {
+    "path": "/api/public/events/[slug]",
+    "methods": [
+      "GET"
+    ],
+    "auth": false,
+    "roles": [],
+    "file": "app/api/public/events/[slug]/route.ts"
+  },
+  {
+    "path": "/api/public/events/[slug]/register",
+    "methods": [
+      "POST"
+    ],
+    "auth": false,
+    "roles": [],
+    "file": "app/api/public/events/[slug]/register/route.ts"
+  },
+  {
+    "path": "/api/public/lead",
+    "methods": [
+      "POST"
+    ],
+    "auth": false,
+    "roles": [
+      "Parent"
+    ],
+    "file": "app/api/public/lead/route.ts"
+  },
+  {
+    "path": "/api/public/newsletter",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": false,
+    "roles": [],
+    "file": "app/api/public/newsletter/route.ts"
+  },
+  {
+    "path": "/api/public/newsletter/unsubscribe",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": false,
+    "roles": [],
+    "file": "app/api/public/newsletter/unsubscribe/route.ts"
+  },
+  {
+    "path": "/api/public/partners",
+    "methods": [
+      "GET"
+    ],
+    "auth": false,
+    "roles": [],
+    "file": "app/api/public/partners/route.ts"
+  },
+  {
+    "path": "/api/public/search",
+    "methods": [
+      "GET"
+    ],
+    "auth": false,
+    "roles": [
+      "Teacher"
+    ],
+    "file": "app/api/public/search/route.ts"
+  },
+  {
+    "path": "/api/recordings/[id]/stream",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Teacher",
+      "Parent",
+      "Student"
+    ],
+    "file": "app/api/recordings/[id]/stream/route.ts"
+  },
+  {
+    "path": "/api/reports",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/reports/route.ts"
+  },
+  {
+    "path": "/api/reports/[id]",
+    "methods": [
+      "GET",
+      "PUT",
+      "DELETE"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/reports/[id]/route.ts"
+  },
+  {
+    "path": "/api/reports/export",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/reports/export/route.ts"
+  },
+  {
+    "path": "/api/reports/run",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/reports/run/route.ts"
+  },
+  {
+    "path": "/api/reports/schedule",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/reports/schedule/route.ts"
+  },
+  {
+    "path": "/api/reports/schedule/[id]",
+    "methods": [
+      "PUT",
+      "DELETE"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/reports/schedule/[id]/route.ts"
+  },
+  {
+    "path": "/api/reports/snapshot",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/reports/snapshot/route.ts"
+  },
+  {
+    "path": "/api/seed-m4b",
+    "methods": [
+      "GET"
+    ],
+    "auth": false,
+    "roles": [
+      "Teacher",
+      "Student"
+    ],
+    "file": "app/api/seed-m4b/route.ts"
+  },
+  {
+    "path": "/api/student/courses/[id]/progress",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Student"
+    ],
+    "file": "app/api/student/courses/[id]/progress/route.ts"
+  },
+  {
+    "path": "/api/students",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Student"
+    ],
+    "file": "app/api/students/route.ts"
+  },
+  {
+    "path": "/api/students/[id]",
+    "methods": [
+      "GET",
+      "PUT",
+      "DELETE"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Student"
+    ],
+    "file": "app/api/students/[id]/route.ts"
+  },
+  {
+    "path": "/api/students/[id]/documents",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Parent",
+      "Student"
+    ],
+    "file": "app/api/students/[id]/documents/route.ts"
+  },
+  {
+    "path": "/api/students/[id]/documents/[docId]",
+    "methods": [
+      "PATCH",
+      "DELETE"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Student"
+    ],
+    "file": "app/api/students/[id]/documents/[docId]/route.ts"
+  },
+  {
+    "path": "/api/students/[id]/timeline",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Student"
+    ],
+    "file": "app/api/students/[id]/timeline/route.ts"
+  },
+  {
+    "path": "/api/teacher/batches",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Teacher"
+    ],
+    "file": "app/api/teacher/batches/route.ts"
+  },
+  {
+    "path": "/api/teacher/messages",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Teacher",
+      "Parent",
+      "Student"
+    ],
+    "file": "app/api/teacher/messages/route.ts"
+  },
+  {
+    "path": "/api/teachers",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Teacher"
+    ],
+    "file": "app/api/teachers/route.ts"
+  },
+  {
+    "path": "/api/teachers/[id]",
+    "methods": [
+      "GET",
+      "PUT",
+      "DELETE"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Teacher"
+    ],
+    "file": "app/api/teachers/[id]/route.ts"
+  },
+  {
+    "path": "/api/teachers/[id]/availability",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Teacher"
+    ],
+    "file": "app/api/teachers/[id]/availability/route.ts"
+  },
+  {
+    "path": "/api/teachers/[id]/leaves",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin",
+      "Teacher"
+    ],
+    "file": "app/api/teachers/[id]/leaves/route.ts"
+  },
+  {
+    "path": "/api/test-data",
+    "methods": [
+      "GET"
+    ],
+    "auth": false,
+    "roles": [
+      "Teacher",
+      "Parent",
+      "Student"
+    ],
+    "file": "app/api/test-data/route.ts"
+  },
+  {
+    "path": "/api/test/protected",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/test/protected/route.ts"
+  },
+  {
+    "path": "/api/upload",
+    "methods": [
+      "POST"
+    ],
+    "auth": false,
+    "roles": [],
+    "file": "app/api/upload/route.ts"
+  },
+  {
+    "path": "/api/v1/public/[...resource]",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [],
+    "file": "app/api/v1/public/[...resource]/route.ts"
+  },
+  {
+    "path": "/api/v1/public/portal-config",
+    "methods": [
+      "GET"
+    ],
+    "auth": false,
+    "roles": [
+      "Student"
+    ],
+    "file": "app/api/v1/public/portal-config/route.ts"
+  },
+  {
+    "path": "/api/workflows",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/workflows/route.ts"
+  },
+  {
+    "path": "/api/workflows/[id]",
+    "methods": [
+      "GET",
+      "PUT",
+      "DELETE"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/workflows/[id]/route.ts"
+  },
+  {
+    "path": "/api/workflows/[id]/activate",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/workflows/[id]/activate/route.ts"
+  },
+  {
+    "path": "/api/workflows/[id]/execute",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/workflows/[id]/execute/route.ts"
+  },
+  {
+    "path": "/api/workflows/[id]/pause",
+    "methods": [
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/workflows/[id]/pause/route.ts"
+  },
+  {
+    "path": "/api/workflows/executions",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/workflows/executions/route.ts"
+  },
+  {
+    "path": "/api/workflows/executions/logs",
+    "methods": [
+      "GET"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/workflows/executions/logs/route.ts"
+  },
+  {
+    "path": "/api/workflows/templates",
+    "methods": [
+      "GET",
+      "POST"
+    ],
+    "auth": true,
+    "roles": [
+      "Admin"
+    ],
+    "file": "app/api/workflows/templates/route.ts"
+  }
+]

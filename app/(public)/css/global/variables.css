@@ -1,0 +1,156 @@
+﻿/* ==========================================================================
+   TrueLern Premium Design System — Variables
+   Inspired by: YoungLabs, Duolingo Kids, Khan Academy Kids, Lingokids
+   ========================================================================== */
+:root {
+
+  /* ── PRIMARY PALETTE: Deep trustworthy blue (#0F4C75) ── */
+  --primary: #0F4C75;
+  --primary-light: #2B7C9F;
+  --primary-dark: #072C45;
+  --primary-glow: rgba(15, 76, 117, 0.18);
+  --primary-soft: rgba(15, 76, 117, 0.08);
+
+  /* ── SECONDARY PALETTE: Modern teal (#1F7A8C) ── */
+  --secondary: #1F7A8C;
+  --secondary-light: #3FA6B9;
+  --secondary-dark: #114C57;
+  --secondary-glow: rgba(31, 122, 140, 0.18);
+  --secondary-soft: rgba(31, 122, 140, 0.08);
+
+  /* ── PAGE ACCENT COLORS (per page theme) ── */
+  --accent-sky:     #38BDF8;   /* Junior Foundation */
+  --accent-yellow:  #F9C74F;   /* Warm Yellow */
+  --accent-cyan:    #06B6D4;   /* Future Ready / AI */
+  --accent-violet:  #8B5CF6;   /* AI Readiness secondary */
+  --accent-orange:  #F97316;   /* Communication */
+  --accent-blue:    #3B82F6;   /* Communication secondary */
+  --accent-green:   #2A9D8F;   /* Success Green */
+  --accent-gold:    #F59E0B;   /* Money Skills secondary */
+  --accent-pink:    #EC4899;   /* Emotional Intelligence */
+  --accent-purple:  #A855F7;   /* Emotional Intelligence secondary */
+  --accent-teal:    #14B8A6;   /* Time Management */
+  --accent-indigo:  #6366F1;   /* Practical Thinking */
+  --accent-navy:    #1E3A5F;   /* Parent Progress */
+  --accent-rose:    #F43F5E;   /* Danger / error */
+
+  /* ── STATUS COLORS ── */
+  --success:        #2A9D8F;   /* Success Green */
+  --warning:        #F9C74F;   /* Warm Yellow */
+  --danger:         #EF4444;
+  --info:           #38BDF8;
+  --success-glow:   rgba(42, 157, 143, 0.15);
+  --warning-glow:   rgba(249, 199, 79, 0.15);
+  --danger-glow:    rgba(239, 68, 68, 0.15);
+
+  /* ── BACKGROUND & SURFACE (Light) ── */
+  --light-bg:               #F8FAFC;   /* Off White */
+  --light-surface:          #FFFFFF;
+  --light-surface-elevated: #EAF6FF;   /* Soft Sky */
+  --light-border:           #D1E6F9;
+
+  /* ── BACKGROUND & SURFACE (Dark) ── */
+  --dark-bg:               #0D0F1A;
+  --dark-surface:          #141628;
+  --dark-surface-elevated: #1C1F38;
+  --dark-border:           #2A2D4A;
+
+  /* ── TEXT COLORS ── */
+  --text-primary-light:   #1F2937;   /* Charcoal */
+  --text-secondary-light: #4B5563;
+  --text-muted-light:     #9CA3AF;
+
+  --text-primary-dark:    #F0F0FF;
+  --text-secondary-dark:  #AAADC0;
+  --text-muted-dark:      #6B6E88;
+
+  /* ── GRADIENTS ── */
+  /* Brand / Hero */
+  --gradient-primary:     linear-gradient(135deg, #0F4C75 0%, #1F7A8C 100%);
+  --gradient-hero:        linear-gradient(135deg, #0F4C75 0%, #1F7A8C 50%, #EAF6FF 100%);
+  --gradient-secondary:   linear-gradient(135deg, #1F7A8C 0%, #3FA6B9 100%);
+  --gradient-accent:      linear-gradient(135deg, #1F7A8C 0%, #F9C74F 100%);
+ 
+  /* Page-specific gradients */
+  --gradient-junior:      linear-gradient(135deg, #38BDF8 0%, #F9C74F 100%);
+  --gradient-future:      linear-gradient(135deg, #8B5CF6 0%, #06B6D4 100%);
+  --gradient-communication: linear-gradient(135deg, #F97316 0%, #3B82F6 100%);
+  --gradient-money:       linear-gradient(135deg, #2A9D8F 0%, #F59E0B 100%);
+  --gradient-emotional:   linear-gradient(135deg, #EC4899 0%, #A855F7 100%);
+  --gradient-ai:          linear-gradient(135deg, #3B82F6 0%, #06B6D4 30%, #8B5CF6 100%);
+  --gradient-time:        linear-gradient(135deg, #14B8A6 0%, #F97316 100%);
+  --gradient-practical:   linear-gradient(135deg, #6366F1 0%, #2A9D8F 100%);
+  --gradient-parent:      linear-gradient(135deg, #1E3A5F 0%, #14B8A6 100%);
+
+  /* Utility gradients */
+  --gradient-dark:        linear-gradient(180deg, #0D0F1A 0%, #141628 100%);
+  --gradient-glass:       linear-gradient(135deg, rgba(255,255,255,0.72) 0%, rgba(255,255,255,0.44) 100%);
+  --gradient-glass-dark:  linear-gradient(135deg, rgba(20,22,40,0.72) 0%, rgba(13,15,26,0.44) 100%);
+  --gradient-card-shine:  linear-gradient(135deg, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0) 60%);
+
+  /* ── MESH GRADIENT BACKGROUNDS ── */
+  --mesh-home:     radial-gradient(at 20% 10%, rgba(15, 76, 117, 0.15) 0px, transparent 55%),
+                   radial-gradient(at 80% 80%, rgba(31, 122, 140, 0.12) 0px, transparent 55%),
+                   radial-gradient(at 55% 50%, rgba(234, 246, 255, 0.25) 0px, transparent 55%);
+
+  --mesh-subtle:   radial-gradient(at 20% 20%, rgba(15, 76, 117, 0.08) 0px, transparent 60%),
+                   radial-gradient(at 80% 80%, rgba(31, 122, 140, 0.08) 0px, transparent 60%);
+
+  /* ── SPACING SCALE ── */
+  --space-xxs: 0.125rem;
+  --space-xs:  0.25rem;
+  --space-sm:  0.5rem;
+  --space-md:  1rem;
+  --space-lg:  1.5rem;
+  --space-xl:  2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4.5rem;
+  --space-4xl: 6rem;
+  --space-5xl: 8rem;
+
+  /* ── BORDER RADIUS ── */
+  --radius-xs:   6px;
+  --radius-sm:   12px;
+  --radius-md:   18px;
+  --radius-lg:   24px;
+  --radius-xl:   32px;
+  --radius-2xl:  48px;
+  --radius-full: 9999px;
+
+  /* ── SHADOWS ── */
+  --shadow-xs:   0 1px 3px rgba(15, 76, 117, 0.04), 0 1px 2px rgba(15, 76, 117, 0.02);
+  --shadow-sm:   0 4px 6px rgba(15, 76, 117, 0.04), 0 2px 4px rgba(15, 76, 117, 0.02);
+  --shadow-md:   0 10px 20px rgba(15, 76, 117, 0.06), 0 4px 8px rgba(15, 76, 117, 0.04);
+  --shadow-lg:   0 20px 40px rgba(15, 76, 117, 0.08), 0 8px 16px rgba(15, 76, 117, 0.06);
+  --shadow-xl:   0 32px 64px rgba(15, 76, 117, 0.10), 0 16px 32px rgba(15, 76, 117, 0.08);
+  --shadow-2xl:  0 48px 96px rgba(15, 76, 117, 0.12), 0 24px 48px rgba(15, 76, 117, 0.10);
+  --shadow-glow: 0 0 32px rgba(15, 76, 117, 0.25);
+  --shadow-glow-secondary: 0 0 32px rgba(31, 122, 140, 0.25);
+  --shadow-card: 0 8px 32px rgba(15, 76, 117, 0.05), 0 2px 8px rgba(15, 76, 117, 0.03);
+  --shadow-card-hover: 0 16px 48px rgba(15, 76, 117, 0.10), 0 4px 16px rgba(15, 76, 117, 0.05);
+
+  /* 3D "pressing" button shadow (Duolingo style) */
+  --shadow-btn-primary:  0 6px 0 var(--primary-dark);
+  --shadow-btn-secondary: 0 5px 0 var(--light-border);
+
+  /* ── TRANSITIONS ── */
+  --transition-fast:    0.15s cubic-bezier(0.25, 0.8, 0.25, 1);
+  --transition-normal:  0.28s cubic-bezier(0.25, 0.8, 0.25, 1);
+  --transition-slow:    0.45s cubic-bezier(0.25, 0.8, 0.25, 1);
+  --transition-bounce:  0.55s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --transition-spring:  0.60s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* ── LAYOUT ── */
+  --max-width-content: 1240px;
+  --max-width-text:    680px;
+  --header-height:     80px;
+  --z-index-header:    1000;
+  --z-index-modal:     2000;
+  --z-index-overlay:   1500;
+
+  /* ── ANIMATION KEYFRAME DURATIONS ── */
+  --anim-float:   6s ease-in-out infinite;
+  --anim-pulse:   3s ease-in-out infinite;
+  --anim-spin:    12s linear infinite;
+  --anim-shimmer: 2.5s ease-in-out infinite;
+}

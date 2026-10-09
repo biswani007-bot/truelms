@@ -1,0 +1,148 @@
+version: '3.8'
+
+services:
+  # Frontend Web UI (Nginx + Jitsi Meet Web + HTTPS proxy)
+  web:
+    image: jitsi/web:stable
+    restart: unless-stopped
+    ports:
+      - "${HTTP_PORT:-8080}:80"
+      - "${HTTPS_PORT:-8443}:443"
+    volumes:
+      - ./config/web:/config:Z
+      - ./config/web/crontabs:/var/spool/cron/crontabs:Z
+      - ./config/transcripts:/usr/share/jitsi-meet/transcripts:Z
+    environment:
+      - ENABLE_AUTH=1
+      - ENABLE_GUESTS=0
+      - AUTH_TYPE=jwt
+      - JWT_APP_ID=${JWT_APP_ID:-truelern-lms}
+      - JWT_APP_SECRET=${JWT_APP_SECRET:-truelern_secure_jitsi_jwt_secret_key_2026}
+      - JWT_ACCEPTED_ISSUERS=${JWT_ACCEPTED_ISSUERS:-truelern-lms}
+      - JWT_ACCEPTED_AUDIENCES=${JWT_ACCEPTED_AUDIENCES:-jitsi}
+      - PUBLIC_URL=https://${JITSI_HOST:-localhost}:${HTTPS_PORT:-8443}
+      - XMPP_AUTH_DOMAIN=${XMPP_AUTH_DOMAIN:-auth.meet.jitsi}
+      - XMPP_DOMAIN=${XMPP_DOMAIN:-meet.jitsi}
+      - XMPP_GUEST_DOMAIN=${XMPP_GUEST_DOMAIN:-guest.meet.jitsi}
+      - XMPP_MUC_DOMAIN=${XMPP_MUC_DOMAIN:-muc.meet.jitsi}
+      - XMPP_INTERNAL_MUC_DOMAIN=${XMPP_INTERNAL_MUC_DOMAIN:-internal-muc.meet.jitsi}
+      - XMPP_RECORDER_DOMAIN=${XMPP_RECORDER_DOMAIN:-recorder.meet.jitsi}
+      - JICOFO_AUTH_USER=${JICOFO_AUTH_USER:-focus}
+      - TZ=${TZ:-UTC}
+    networks:
+      meet.jitsi:
+
+  # XMPP Server (Prosody)
+  prosody:
+    image: jitsi/prosody:stable
+    restart: unless-stopped
+    volumes:
+      - ./config/prosody/config:/config:Z
+      - ./config/prosody/prosody-plugins-custom:/prosody-plugins-custom:Z
+    environment:
+      - ENABLE_AUTH=1
+      - ENABLE_GUESTS=0
+      - AUTH_TYPE=jwt
+      - JWT_TOKEN_AUTH_MODULE=token_verification
+      - XMPP_MUC_MODULES=token_affiliation
+      - WAIT_FOR_HOST_DISABLE_AUTO_OWNERS=true
+      - JWT_APP_ID=${JWT_APP_ID:-truelern-lms}
+      - JWT_APP_SECRET=${JWT_APP_SECRET:-truelern_secure_jitsi_jwt_secret_key_2026}
+      - JWT_ACCEPTED_ISSUERS=${JWT_ACCEPTED_ISSUERS:-truelern-lms}
+      - JWT_ACCEPTED_AUDIENCES=${JWT_ACCEPTED_AUDIENCES:-jitsi}
+      - XMPP_AUTH_DOMAIN=${XMPP_AUTH_DOMAIN:-auth.meet.jitsi}
+      - XMPP_DOMAIN=${XMPP_DOMAIN:-meet.jitsi}
+      - XMPP_GUEST_DOMAIN=${XMPP_GUEST_DOMAIN:-guest.meet.jitsi}
+      - XMPP_MUC_DOMAIN=${XMPP_MUC_DOMAIN:-muc.meet.jitsi}
+      - XMPP_INTERNAL_MUC_DOMAIN=${XMPP_INTERNAL_MUC_DOMAIN:-internal-muc.meet.jitsi}
+      - XMPP_RECORDER_DOMAIN=${XMPP_RECORDER_DOMAIN:-recorder.meet.jitsi}
+      - JICOFO_AUTH_USER=${JICOFO_AUTH_USER:-focus}
+      - JICOFO_AUTH_PASSWORD=${JICOFO_AUTH_PASSWORD:-jicofo_secret_pass_2026}
+      - JVB_AUTH_USER=${JVB_AUTH_USER:-jvb}
+      - JVB_AUTH_PASSWORD=${JVB_AUTH_PASSWORD:-jvb_secret_pass_2026}
+      - JIBRI_RECORDER_USER=${JIBRI_RECORDER_USER:-recorder}
+      - JIBRI_RECORDER_PASSWORD=${JIBRI_RECORDER_PASSWORD:-recorder_secret_pass_2026}
+      - JIBRI_XMPP_USER=${JIBRI_XMPP_USER:-jibri}
+      - JIBRI_XMPP_PASSWORD=${JIBRI_XMPP_PASSWORD:-jibri_secret_pass_2026}
+      - TZ=${TZ:-UTC}
+    networks:
+      meet.jitsi:
+        aliases:
+          - ${XMPP_SERVER:-xmpp.meet.jitsi}
+
+  # Focus Component (Jicofo)
+  jicofo:
+    image: jitsi/jicofo:stable
+    restart: unless-stopped
+    volumes:
+      - ./config/jicofo:/config:Z
+    environment:
+      - AUTH_TYPE=jwt
+      - JWT_APP_ID=${JWT_APP_ID:-truelern-lms}
+      - JWT_APP_SECRET=${JWT_APP_SECRET:-truelern_secure_jitsi_jwt_secret_key_2026}
+      - XMPP_AUTH_DOMAIN=${XMPP_AUTH_DOMAIN:-auth.meet.jitsi}
+      - XMPP_DOMAIN=${XMPP_DOMAIN:-meet.jitsi}
+      - XMPP_MUC_DOMAIN=${XMPP_MUC_DOMAIN:-muc.meet.jitsi}
+      - XMPP_INTERNAL_MUC_DOMAIN=${XMPP_INTERNAL_MUC_DOMAIN:-internal-muc.meet.jitsi}
+      - XMPP_SERVER=${XMPP_SERVER:-xmpp.meet.jitsi}
+      - JICOFO_AUTH_USER=${JICOFO_AUTH_USER:-focus}
+      - JICOFO_AUTH_PASSWORD=${JICOFO_AUTH_PASSWORD:-jicofo_secret_pass_2026}
+      - TZ=${TZ:-UTC}
+    depends_on:
+      - prosody
+    networks:
+      meet.jitsi:
+
+  # Video Bridge (JVB)
+  jvb:
+    image: jitsi/jvb:stable
+    restart: unless-stopped
+    ports:
+      - "${JVB_PORT:-10000}:${JVB_PORT:-10000}/udp"
+    volumes:
+      - ./config/jvb:/config:Z
+    environment:
+      - XMPP_AUTH_DOMAIN=${XMPP_AUTH_DOMAIN:-auth.meet.jitsi}
+      - XMPP_DOMAIN=${XMPP_DOMAIN:-meet.jitsi}
+      - XMPP_INTERNAL_MUC_DOMAIN=${XMPP_INTERNAL_MUC_DOMAIN:-internal-muc.meet.jitsi}
+      - XMPP_SERVER=${XMPP_SERVER:-xmpp.meet.jitsi}
+      - JVB_AUTH_USER=${JVB_AUTH_USER:-jvb}
+      - JVB_AUTH_PASSWORD=${JVB_AUTH_PASSWORD:-jvb_secret_pass_2026}
+      - JVB_PORT=${JVB_PORT:-10000}
+      - TZ=${TZ:-UTC}
+    depends_on:
+      - prosody
+    networks:
+      meet.jitsi:
+
+  # Jibri Recording Worker (Captures sessions and writes to recordings directory)
+  jibri:
+    image: jitsi/jibri:stable
+    restart: unless-stopped
+    volumes:
+      - ./config/jibri:/config:Z
+      - ./recordings:/recordings:Z
+      - /dev/shm:/dev/shm
+    cap_add:
+      - SYS_ADMIN
+    environment:
+      - DISPLAY=:0
+      - XMPP_AUTH_DOMAIN=${XMPP_AUTH_DOMAIN:-auth.meet.jitsi}
+      - XMPP_DOMAIN=${XMPP_DOMAIN:-meet.jitsi}
+      - XMPP_INTERNAL_MUC_DOMAIN=${XMPP_INTERNAL_MUC_DOMAIN:-internal-muc.meet.jitsi}
+      - XMPP_RECORDER_DOMAIN=${XMPP_RECORDER_DOMAIN:-recorder.meet.jitsi}
+      - XMPP_SERVER=${XMPP_SERVER:-xmpp.meet.jitsi}
+      - JIBRI_RECORDER_USER=${JIBRI_RECORDER_USER:-recorder}
+      - JIBRI_RECORDER_PASSWORD=${JIBRI_RECORDER_PASSWORD:-recorder_secret_pass_2026}
+      - JIBRI_XMPP_USER=${JIBRI_XMPP_USER:-jibri}
+      - JIBRI_XMPP_PASSWORD=${JIBRI_XMPP_PASSWORD:-jibri_secret_pass_2026}
+      - JIBRI_RECORDING_DIR=/recordings
+      - JIBRI_FINALIZE_RECORDING_SCRIPT_PATH=/config/finalize.sh
+      - TZ=${TZ:-UTC}
+    depends_on:
+      - prosody
+    networks:
+      meet.jitsi:
+
+networks:
+  meet.jitsi:

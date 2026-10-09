@@ -1,0 +1,19 @@
+meta {
+  name: Get Assessment Detail
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/api/assessments/{{assessmentId}}
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+docs {
+  Assessment title, duration minutes, total marks, and passing threshold.
+}
