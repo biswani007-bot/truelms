@@ -6,6 +6,8 @@ import { connectDB } from "../../../../../config/db";
 import { Assessment } from "../../../../../models/assessment.model";
 import { QuestionBank } from "../../../../../models/question-bank.model";
 import { AssessmentQuestion } from "../../../../../models/assessment-question.model";
+import { AssessmentAttempt } from "../../../../../models/assessment-attempt.model";
+import { AssessmentService } from "../../../../../services/assessment/assessment.service";
 import { ApiError } from "../../../../../utils/api-error";
 import { ERROR_CODES } from "../../../../../constants/error-codes";
 import mongoose from "mongoose";
@@ -17,9 +19,22 @@ export const GET = withRoles(
     await connectDB();
     const { id: assessmentId } = await params;
 
-    const assessment = await Assessment.findById(assessmentId);
+    const assessment: any = await Assessment.findById(assessmentId);
     if (!assessment) {
       throw new ApiError(404, "Assessment not found", ERROR_CODES.NOT_FOUND);
+    }
+
+    if (userContext.role === "Teacher") {
+      const teacherContext = await AssessmentService.getTeacherContext(userContext.userId);
+      const isAuthorized = AssessmentService.isTeacherAuthorized(
+        assessment,
+        teacherContext?.teacherDoc?._id,
+        userContext.userId,
+        teacherContext?.teacherBatchIdStrings || []
+      );
+      if (!isAuthorized) {
+        throw new ApiError(403, "Not authorized to access questions for this assessment", ERROR_CODES.FORBIDDEN);
+      }
     }
 
     const assessmentQuestions = await AssessmentQuestion.find({ assessment: assessmentId })
@@ -45,14 +60,31 @@ export const POST = withRoles(
       throw new ApiError(400, "Questions array is required", ERROR_CODES.VALIDATION_ERROR);
     }
 
-    const assessment = await Assessment.findById(assessmentId);
+    const assessment: any = await Assessment.findById(assessmentId);
     if (!assessment) {
       throw new ApiError(404, "Assessment not found", ERROR_CODES.NOT_FOUND);
     }
 
-    // Only allow editing if draft
-    if (assessment.status !== "draft" && assessment.status !== "scheduled") {
-       throw new ApiError(403, "Cannot modify questions for published/running assessments", ERROR_CODES.FORBIDDEN);
+    if (userContext.role === "Teacher") {
+      const teacherContext = await AssessmentService.getTeacherContext(userContext.userId);
+      const isAuthorized = AssessmentService.isTeacherAuthorized(
+        assessment,
+        teacherContext?.teacherDoc?._id,
+        userContext.userId,
+        teacherContext?.teacherBatchIdStrings || []
+      );
+      if (!isAuthorized) {
+        throw new ApiError(403, "Not authorized to modify questions for this assessment", ERROR_CODES.FORBIDDEN);
+      }
+    }
+
+    const attemptCount = await AssessmentAttempt.countDocuments({ assessment: assessmentId, isDeleted: { $ne: true } });
+    if (attemptCount > 0) {
+      throw new ApiError(400, "Cannot modify questions after student attempts have started", ERROR_CODES.VALIDATION_ERROR);
+    }
+
+    if (assessment.status !== "draft" && assessment.status !== "scheduled" && attemptCount > 0) {
+      throw new ApiError(403, "Cannot modify questions for running or completed assessments", ERROR_CODES.FORBIDDEN);
     }
 
     

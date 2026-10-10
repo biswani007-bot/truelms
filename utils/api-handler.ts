@@ -5,6 +5,7 @@ import { ApiResponse } from "./api-response";
 import { logger } from "./logger";
 import jwt from "jsonwebtoken";
 import { UserPayload } from "../types";
+import { ERROR_CODES } from "../constants/error-codes";
 
 export const apiHandler = (
   handler: (req: NextRequest, ...args: any[]) => Promise<NextResponse>
@@ -67,6 +68,19 @@ export const apiHandler = (
         code = error.code;
         message = error.message;
         details = error.details;
+      } else if (error?.name === "ValidationError") {
+        statusCode = 400;
+        code = ERROR_CODES.VALIDATION_ERROR;
+        message = error.message;
+        details = error.errors;
+      } else if (error?.name === "CastError") {
+        statusCode = 400;
+        code = ERROR_CODES.VALIDATION_ERROR;
+        message = `Invalid ${error.path}: ${error.value}`;
+      } else if (error?.code === 11000) {
+        statusCode = 409;
+        code = "CONFLICT";
+        message = "Duplicate record already exists";
       } else {
         message = "Internal server error";
       }

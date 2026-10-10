@@ -24,6 +24,7 @@
  */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { NextRequest, NextResponse } from "next/server";
+import mongoose from "mongoose";
 import { connectDB } from "../../../../../config/db";
 import { JwtHelper } from "../../../../../helpers/jwt";
 import { liveClassRepository } from "../../../../../repositories/live-class.repository";
@@ -32,11 +33,126 @@ import { studentRepository } from "../../../../../repositories/student.repositor
 import { batchStudentRepository } from "../../../../../repositories/batch-student.repository";
 import { BatchTeacher } from "../../../../../models/batch-teacher.model";
 import { BatchStudent } from "../../../../../models/batch-student.model";
+import { Enrollment } from "../../../../../models/enrollment.model";
+import { Batch } from "../../../../../models/batch.model";
 import { Parent } from "../../../../../models/parent.model";
 import { ParentStudentLink } from "../../../../../models/parent-student-link.model";
 import { generateJitsiToken } from "../../../../../lib/jitsi/token";
 import { LiveClassAccessOverride } from "../../../../../models/live-class-access-override.model";
 import { AttendanceRuleService } from "../../../../../services/attendance/attendance-rule.service";
+
+/**
+ * Canonical helper to verify whether a student is eligible to join a live class.
+ * Follows TrueLern's canonical relationship chain:
+ * 1. Batch assignment: Student is actively assigned to the live class's batch via BatchStudent,
+ *    and the linked enrollment is not cancelled or refunded.
+ * 2. Course enrollment: Student has an active enrollment for the live class's course,
+ *    and is not actively assigned to a different batch for that same course.
+ */
+async function checkStudentClassEligibility(
+  studentId: mongoose.Types.ObjectId | string,
+  liveClass: any
+): Promise<{ eligible: boolean; reason?: string; enrollment?: any; batchStudent?: any }> {
+  const sId = typeof studentId === "string" ? new mongoose.Types.ObjectId(studentId) : studentId;
+  const classStatus = (liveClass.status || "").toLowerCase();
+
+  if (classStatus === "cancelled") {
+    return { eligible: false, reason: "This live class session has been cancelled." };
+  }
+  if (classStatus === "archived") {
+    return { eligible: false, reason: "This live class session is archived and unavailable." };
+  }
+
+  // Resolve the class's course ID
+  let classCourseId = liveClass.course?._id ? liveClass.course._id.toString() : liveClass.course?.toString();
+  const classBatchId = liveClass.batch?._id ? liveClass.batch._id.toString() : liveClass.batch?.toString();
+
+  if (!classCourseId && classBatchId) {
+    const batchDoc = await Batch.findById(classBatchId).select("course cohort");
+    if (batchDoc?.course) {
+      classCourseId = batchDoc.course.toString();
+    }
+  }
+
+  // 1. Check Batch Assignment if the class has a batch
+  if (classBatchId) {
+    const batchStudent = await BatchStudent.findOne({
+      batch: new mongoose.Types.ObjectId(classBatchId),
+      student: sId,
+      status: { $regex: /^active$/i },
+      isDeleted: { $ne: true },
+    }).populate("enrollment");
+
+    if (batchStudent) {
+      const enr = batchStudent.enrollment as any;
+      if (enr && ["cancelled", "refunded", "rejected", "waiting-payment"].includes(enr.status)) {
+        return {
+          eligible: false,
+          reason: `Student enrollment has status '${enr.status}', which does not permit live classroom access.`,
+        };
+      }
+      return { eligible: true, batchStudent, enrollment: enr };
+    }
+  }
+
+  // 2. Check Course Enrollment if class has an associated course
+  if (classCourseId) {
+    const validEnrollment = await Enrollment.findOne({
+      student: sId,
+      course: new mongoose.Types.ObjectId(classCourseId),
+      status: { $in: ["confirmed", "batch-assigned", "learning-started", "active", "completed"] },
+      isDeleted: { $ne: true },
+    });
+
+    if (validEnrollment) {
+      // If the class has a batch, verify student is not actively assigned to a DIFFERENT batch for this same course
+      if (classBatchId) {
+        const otherBatchStudents = await BatchStudent.find({
+          student: sId,
+          batch: { $ne: new mongoose.Types.ObjectId(classBatchId) },
+          status: { $regex: /^active$/i },
+          isDeleted: { $ne: true },
+        }).populate<{ batch: any }>("batch");
+
+        const assignedToDifferentBatch = otherBatchStudents.some((bs) => {
+          const bsCourseId = bs.batch?.course?._id ? bs.batch.course._id.toString() : bs.batch?.course?.toString();
+          return bsCourseId === classCourseId;
+        });
+
+        if (assignedToDifferentBatch) {
+          return {
+            eligible: false,
+            reason: "Access Denied: You are assigned to a different cohort/batch for this course.",
+          };
+        }
+      }
+
+      console.warn(
+        `[LiveClass Access] Student ${sId} authorized via active course enrollment ${validEnrollment.enrollmentNumber} for course ${classCourseId}${classBatchId ? ` without specific BatchStudent record for batch ${classBatchId}` : ""}`
+      );
+      return { eligible: true, enrollment: validEnrollment };
+    }
+
+    // Check if there is an invalid/cancelled enrollment to provide a specific reason
+    const invalidEnrollment = await Enrollment.findOne({
+      student: sId,
+      course: new mongoose.Types.ObjectId(classCourseId),
+      isDeleted: { $ne: true },
+    });
+
+    if (invalidEnrollment) {
+      return {
+        eligible: false,
+        reason: `Enrollment status is '${invalidEnrollment.status}', which does not permit live classroom access.`,
+      };
+    }
+  }
+
+  return {
+    eligible: false,
+    reason: "No active enrollment or cohort assignment found for this live class.",
+  };
+}
 
 export async function POST(
   req: NextRequest,
@@ -199,18 +315,12 @@ export async function POST(
       }
       authorizedStudentIds = [student._id];
 
-      // Verify Student is actively enrolled in the batch
-      const enrollment = await batchStudentRepository.findOne({
-        batch: (liveClass as any).batch,
-        student: student._id,
-        status: "active",
-      });
-
-      if (!enrollment) {
+      // Canonical eligibility check
+      const check = await checkStudentClassEligibility(student._id, liveClass);
+      if (!check.eligible) {
         return NextResponse.json(
           {
-            error:
-              "Access Denied: You are not enrolled in the cohort assigned to this live class.",
+            error: `Access Denied: ${check.reason || "You are not enrolled in the cohort assigned to this live class."}`,
           },
           { status: 403 }
         );
@@ -220,31 +330,94 @@ export async function POST(
       userName = `${student.firstName || ""} ${student.lastName || ""}`.trim() || student.email || "Student";
       userEmail = student.email || "";
     } else if (isParent) {
-      const parent = await Parent.findOne({ user: decoded.userId });
+      // Extract optional childId or studentId from query params or body (if supplied)
+      let requestedChildId =
+        req.nextUrl.searchParams.get("childId") ||
+        req.nextUrl.searchParams.get("studentId");
+
+      if (!requestedChildId) {
+        try {
+          const clonedReq = req.clone();
+          const body = await clonedReq.json();
+          requestedChildId = body?.childId || body?.studentId;
+        } catch {
+          // No body or unparseable JSON
+        }
+      }
+
+      const parent = await Parent.findOne({
+        user: decoded.userId,
+        isDeleted: { $ne: true },
+      });
       if (!parent) {
         return NextResponse.json({ error: "Parent profile not found" }, { status: 403 });
       }
 
-      const links = await ParentStudentLink.find({ parent: parent._id, status: "active" });
-      const studentIds = links.map((l: any) => l.student);
-      authorizedStudentIds = studentIds;
+      // Authoritative parent-student links query
+      const links = await ParentStudentLink.find({
+        parent: parent._id,
+        canAccessPortal: { $ne: false },
+        isDeleted: { $ne: true },
+        $or: [
+          { status: { $exists: false } },
+          { status: null },
+          { status: { $regex: /^active$/i } },
+        ],
+      }).populate("student");
 
-      const enrollment = await BatchStudent.findOne({
-        batch: (liveClass as any).batch,
-        student: { $in: studentIds },
-        status: "active",
-      });
+      const linkedStudents = links
+        .map((l: any) => l.student)
+        .filter((s: any) => s && !s.isDeleted);
 
-      if (!enrollment) {
+      if (linkedStudents.length === 0) {
         return NextResponse.json(
-          { error: "Access Denied: No linked child is enrolled in this live class." },
+          { error: "Access Denied: No active linked children found for this parent account." },
           { status: 403 }
         );
       }
 
+      // If a specific child was requested, enforce that the child belongs to this parent
+      let candidateStudents = linkedStudents;
+      if (requestedChildId) {
+        const matchingStudent = linkedStudents.find(
+          (s: any) =>
+            s._id.toString() === requestedChildId ||
+            s.studentId === requestedChildId
+        );
+        if (!matchingStudent) {
+          return NextResponse.json(
+            { error: "Access Denied: The requested child is not linked to your parent account." },
+            { status: 403 }
+          );
+        }
+        candidateStudents = [matchingStudent];
+      }
+
+      let authorizedStudent: any = null;
+      let denialReason = "No linked child is enrolled in this live class.";
+
+      for (const st of candidateStudents) {
+        const check = await checkStudentClassEligibility(st._id, liveClass);
+        if (check.eligible) {
+          authorizedStudent = st;
+          break;
+        } else if (check.reason) {
+          denialReason = check.reason;
+        }
+      }
+
+      if (!authorizedStudent) {
+        return NextResponse.json(
+          { error: `Access Denied: ${denialReason}` },
+          { status: 403 }
+        );
+      }
+
+      authorizedStudentIds = [authorizedStudent._id];
       isModerator = false;
-      userName = `Parent / Guardian`;
-      userEmail = parent.email || "";
+      const childName = `${authorizedStudent.firstName || ""} ${authorizedStudent.lastName || ""}`.trim() || authorizedStudent.email || "Child";
+      userName = `Parent (${childName})`;
+      userEmail = parent.email || (decoded as any).email || "";
     } else {
       return NextResponse.json(
         { error: "Access Denied: Role not authorized for live classroom access." },
@@ -252,9 +425,22 @@ export async function POST(
       );
     }
 
-    // --- Enforce Join Window Server-Side Rule ---
+    // --- Enforce Join Window & Status Server-Side Rule ---
     if (!isAdmin && !isTeacher) { // Instructors can join anytime
-      if (liveClass.status === "completed") {
+      const classStatus = (liveClass.status || "").toLowerCase();
+      if (classStatus === "cancelled") {
+        return NextResponse.json(
+          { error: "Access Denied: This live class session has been cancelled." },
+          { status: 403 }
+        );
+      }
+      if (classStatus === "archived") {
+        return NextResponse.json(
+          { error: "Access Denied: This live class session is archived and unavailable." },
+          { status: 403 }
+        );
+      }
+      if (classStatus === "completed") {
         return NextResponse.json(
           { error: "Access Denied: Session is already completed." },
           { status: 403 }
@@ -316,6 +502,7 @@ export async function POST(
       success: true,
       data: {
         ...tokenPayload,
+        studentId: authorizedStudentIds[0]?.toString(),
         liveClass: {
           id: (liveClass as any)._id,
           title: (liveClass as any).title || (liveClass as any).classTitle,

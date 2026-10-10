@@ -201,6 +201,7 @@ export async function GET(req: NextRequest) {
     finalResponse.cookies.set("refreshToken", sessionResult.refreshToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
       path: "/api/auth/refresh",
       maxAge: 7 * 24 * 60 * 60,
     });
@@ -208,6 +209,7 @@ export async function GET(req: NextRequest) {
     finalResponse.cookies.set("accessToken", sessionResult.accessToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
       path: "/",
       maxAge: 24 * 60 * 60,
     });

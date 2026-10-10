@@ -222,6 +222,7 @@ export default function TeacherAssignmentsPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           title: createForm.title,
+          courseId: createForm.courseId,
           batchId: createForm.batchId,
           totalMarks: Number(createForm.totalMarks),
           passingMarks: Number(createForm.passingMarks),
@@ -914,7 +915,10 @@ export default function TeacherAssignmentsPage() {
                   disabled={!createForm.courseId}
                 >
                   <option value="" disabled>Select a batch</option>
-                  {batches.filter((b) => b.course && b.course._id === createForm.courseId).map((b) => (
+                  {batches.filter((b) => {
+                    const cId = b.course?._id || b.course?.id || (typeof b.course === "string" ? b.course : null);
+                    return cId && cId.toString() === createForm.courseId;
+                  }).map((b) => (
                     <option key={b._id} value={b._id}>{b.batchName}</option>
                   ))}
                 </select>
@@ -1277,19 +1281,65 @@ export default function TeacherAssignmentsPage() {
                   className="max-w-full max-h-full object-contain rounded-xl shadow-sm"
                 />
               ) : previewFile.fileType === "application/pdf" || /\.pdf$/i.test(previewFile.fileName) ? (
-                <iframe
-                  src={`${previewFile.fileUrl}#toolbar=0`}
-                  className="w-full h-full rounded-xl shadow-sm bg-white"
-                  title={previewFile.fileName}
-                />
+                <div className="w-full h-full flex flex-col relative">
+                  <object
+                    data={`${previewFile.fileUrl}#toolbar=0`}
+                    type="application/pdf"
+                    className="w-full h-full rounded-xl shadow-sm bg-white"
+                  >
+                    <iframe
+                      src={`${previewFile.fileUrl}#toolbar=0`}
+                      className="w-full h-full rounded-xl shadow-sm bg-white"
+                      title={previewFile.fileName}
+                    >
+                      <div className="flex flex-col items-center justify-center h-full p-8 text-center bg-white rounded-xl">
+                        <FileText className="w-16 h-16 text-slate-300 mb-4" />
+                        <p className="text-sm font-bold text-slate-700 mb-1">Inline PDF preview not supported</p>
+                        <p className="text-xs text-slate-500 mb-4">Your browser may not support embedded PDF viewing.</p>
+                        <a
+                          href={previewFile.fileUrl}
+                          download
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-xl transition shadow-md shadow-indigo-200"
+                        >
+                          <Download className="w-4 h-4" />
+                          Download PDF
+                        </a>
+                      </div>
+                    </iframe>
+                  </object>
+                </div>
               ) : previewFile.fileType === "application/msword" || previewFile.fileType === "application/vnd.openxmlformats-officedocument.wordprocessingml.document" || /\.(doc|docx)$/i.test(previewFile.fileName) ? (
-                <iframe
-                  src={`https://view.officeapps.live.com/op/embed.aspx?src=${encodeURIComponent(
-                    new URL(previewFile.fileUrl, window.location.origin).href
-                  )}`}
-                  className="w-full h-full rounded-xl shadow-sm bg-white"
-                  title={previewFile.fileName}
-                />
+                typeof window !== "undefined" && (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") ? (
+                  <div className="text-center p-8 bg-white rounded-2xl shadow-sm max-w-md mx-auto">
+                    <div className="w-16 h-16 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                      <FileText className="w-8 h-8" />
+                    </div>
+                    <h4 className="text-base font-bold text-slate-800 mb-1 truncate">{previewFile.fileName}</h4>
+                    <p className="text-xs text-slate-500 mb-5 leading-relaxed">
+                      Word document preview via Office Online requires a public URL. You can download the document to view it.
+                    </p>
+                    <a
+                      href={previewFile.fileUrl}
+                      download
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-2 px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-xl transition shadow-md shadow-blue-200"
+                    >
+                      <Download className="w-4 h-4" />
+                      Download Document
+                    </a>
+                  </div>
+                ) : (
+                  <iframe
+                    src={`https://view.officeapps.live.com/op/embed.aspx?src=${encodeURIComponent(
+                      new URL(previewFile.fileUrl, window.location.origin).href
+                    )}`}
+                    className="w-full h-full rounded-xl shadow-sm bg-white"
+                    title={previewFile.fileName}
+                  />
+                )
               ) : (
                 <div className="text-center">
                   <FileText className="w-16 h-16 text-slate-300 mx-auto mb-4" />

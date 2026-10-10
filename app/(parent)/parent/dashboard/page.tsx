@@ -81,7 +81,7 @@ function AttendanceCircle({ pct, totalSessions, presentSessions }: { pct: number
 
 // ─── Main Page Component ───────────────────────────────────────────────────────
 export default function ParentDashboardPage() {
-  const { children, selectedChild, setSelectedChild, loading: contextLoading } = useParentChild();
+  const { children, selectedChild, setSelectedChild, loading: contextLoading, authStatus, authError, refreshChildren } = useParentChild();
   const [data, setData] = useState<any>(null);
   const [statusState, setStatusState] = useState<string | null>(null);
   const [statusInfo, setStatusInfo] = useState<any>(null);
@@ -152,48 +152,64 @@ export default function ParentDashboardPage() {
     }
   }, []);
 
-  useEffect(() => {
-    const init = async () => {
-      if (contextLoading) return;
-      try {
-        setLoading(true);
-        setError(null);
-        setDemoData(null);
-        setData(null);
+  const loadStatus = useCallback(async () => {
+    if (authStatus === "unauthenticated" || authStatus === "no_parent_profile") {
+      setLoading(false);
+      return;
+    }
+    if (contextLoading || authStatus === "checking") {
+      return;
+    }
+    try {
+      setLoading(true);
+      setError(null);
+      setDemoData(null);
+      setData(null);
 
-        const urlParams = selectedChild?.studentId ? `?studentId=${selectedChild.studentId}` : "";
-        const statusRes = await fetch(`/api/parent/status${urlParams}`, { credentials: "include" });
-        if (!statusRes.ok) throw new Error("Failed to load status");
-        const statusJson = await statusRes.json();
-        const state = statusJson.data?.state || "STATE_1";
-        setStatusState(state);
-        setStatusInfo(statusJson.data || null);
+      const urlParams = selectedChild?.studentId ? `?studentId=${selectedChild.studentId}` : "";
+      const statusRes = await fetch(`/api/parent/status${urlParams}`, { credentials: "include" });
+      
+      if (statusRes.status === 401) {
+        setError("UNAUTHENTICATED");
+        return;
+      }
+      if (statusRes.status === 403) {
+        setError("NO_PARENT_PROFILE");
+        return;
+      }
+      if (!statusRes.ok) throw new Error("Failed to load status");
+      const statusJson = await statusRes.json();
+      const state = statusJson.data?.state || "STATE_1";
+      setStatusState(state);
+      setStatusInfo(statusJson.data || null);
 
-        if (state === "STATE_3" || state === "STATE_4") {
-          const demoRes = await fetch(`/api/parent/demo${urlParams}`, { credentials: "include" });
-          if (demoRes.ok) {
-            const demoJson = await demoRes.json();
-            setDemoData(demoJson.data || null);
-          } else {
-            setDemoData(null);
-          }
+      if (state === "STATE_3" || state === "STATE_4") {
+        const demoRes = await fetch(`/api/parent/demo${urlParams}`, { credentials: "include" });
+        if (demoRes.ok) {
+          const demoJson = await demoRes.json();
+          setDemoData(demoJson.data || null);
         } else {
           setDemoData(null);
         }
-
-        if (state === "STATE_5" && selectedChild?.studentId) {
-          await fetchDashboard(selectedChild.studentId);
-        } else {
-          setData(null);
-        }
-      } catch (err: any) {
-        setError(err.message || "Failed to load dashboard");
-      } finally {
-        setLoading(false);
+      } else {
+        setDemoData(null);
       }
-    };
-    init();
-  }, [contextLoading, selectedChild?.studentId, fetchDashboard]);
+
+      if (state === "STATE_5" && selectedChild?.studentId) {
+        await fetchDashboard(selectedChild.studentId);
+      } else {
+        setData(null);
+      }
+    } catch (err: any) {
+      setError(err.message || "Failed to load dashboard");
+    } finally {
+      setLoading(false);
+    }
+  }, [authStatus, contextLoading, selectedChild?.studentId, fetchDashboard]);
+
+  useEffect(() => {
+    loadStatus();
+  }, [loadStatus]);
 
   const handleAddChild = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -227,8 +243,61 @@ export default function ParentDashboardPage() {
     }
   };
 
+  // ── Session Expired / Unauthenticated State ────────────────────────────────
+  if (authStatus === "unauthenticated" || error === "UNAUTHENTICATED") {
+    return (
+      <div className="flex flex-col items-center justify-center py-20 px-4 text-center max-w-md mx-auto">
+        <div className="w-16 h-16 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center mb-5 border border-amber-100 shadow-sm">
+          <UserCircle className="w-8 h-8" />
+        </div>
+        <h2 className="text-xl font-bold text-slate-900 mb-2">Session Expired</h2>
+        <p className="text-sm text-slate-500 mb-6 leading-relaxed">
+          Your parent portal session has expired or you are not signed in. Please sign in again to access your dashboard.
+        </p>
+        <div className="flex flex-col sm:flex-row gap-3 w-full">
+          <Link
+            href="/login?redirect=/parent/dashboard"
+            className="flex-1 bg-[#0037b1] hover:bg-[#002b8a] text-white text-sm font-bold py-2.5 px-4 rounded-xl shadow-sm text-center transition"
+          >
+            Sign In to Parent Portal
+          </Link>
+          <button
+            onClick={() => {
+              setError(null);
+              refreshChildren();
+            }}
+            className="bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 text-sm font-semibold py-2.5 px-4 rounded-xl transition"
+          >
+            Retry
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  // ── No Parent Profile State ────────────────────────────────────────────────
+  if (authStatus === "no_parent_profile" || error === "NO_PARENT_PROFILE") {
+    return (
+      <div className="flex flex-col items-center justify-center py-20 px-4 text-center max-w-md mx-auto">
+        <div className="w-16 h-16 rounded-2xl bg-slate-100 text-slate-600 flex items-center justify-center mb-5 border border-slate-200 shadow-sm">
+          <GraduationCap className="w-8 h-8" />
+        </div>
+        <h2 className="text-xl font-bold text-slate-900 mb-2">Parent Profile Not Found</h2>
+        <p className="text-sm text-slate-500 mb-6 leading-relaxed">
+          {authError || "This account is not associated with an active parent profile. If you are an administrator, teacher, or student, please navigate to your portal."}
+        </p>
+        <Link
+          href="/login"
+          className="bg-[#0037b1] hover:bg-[#002b8a] text-white text-sm font-bold py-2.5 px-6 rounded-xl shadow-sm transition"
+        >
+          Sign In with Another Account
+        </Link>
+      </div>
+    );
+  }
+
   // ── Loading ──────────────────────────────────────────────────────────────────
-  if (contextLoading || loading) return <DashboardSkeleton />;
+  if (contextLoading || authStatus === "checking" || loading) return <DashboardSkeleton />;
 
   // ── Error ────────────────────────────────────────────────────────────────────
   if (error) {
@@ -239,7 +308,13 @@ export default function ParentDashboardPage() {
         </div>
         <h2 className="text-lg font-bold text-slate-900 mb-1">Dashboard Error</h2>
         <p className="text-sm text-slate-500 mb-4">{error}</p>
-        <button onClick={() => window.location.reload()} className="bg-[#0037b1] text-white text-sm font-bold px-5 py-2.5 rounded-xl hover:bg-[#002b8a] transition">
+        <button
+          onClick={() => {
+            setError(null);
+            loadStatus();
+          }}
+          className="bg-[#0037b1] text-white text-sm font-bold px-5 py-2.5 rounded-xl hover:bg-[#002b8a] transition"
+        >
           Retry
         </button>
       </div>

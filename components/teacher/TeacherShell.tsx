@@ -34,7 +34,7 @@ const PRIMARY_NAV_ITEMS: NavItem[] = [
   { href: "/teacher/dashboard", label: "Overview", icon: <LayoutDashboard className="w-4 h-4" /> },
   { href: "/teacher/batches", label: "My Batches", icon: <Users className="w-4 h-4" /> },
   { href: "/teacher/live-classes", label: "Live Classroom", icon: <Video className="w-4 h-4" /> },
-  { href: "/teacher/assignments", label: "Assessments & Grading", icon: <ClipboardCheck className="w-4 h-4" /> },
+  { href: "/teacher/assignments", label: "Assignments & Grading", icon: <ClipboardCheck className="w-4 h-4" /> },
   { href: "/teacher/calendar", label: "Schedule", icon: <Calendar className="w-4 h-4" /> },
 ];
 

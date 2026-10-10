@@ -23,6 +23,7 @@ import {
 
 interface Assessment {
   _id: string;
+  id?: string;
   assessmentCode: string;
   title: string;
   maximumMarks: number;
@@ -31,8 +32,11 @@ interface Assessment {
   type: string;
   status: string;
   assessmentDate?: string;
-  course?: { _id: string; name: string };
-  batch?: { _id: string; batchName: string };
+  startTime?: string;
+  endTime?: string;
+  questionCount?: number;
+  course?: { _id?: string; id?: string; name: string };
+  batch?: { _id?: string; id?: string; batchName?: string; name?: string };
 }
 
 interface Question {
@@ -63,6 +67,7 @@ export default function TeacherAssessmentsPage() {
   const [editingQuestion, setEditingQuestion] = useState<Question | null>(null);
   const [showPicker, setShowPicker] = useState(false);
   const [showExcelModal, setShowExcelModal] = useState(false);
+  const [deletingAssessment, setDeletingAssessment] = useState<Assessment | null>(null);
   
   const [courses, setCourses] = useState<any[]>([]);
   const [batches, setBatches] = useState<any[]>([]);
@@ -76,6 +81,8 @@ export default function TeacherAssessmentsPage() {
     passingMarks: 40,
     duration: 60,
     instructions: "",
+    assessmentDate: "",
+    attemptLimit: 1,
   });
 
   const [questions, setQuestions] = useState<Question[]>([]);
@@ -141,10 +148,65 @@ export default function TeacherAssessmentsPage() {
       passingMarks: 40,
       duration: 60,
       instructions: "",
+      assessmentDate: "",
+      attemptLimit: 1,
     });
     setQuestions([]);
     setStep(1);
     setIsAuthoring(true);
+  };
+
+  const handleEditAssessment = async (id: string) => {
+    setSaving(true);
+    try {
+      const res = await fetch(`/api/assessments/${id}`);
+      const result = await res.json();
+      if (!result.success || !result.data) {
+        toast.error(result.message || "Failed to load assessment details.");
+        return;
+      }
+      const asm = result.data;
+      setCreatedAssessmentId(asm._id || asm.id);
+      setDetailsForm({
+        title: asm.title || "",
+        courseId: asm.course?._id || asm.course?.id || (typeof asm.course === "string" ? asm.course : ""),
+        batchId: asm.batch?._id || asm.batch?.id || (typeof asm.batch === "string" ? asm.batch : ""),
+        type: asm.type || "quiz",
+        maximumMarks: asm.maximumMarks || 100,
+        passingMarks: asm.passingMarks || 40,
+        duration: asm.duration || 60,
+        instructions: asm.instructions || "",
+        assessmentDate: asm.assessmentDate ? new Date(asm.assessmentDate).toISOString().split("T")[0] : "",
+        attemptLimit: asm.attemptLimit || 1,
+      });
+
+      if (Array.isArray(asm.questions)) {
+        setQuestions(
+          asm.questions.map((q: any) => ({
+            _id: q._id,
+            questionBankId: q.questionBankId || q._id,
+            questionCode: q.questionCode,
+            questionText: q.questionText || "",
+            category: q.category || asm.course?.name || "",
+            difficultyLevel: q.difficultyLevel || "medium",
+            marks: q.marksOverride || q.marks || 5,
+            type: q.type || "MCQ",
+            options: Array.isArray(q.options) ? q.options : [],
+            correctAnswer: q.correctAnswer,
+            mediaAttachments: Array.isArray(q.mediaAttachments) ? q.mediaAttachments : [],
+          }))
+        );
+      } else {
+        setQuestions([]);
+      }
+
+      setStep(1);
+      setIsAuthoring(true);
+    } catch (err: any) {
+      toast.error(err.message || "Failed to load assessment.");
+    } finally {
+      setSaving(false);
+    }
   };
 
   const handleSaveStep1 = async () => {
@@ -170,7 +232,7 @@ export default function TeacherAssessmentsPage() {
         if (!data.success) {
           throw new Error(data.message || "Assessment creation failed.");
         }
-        setCreatedAssessmentId(data.data._id);
+        setCreatedAssessmentId(data.data._id || data.data.id);
         toast.success("Assessment created successfully.");
         setStep(2);
       } else {
@@ -182,13 +244,13 @@ export default function TeacherAssessmentsPage() {
         });
         const data = await res.json();
         if (!data.success) {
-          throw new Error(data.message || "Assessment updated failed.");
+          throw new Error(data.message || "Assessment update failed.");
         }
         toast.success("Assessment updated successfully.");
         setStep(2);
       }
     } catch (err: any) {
-      toast.error(err.message || "Assessment creation failed.");
+      toast.error(err.message || "Assessment save failed.");
     } finally {
       setSaving(false);
     }
@@ -197,6 +259,42 @@ export default function TeacherAssessmentsPage() {
   const handleRemoveQuestion = (index: number) => {
     const updated = questions.filter((_, i) => i !== index);
     setQuestions(updated);
+  };
+
+  const handleSaveQuestionsOnly = async () => {
+    setSaving(true);
+    try {
+      let asmId = createdAssessmentId;
+
+      if (!asmId) {
+        const resAsm = await fetch("/api/assessments", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(detailsForm),
+        });
+        const asmData = await resAsm.json();
+        if (!asmData.success) throw new Error(asmData.message || "Assessment creation failed.");
+        asmId = asmData.data._id || asmData.data.id;
+        setCreatedAssessmentId(asmId);
+      }
+
+      const resQ = await fetch(`/api/assessments/${asmId}/questions`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ questions }),
+      });
+      const qData = await resQ.json();
+      if (!qData.success) throw new Error(qData.message || "Questions could not be saved.");
+
+      toast.success("Assessment saved successfully.");
+      setIsAuthoring(false);
+      setCreatedAssessmentId(null);
+      await fetchAssessments();
+    } catch (err: any) {
+      toast.error(err.message || "Failed to save assessment.");
+    } finally {
+      setSaving(false);
+    }
   };
 
   const handlePublishAssessment = async () => {
@@ -213,7 +311,7 @@ export default function TeacherAssessmentsPage() {
         });
         const asmData = await resAsm.json();
         if (!asmData.success) throw new Error(asmData.message || "Assessment creation failed.");
-        asmId = asmData.data._id;
+        asmId = asmData.data._id || asmData.data.id;
         setCreatedAssessmentId(asmId);
       }
 
@@ -224,7 +322,7 @@ export default function TeacherAssessmentsPage() {
         body: JSON.stringify({ questions }),
       });
       const qData = await resQ.json();
-      if (!qData.success) throw new Error(qData.message || "Question could not be saved.");
+      if (!qData.success) throw new Error(qData.message || "Questions could not be saved.");
 
       // 3. Publish Assessment
       const resPub = await fetch(`/api/assessments/${asmId}/publish`, { method: "POST" });
@@ -263,6 +361,7 @@ export default function TeacherAssessmentsPage() {
       const data = await res.json();
       if (data.success) {
         toast.success("Assessment deleted successfully.");
+        setDeletingAssessment(null);
         await fetchAssessments();
       } else {
         toast.error(data.message || "Failed to delete assessment.");
@@ -364,6 +463,44 @@ export default function TeacherAssessmentsPage() {
                   value={detailsForm.duration}
                   onChange={(e) => setDetailsForm({ ...detailsForm, duration: Number(e.target.value) })}
                   className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm"
+                />
+              </div>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div>
+                <label className="block text-xs font-bold text-slate-700 mb-1.5">Assessment Type</label>
+                <select
+                  value={detailsForm.type}
+                  onChange={(e) => setDetailsForm({ ...detailsForm, type: e.target.value })}
+                  className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+                >
+                  <option value="quiz">Quiz</option>
+                  <option value="practice-test">Practice Test</option>
+                  <option value="unit-test">Unit Test</option>
+                  <option value="module-test">Module Test</option>
+                  <option value="mid-term">Mid-Term</option>
+                  <option value="final-exam">Final Exam</option>
+                  <option value="coding-test">Coding Test</option>
+                  <option value="project-evaluation">Project Evaluation</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-xs font-bold text-slate-700 mb-1.5">Assessment Date</label>
+                <input
+                  type="date"
+                  value={detailsForm.assessmentDate}
+                  onChange={(e) => setDetailsForm({ ...detailsForm, assessmentDate: e.target.value })}
+                  className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-bold text-slate-700 mb-1.5">Attempt Limit</label>
+                <input
+                  type="number"
+                  min={1}
+                  value={detailsForm.attemptLimit}
+                  onChange={(e) => setDetailsForm({ ...detailsForm, attemptLimit: Math.max(1, Number(e.target.value)) })}
+                  className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none"
                 />
               </div>
             </div>
@@ -621,13 +758,22 @@ export default function TeacherAssessmentsPage() {
               <button onClick={() => setStep(2)} className="px-6 py-2.5 text-slate-600 text-sm font-bold hover:bg-slate-100 rounded-xl flex items-center gap-2 transition">
                 <ArrowLeft className="w-4 h-4" /> Back to Questions
               </button>
-              <button 
-                onClick={handlePublishAssessment} 
-                disabled={saving || questions.length === 0}
-                className="px-8 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-bold rounded-xl disabled:opacity-50 shadow-md transition flex items-center gap-2"
-              >
-                {saving ? "Publishing..." : "Publish Assessment"}
-              </button>
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={handleSaveQuestionsOnly}
+                  disabled={saving || questions.length === 0}
+                  className="px-6 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-800 text-sm font-bold rounded-xl disabled:opacity-50 transition"
+                >
+                  {saving ? "Saving..." : "Save Changes"}
+                </button>
+                <button 
+                  onClick={handlePublishAssessment} 
+                  disabled={saving || questions.length === 0}
+                  className="px-8 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-bold rounded-xl disabled:opacity-50 shadow-md transition flex items-center gap-2"
+                >
+                  {saving ? "Publishing..." : "Publish Assessment"}
+                </button>
+              </div>
             </div>
           </div>
         )}
@@ -639,7 +785,7 @@ export default function TeacherAssessmentsPage() {
   const filteredAssessments = assessments.filter(asm => 
     asm.title?.toLowerCase().includes(search.toLowerCase()) ||
     asm.course?.name?.toLowerCase().includes(search.toLowerCase()) ||
-    asm.batch?.batchName?.toLowerCase().includes(search.toLowerCase())
+    (asm.batch?.batchName || asm.batch?.name || "")?.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
@@ -678,25 +824,58 @@ export default function TeacherAssessmentsPage() {
         ) : (
           <div className="space-y-3">
             {filteredAssessments.map(asm => (
-              <div key={asm._id} className="p-4 border border-slate-100 rounded-2xl flex justify-between items-center hover:bg-slate-50/80 transition">
+              <div key={asm._id || asm.id} className="p-4 border border-slate-100 rounded-2xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 hover:bg-slate-50/80 transition">
                 <div>
                   <h4 className="font-bold text-slate-900 text-sm">{asm.title}</h4>
-                  <p className="text-xs text-slate-500 mt-1">
-                    {asm.course?.name || "General"} • {asm.batch?.batchName || "All Batches"} • {asm.maximumMarks} Marks
+                  <p className="text-xs text-slate-500 mt-1 flex flex-wrap items-center gap-1.5">
+                    <span className="font-medium text-slate-700">{asm.course?.name || "General"}</span>
+                    <span>•</span>
+                    <span className="text-slate-600">{asm.batch?.batchName || asm.batch?.name || "All Batches"}</span>
+                    <span>•</span>
+                    <span>{asm.maximumMarks} Marks (Pass: {asm.passingMarks})</span>
+                    <span>•</span>
+                    <span>{asm.duration} mins</span>
+                    {asm.questionCount !== undefined && (
+                      <>
+                        <span>•</span>
+                        <span className="text-indigo-600 font-semibold">{asm.questionCount} {asm.questionCount === 1 ? 'Question' : 'Questions'}</span>
+                      </>
+                    )}
+                    {asm.assessmentDate && (
+                      <>
+                        <span>•</span>
+                        <span className="text-slate-400">Date: {new Date(asm.assessmentDate).toLocaleDateString()}</span>
+                      </>
+                    )}
                   </p>
                 </div>
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2 shrink-0">
                   <span className={`text-xs font-bold px-2.5 py-1 rounded-md uppercase tracking-wide ${
                     asm.status === "published"
                       ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
+                      : asm.status === "scheduled"
+                      ? "bg-amber-50 text-amber-700 border border-amber-200"
+                      : asm.status === "running"
+                      ? "bg-blue-50 text-blue-700 border border-blue-200"
+                      : asm.status === "completed"
+                      ? "bg-slate-100 text-slate-700 border border-slate-200"
                       : "bg-indigo-50 text-indigo-700 border border-indigo-200"
                   }`}>
                     {asm.status}
                   </span>
 
+                  <button
+                    onClick={() => handleEditAssessment(asm._id || asm.id!)}
+                    className="inline-flex items-center gap-1 px-3 py-1 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 text-xs font-bold rounded-lg border border-indigo-200 shadow-sm transition"
+                    title="Edit Assessment"
+                  >
+                    <Edit3 className="w-3.5 h-3.5" />
+                    <span>Edit</span>
+                  </button>
+
                   {asm.status === "draft" && (
                     <button
-                      onClick={() => handleQuickPublish(asm._id)}
+                      onClick={() => handleQuickPublish(asm._id || asm.id!)}
                       className="px-3 py-1 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-lg shadow-sm transition"
                     >
                       Publish
@@ -704,7 +883,7 @@ export default function TeacherAssessmentsPage() {
                   )}
 
                   <button
-                    onClick={() => handleDeleteAssessment(asm._id)}
+                    onClick={() => setDeletingAssessment(asm)}
                     className="p-1.5 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition"
                     title="Delete Assessment"
                   >
@@ -716,6 +895,34 @@ export default function TeacherAssessmentsPage() {
           </div>
         )}
       </div>
+
+      {/* Delete Confirmation Modal */}
+      {deletingAssessment && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4">
+          <div className="bg-white rounded-3xl p-6 max-w-md w-full shadow-2xl border border-slate-100 flex flex-col gap-4 animate-in fade-in zoom-in-95 duration-200">
+            <div>
+              <h3 className="text-lg font-bold text-slate-900">Delete Assessment</h3>
+              <p className="text-sm text-slate-500 mt-2">
+                Are you sure you want to delete <strong className="text-slate-800">&quot;{deletingAssessment.title}&quot;</strong>? This action cannot be undone.
+              </p>
+            </div>
+            <div className="flex justify-end gap-3 pt-2">
+              <button
+                onClick={() => setDeletingAssessment(null)}
+                className="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-xl transition"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={() => handleDeleteAssessment(deletingAssessment._id || deletingAssessment.id!)}
+                className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white text-xs font-bold rounded-xl shadow-sm transition"
+              >
+                Delete Assessment
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -1032,7 +1032,7 @@ export class ParentService {
     // 1. Enrolled Batches & Courses
     const batchEnrollments = await BatchStudent.find({
       student: studentId,
-      status: "active",
+      status: { $regex: /^active$/i },
       isDeleted: { $ne: true },
     }).populate({
       path: "batch",
@@ -1044,6 +1044,14 @@ export class ParentService {
 
     const enrolledBatches = batchEnrollments.map((be: any) => be.batch).filter(Boolean);
     const batchIds = enrolledBatches.map((b: any) => b._id);
+
+    // Active course enrollments
+    const activeCourseEnrollments = await Enrollment.find({
+      student: studentId,
+      status: { $in: ["confirmed", "batch-assigned", "learning-started", "active"] },
+      isDeleted: { $ne: true },
+    });
+    const enrolledCourseIds = activeCourseEnrollments.map((e: any) => e.course).filter(Boolean);
 
     // 2. Attendance Summary
     const attSummary = await AttendanceSummary.findOne({
@@ -1061,8 +1069,16 @@ export class ParentService {
         : null;
 
     // 3. Upcoming Live Classes
+    const classConditions: any[] = [];
+    if (batchIds.length > 0) {
+      classConditions.push({ batch: { $in: batchIds } });
+    }
+    if (enrolledCourseIds.length > 0) {
+      classConditions.push({ course: { $in: enrolledCourseIds } });
+    }
+
     const upcomingLiveClasses = await LiveClass.find({
-      batch: { $in: batchIds },
+      ...(classConditions.length > 0 ? { $or: classConditions } : { _id: null }),
       startDate: { $gte: new Date(Date.now() - 3600000) },
       status: {
         $nin: ["cancelled", "Cancelled", "CANCELLED", "archived", "Archived", "completed", "Completed", "missed", "Missed"],
@@ -2653,12 +2669,31 @@ export class ParentService {
   static async getChildSchedule(parentId: mongoose.Types.ObjectId, studentIdStr: string, fromDate?: Date, toDate?: Date) {
     const { student } = await this.authorizeChildAccess(parentId, studentIdStr);
     
-    const batchStudents = await BatchStudent.find({ student: student._id, status: "active", isDeleted: { $ne: true } });
+    const batchStudents = await BatchStudent.find({
+      student: student._id,
+      status: { $regex: /^active$/i },
+      isDeleted: { $ne: true },
+    });
     const batchIds = batchStudents.map(b => b.batch);
+
+    const activeCourseEnrollments = await Enrollment.find({
+      student: student._id,
+      status: { $in: ["confirmed", "batch-assigned", "learning-started", "active"] },
+      isDeleted: { $ne: true },
+    });
+    const enrolledCourseIds = activeCourseEnrollments.map((e: any) => e.course).filter(Boolean);
+
+    const classConditions: any[] = [];
+    if (batchIds.length > 0) {
+      classConditions.push({ batch: { $in: batchIds } });
+    }
+    if (enrolledCourseIds.length > 0) {
+      classConditions.push({ course: { $in: enrolledCourseIds } });
+    }
     
     const now = new Date();
     const query: any = {
-      batch: { $in: batchIds },
+      ...(classConditions.length > 0 ? { $or: classConditions } : { _id: null }),
       status: {
         $nin: ["cancelled", "Cancelled", "CANCELLED", "archived", "Archived", "completed", "Completed", "missed", "Missed"],
       },
@@ -2727,8 +2762,24 @@ export class ParentService {
     if (!liveClass || liveClass.isDeleted) throw new ApiError(404, "Class not found", ERROR_CODES.NOT_FOUND);
     
     // Verify enrollment
-    const isEnrolled = await BatchStudent.exists({ student: student._id, batch: liveClass.batch, status: "active", isDeleted: { $ne: true } });
-    if (!isEnrolled) throw new ApiError(403, "Not authorized to access this class summary", ERROR_CODES.FORBIDDEN);
+    const isEnrolled = await BatchStudent.exists({
+      student: student._id,
+      batch: liveClass.batch,
+      status: { $regex: /^active$/i },
+      isDeleted: { $ne: true },
+    });
+    let isCourseEnrolled = false;
+    if (!isEnrolled && liveClass.course) {
+      isCourseEnrolled = !!(await Enrollment.exists({
+        student: student._id,
+        course: (liveClass.course as any)?._id || liveClass.course,
+        status: { $in: ["confirmed", "batch-assigned", "learning-started", "active"] },
+        isDeleted: { $ne: true },
+      }));
+    }
+    if (!isEnrolled && !isCourseEnrolled) {
+      throw new ApiError(403, "Not authorized to access this class summary", ERROR_CODES.FORBIDDEN);
+    }
     
     const attendance = await Attendance.findOne({ liveClass: liveClass._id, student: student._id });
     

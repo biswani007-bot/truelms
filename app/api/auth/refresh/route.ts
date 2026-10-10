@@ -50,6 +50,7 @@ export const POST = apiHandler(async (req: NextRequest) => {
   response.cookies.set("refreshToken", result.refreshToken, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
     path: "/api/auth/refresh",
     maxAge: 7 * 24 * 60 * 60,
   });
@@ -57,6 +58,7 @@ export const POST = apiHandler(async (req: NextRequest) => {
   response.cookies.set("accessToken", result.accessToken, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
     path: "/",
     maxAge: 24 * 60 * 60,
   });

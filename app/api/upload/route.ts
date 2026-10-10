@@ -15,7 +15,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ success: false, message: "No files uploaded" }, { status: 400 });
     }
 
-    const uploadDir = path.join(process.cwd(), "public", "uploads");
+    const uploadDir = path.join(process.cwd(), "storage", "uploads");
     await mkdir(uploadDir, { recursive: true });
 
     const uploadedFiles = [];

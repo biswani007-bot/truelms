@@ -19,31 +19,65 @@ export class AttendanceService {
       checkInTime?: Date;
       checkOutTime?: Date;
       remarks?: string;
+      attendanceDate?: Date | string;
     },
     userId?: string
   ) {
     const liveClassObj = await LiveClass.findById(data.liveClass);
     if (!liveClassObj) throw new Error("Live class profile not found");
 
-    const count = await attendanceRepository.findMany({}).then((res) => res.length);
-    const attendanceNumber = `ATT-${String(count + 1).padStart(5, "0")}`;
+    const effectiveDate = data.attendanceDate
+      ? new Date(data.attendanceDate)
+      : liveClassObj.startDate || new Date();
 
-    const record = await Attendance.findOneAndUpdate(
-      { liveClass: data.liveClass, student: data.student },
-      {
-        $set: {
-          attendanceNumber,
-          batch: data.batch,
-          teacher: data.teacher,
-          attendanceDate: liveClassObj.startDate,
-          checkInTime: data.checkInTime,
-          checkOutTime: data.checkOutTime,
-          status: data.status,
-          remarks: data.remarks,
-        },
-      },
-      { upsert: true, new: true }
-    );
+    const parts = effectiveDate.toISOString().split("T")[0].split("-").map(Number);
+    const startOfDay = new Date(Date.UTC(parts[0], parts[1] - 1, parts[2], 0, 0, 0, 0));
+    const endOfDay = new Date(Date.UTC(parts[0], parts[1] - 1, parts[2], 23, 59, 59, 999));
+
+    // 1. Look for existing attendance record for this student and batch on this date
+    let record = await Attendance.findOne({
+      batch: data.batch,
+      student: data.student,
+      attendanceDate: { $gte: startOfDay, $lte: endOfDay },
+    });
+
+    // 2. Fallback to (liveClass, student) unique index check
+    if (!record && data.liveClass) {
+      record = await Attendance.findOne({
+        liveClass: data.liveClass,
+        student: data.student,
+      });
+    }
+
+    if (record) {
+      // Update existing record
+      record.status = data.status as any;
+      record.teacher = data.teacher as any;
+      record.batch = data.batch as any;
+      if (data.liveClass) record.liveClass = data.liveClass as any;
+      record.attendanceDate = effectiveDate;
+      if (data.checkInTime) record.checkInTime = data.checkInTime;
+      if (data.checkOutTime) record.checkOutTime = data.checkOutTime;
+      if (data.remarks !== undefined) record.remarks = data.remarks;
+      await record.save();
+    } else {
+      // Insert new record with unique attendanceNumber
+      const count = await Attendance.countDocuments({});
+      const attendanceNumber = `ATT-${String(count + 1).padStart(5, "0")}`;
+      record = await Attendance.create({
+        attendanceNumber,
+        liveClass: data.liveClass,
+        batch: data.batch,
+        student: data.student,
+        teacher: data.teacher,
+        attendanceDate: effectiveDate,
+        checkInTime: data.checkInTime,
+        checkOutTime: data.checkOutTime,
+        status: data.status,
+        remarks: data.remarks,
+        mode: "teacher-marked",
+      });
+    }
 
     // Refresh summary
     await AttendanceSummaryService.refreshSummary(data.student, data.batch);
@@ -67,7 +101,8 @@ export class AttendanceService {
     batchId: string,
     teacherId: string,
     records: Array<{ student: string; status: string; remarks?: string }>,
-    userId?: string
+    userId?: string,
+    attendanceDate?: Date | string
   ) {
     const results = [];
     for (const r of records) {
@@ -79,6 +114,7 @@ export class AttendanceService {
           teacher: teacherId,
           status: r.status,
           remarks: r.remarks,
+          attendanceDate: attendanceDate ? new Date(attendanceDate) : undefined,
         },
         userId
       );

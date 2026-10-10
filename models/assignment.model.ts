@@ -1,5 +1,10 @@
 import mongoose, { Schema } from "mongoose";
 import { baseModelPlugin, IBaseDocument } from "../lib/db/base.plugin";
+import "./course.model";
+import "./cohort.model";
+import "./batch.model";
+import "./teacher.model";
+import "./live-class.model";
 
 export interface IAssignment extends IBaseDocument {
   assignmentCode: string;

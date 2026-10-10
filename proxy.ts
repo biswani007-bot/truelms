@@ -9,7 +9,16 @@ import { JwtHelper } from "./helpers/jwt";
  * Unauthenticated UI requests are redirected to /login.
  * Unauthenticated API requests return 401.
  */
-const PROTECTED_PREFIXES = ["/admin", "/student", "/teacher", "/dashboard", "/api/protected"];
+const PROTECTED_PREFIXES = [
+  "/admin",
+  "/student",
+  "/teacher",
+  "/parent",
+  "/dashboard",
+  "/api/protected",
+  "/api/parent",
+  "/uploads",
+];
 const PUBLIC_API_PREFIXES = ["/api/public", "/api/v1/public"];
 
 function getAllowedOrigins(): string[] {
@@ -83,7 +92,7 @@ export async function proxy(request: NextRequest) {
     }
 
     if (!token) {
-      if (pathname.startsWith("/api")) {
+      if (pathname.startsWith("/api") || pathname.startsWith("/uploads")) {
         return NextResponse.json(
           { success: false, message: "Not authenticated", code: "AUTH_TOKEN_INVALID" },
           { status: 401 }
@@ -96,7 +105,7 @@ export async function proxy(request: NextRequest) {
 
     const decoded = await JwtHelper.verifyAccessEdge(token);
     if (!decoded) {
-      if (pathname.startsWith("/api")) {
+      if (pathname.startsWith("/api") || pathname.startsWith("/uploads")) {
         return NextResponse.json(
           { success: false, message: "Invalid token", code: "AUTH_TOKEN_EXPIRED" },
           { status: 401 }

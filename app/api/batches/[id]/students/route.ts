@@ -111,6 +111,33 @@ export const GET = withRoles(
     if (!id) {
       return NextResponse.json(ResponseHelper.error("Batch ID required"), { status: 400 });
     }
+
+    if (_ctx?.role === "Teacher") {
+      const { Teacher } = await import("../../../../../models/teacher.model");
+      const { BatchTeacher } = await import("../../../../../models/batch-teacher.model");
+      const teacher: any = await Teacher.findOne({ user: _ctx.userId || _ctx.id || _ctx._id }).lean();
+      if (!teacher) {
+        return NextResponse.json(ResponseHelper.error("Not authorized as teacher", "FORBIDDEN"), { status: 403 });
+      }
+      const directBatch = await Batch.findOne({
+        _id: id,
+        $or: [
+          { primaryTeacher: teacher._id },
+          { assistantTeacher: teacher._id },
+          { mentor: teacher._id },
+        ],
+      }).lean();
+      const assignedBt = !directBatch
+        ? await BatchTeacher.findOne({ batch: id, teacher: teacher._id, status: "active" }).lean()
+        : null;
+      if (!directBatch && !assignedBt) {
+        return NextResponse.json(
+          ResponseHelper.error("Access Denied: You are not assigned to this batch", "FORBIDDEN"),
+          { status: 403 }
+        );
+      }
+    }
+
     const students = await batchStudentRepository.findMany(
       { batch: id, status: "active" },
       { populate: ["student", "enrollment"] }

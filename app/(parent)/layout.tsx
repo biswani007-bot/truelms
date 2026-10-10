@@ -50,7 +50,7 @@ const SECONDARY_NAV_ITEMS = [
 function ParentShellInner({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const router = useRouter();
-  const { children: linkedChildren, selectedChild, setSelectedChild, loading } = useParentChild();
+  const { children: linkedChildren, selectedChild, setSelectedChild, loading, authStatus } = useParentChild();
   
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [moreMenuOpen, setMoreMenuOpen] = useState(false);
@@ -62,7 +62,10 @@ function ParentShellInner({ children }: { children: React.ReactNode }) {
   const [parentProfile, setParentProfile] = useState<{ firstName: string; lastName: string } | null>(null);
 
   useEffect(() => {
-    fetch("/api/parent/profile")
+    if (authStatus !== "authenticated") {
+      return;
+    }
+    fetch("/api/parent/profile", { credentials: "include" })
       .then(res => res.json())
       .then(json => {
         if (json.success && json.data && json.data.profile) {
@@ -70,7 +73,7 @@ function ParentShellInner({ children }: { children: React.ReactNode }) {
         }
       })
       .catch(console.error);
-  }, []);
+  }, [authStatus]);
 
   // Close menus when clicking outside
   useEffect(() => {

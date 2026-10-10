@@ -65,8 +65,7 @@ inspect-references.js
 
 # agent outputs
 /brain/
-/storage/media/
-/storage/test-sample.*
+/storage/
 /docker/jitsi/recordings/
 
 # vercel

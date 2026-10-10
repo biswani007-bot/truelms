@@ -124,7 +124,7 @@ export class AuthService {
       throw new ApiError(403, MESSAGES.AUTH.ACCOUNT_DISABLED, ERROR_CODES.FORBIDDEN);
     }
 
-    const newAccessToken = await this.generateAccessToken(user);
+    const newAccessToken = await this.generateAccessToken(user, decoded.sessionId);
     
     // We do not rotate the refresh token here to keep mobile sessions stable, 
     // but if we do, we should revoke the old one. For now, just issue a new access token.

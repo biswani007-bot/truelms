@@ -26,12 +26,16 @@ export interface ChildProfile {
 }
 
 
+export type ParentAuthStatus = "checking" | "authenticated" | "unauthenticated" | "no_parent_profile";
+
 interface ParentChildContextType {
   children: ChildProfile[];
   selectedChild: ChildProfile | null;
   setSelectedChild: (child: ChildProfile | null) => void;
   loading: boolean;
   error: string | null;
+  authStatus: ParentAuthStatus;
+  authError: string | null;
   refreshChildren: () => Promise<ChildProfile[]>;
 }
 
@@ -42,17 +46,55 @@ export const ParentChildProvider: React.FC<{ children: React.ReactNode }> = ({ c
   const [selectedChild, setSelectedChild] = useState<ChildProfile | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [authStatus, setAuthStatus] = useState<ParentAuthStatus>("checking");
+  const [authError, setAuthError] = useState<string | null>(null);
 
-  const fetchChildren = async (): Promise<ChildProfile[]> => {
+  const fetchChildren = async (retryOn401 = true): Promise<ChildProfile[]> => {
     try {
       setLoading(true);
       setError(null);
+      setAuthError(null);
+
       const res = await fetch("/api/parent/children", { credentials: "include" });
+
+      if (res.status === 401) {
+        if (retryOn401) {
+          try {
+            const refreshRes = await fetch("/api/auth/refresh", {
+              method: "POST",
+              credentials: "include",
+            });
+            if (refreshRes.ok) {
+              return await fetchChildren(false);
+            }
+          } catch {
+            // refresh attempt failed
+          }
+        }
+        setAuthStatus("unauthenticated");
+        setAuthError("Your session has expired. Please sign in again.");
+        setChildrenList([]);
+        setSelectedChild(null);
+        return [];
+      }
+
+      if (res.status === 403) {
+        const json = await res.json().catch(() => ({}));
+        setAuthStatus("no_parent_profile");
+        setAuthError(json.message || "No active parent profile found for this user account.");
+        setChildrenList([]);
+        setSelectedChild(null);
+        return [];
+      }
+
       if (!res.ok) {
         throw new Error("Failed to load linked children");
       }
+
       const json = await res.json();
       const list: ChildProfile[] = json.data || [];
+      setAuthStatus("authenticated");
+      setAuthError(null);
       setChildrenList(list);
 
       if (list.length > 0) {
@@ -99,7 +141,9 @@ export const ParentChildProvider: React.FC<{ children: React.ReactNode }> = ({ c
         setSelectedChild: handleSelectChild,
         loading,
         error,
-        refreshChildren: fetchChildren,
+        authStatus,
+        authError,
+        refreshChildren: () => fetchChildren(true),
       }}
     >
       {reactChildren}

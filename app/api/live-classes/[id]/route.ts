@@ -84,7 +84,7 @@ interface RouteParams {
 
 // GET Live Class Detail
 export const GET = withRoles(
-  ["Admin", "Super Admin", "Academic Manager", "Teacher", "Student"],
+  ["Admin", "Super Admin", "Academic Manager", "Teacher", "Student", "Parent", "Guardian"],
   apiHandler(async (_req: NextRequest, _ctx: any, routeCtx: RouteParams) => {
     await connectDB();
     const { id } = await routeCtx.params;

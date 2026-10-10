@@ -30,6 +30,8 @@ import { ResponseHelper } from "../../../../../helpers/response";
 import { apiHandler } from "../../../../../utils/api-handler";
 import { connectDB } from "../../../../../config/db";
 import { AcademicResolver } from "../../../../../services/academic/academic.service";
+import { Assignment } from "../../../../../models/assignment.model";
+import { AssignmentService } from "../../../../../services/assignment/assignment.service";
 
 interface RouteParams {
   params: Promise<{ id: string }>;
@@ -43,6 +45,23 @@ export const GET = withRoles(
   apiHandler(async (_req: NextRequest, userContext: any, routeCtx: RouteParams) => {
     await connectDB();
     const { id } = await routeCtx.params;
+
+    if (userContext.role === "Teacher") {
+      const assignment: any = await Assignment.findById(id);
+      if (!assignment) {
+        return NextResponse.json(ResponseHelper.error("Assignment not found", "NOT_FOUND"), { status: 404 });
+      }
+      const teacherContext = await AssignmentService.getTeacherContext(userContext.userId);
+      const isAuthorized = AssignmentService.isTeacherAuthorized(
+        assignment,
+        teacherContext?.teacherDoc?._id,
+        userContext.userId,
+        teacherContext?.teacherBatchIdStrings || []
+      );
+      if (!isAuthorized) {
+        return NextResponse.json(ResponseHelper.error("Not authorized to view submissions for this assignment", "FORBIDDEN"), { status: 403 });
+      }
+    }
 
     const query: Record<string, any> = { assignment: id };
 

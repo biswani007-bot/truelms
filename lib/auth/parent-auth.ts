@@ -43,10 +43,9 @@ export async function getAuthenticatedParent(req: NextRequest | Request): Promis
     }
   }
 
-  // Find linked parent document strictly matching user ID and active status
   const parent = await Parent.findOne({
     user: new (mongoose.Types.ObjectId as any)(user.userId),
-    status: { $in: ["active", "approved"] },
+    status: { $regex: /^(active|approved)$/i },
     isDeleted: { $ne: true },
   });
 

@@ -29,6 +29,9 @@ import { ResponseHelper } from "../../../../../helpers/response";
 import { apiHandler } from "../../../../../utils/api-handler";
 import { connectDB } from "../../../../../config/db";
 import { EvaluationService } from "../../../../../services/assignment/evaluation.service";
+import { AssignmentSubmission } from "../../../../../models/assignment-submission.model";
+import { Assignment } from "../../../../../models/assignment.model";
+import { AssignmentService } from "../../../../../services/assignment/assignment.service";
 
 interface RouteParams {
   params: Promise<{ id: string }>; // id is submissionId here
@@ -45,6 +48,27 @@ export const POST = withRoles(
     const { marksObtained, feedback, rubricScores } = body;
     if (marksObtained === undefined) {
       return NextResponse.json(ResponseHelper.error("marksObtained is required"), { status: 400 });
+    }
+
+    if (userContext?.role === "Teacher") {
+      const submission = await AssignmentSubmission.findById(id);
+      if (!submission) {
+        return NextResponse.json(ResponseHelper.error("Submission not found", "NOT_FOUND"), { status: 404 });
+      }
+      const assignment = await Assignment.findById(submission.assignment);
+      if (!assignment) {
+        return NextResponse.json(ResponseHelper.error("Assignment profile not found", "NOT_FOUND"), { status: 404 });
+      }
+      const teacherContext = await AssignmentService.getTeacherContext(userContext.userId);
+      const isAuthorized = AssignmentService.isTeacherAuthorized(
+        assignment,
+        teacherContext?.teacherDoc?._id,
+        userContext.userId,
+        teacherContext?.teacherBatchIdStrings || []
+      );
+      if (!isAuthorized) {
+        return NextResponse.json(ResponseHelper.error("Not authorized to evaluate this submission", "FORBIDDEN"), { status: 403 });
+      }
     }
 
     const evaluation = await EvaluationService.evaluate(

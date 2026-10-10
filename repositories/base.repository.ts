@@ -8,6 +8,7 @@ export interface IRepositoryOptions {
   select?: string | Record<string, number>;
   lean?: boolean;
   sort?: string | Record<string, any>;
+  customFilter?: Record<string, any>;
 }
 
 export abstract class BaseRepository<T extends Document<mongoose.Types.ObjectId>> {
@@ -101,7 +102,14 @@ export abstract class BaseRepository<T extends Document<mongoose.Types.ObjectId>
     searchableFields: string[] = [],
     options: IRepositoryOptions = {}
   ): Promise<{ data: T[]; meta: any }> {
-    const filters = QueryHelper.buildFilters(paginationInput, searchableFields);
+    let filters: any = QueryHelper.buildFilters(paginationInput, searchableFields);
+    if (options.customFilter) {
+      if (Object.keys(filters).length === 0) {
+        filters = options.customFilter;
+      } else {
+        filters = { $and: [filters, options.customFilter] };
+      }
+    }
     const sort = QueryHelper.buildSort(paginationInput);
     const page = paginationInput.page;
     const limit = paginationInput.limit;

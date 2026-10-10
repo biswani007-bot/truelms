@@ -98,6 +98,7 @@ export class AcademicResolver {
       ...doc,
       id: doc._id?.toString() || doc.id,
       name: doc.batchName || doc.name || "Unknown Batch",
+      batchName: doc.batchName || doc.name || "Unknown Batch",
       code: doc.batchCode || doc.code || "",
       status: doc.status || "active",
       course: this.resolveCourse(doc.course),
@@ -125,16 +126,18 @@ export class AcademicResolver {
   static resolveAssessment(assessment: any) {
     if (!assessment) return null;
     if (typeof assessment === 'string' || assessment instanceof mongoose.Types.ObjectId) {
-      return { id: assessment.toString(), title: "Unknown Assessment" };
+      return { id: assessment.toString(), _id: assessment.toString(), title: "Unknown Assessment" };
     }
     const doc = typeof assessment.toObject === 'function' ? assessment.toObject() : { ...assessment };
     return {
       ...doc,
       id: doc._id?.toString() || doc.id,
+      _id: doc._id?.toString() || doc.id,
       title: doc.title || "Unknown Assessment",
       course: this.resolveCourse(doc.course),
       batch: this.resolveBatch(doc.batch),
-      cohort: this.resolveCohort(doc.cohort)
+      cohort: this.resolveCohort(doc.cohort),
+      teacher: this.resolveTeacher(doc.teacher),
     };
   }
 

@@ -10,6 +10,7 @@ import { liveClassRepository } from "../../../../repositories/live-class.reposit
 import { assignmentRepository } from "../../../../repositories/assignment.repository";
 import { assignmentSubmissionRepository } from "../../../../repositories/assignment-submission.repository";
 import { assessmentRepository } from "../../../../repositories/assessment.repository";
+import { AcademicResolver } from "../../../../services/academic/academic.service";
 import { ParentTeacherMessage } from "../../../../models/parent-teacher-message.model";
 import { UserCircle, CalendarClock, ArrowRight, FilePenLine, MessageSquare } from "lucide-react";
 
@@ -78,14 +79,14 @@ export default async function TeacherDashboardPage() {
   const batches = Array.from(batchMap.values());
   const batchIds = batches.map((b) => b._id);
 
-  const [batchStudents, liveClasses, assignments, assessments] = await Promise.all([
+  const [batchStudents, rawLiveClasses, assignments, assessments] = await Promise.all([
     batchIds.length > 0 ? batchStudentRepository.findMany({ batch: { $in: batchIds } }) : [],
-    batchIds.length > 0
-      ? liveClassRepository.findMany(
-          { batch: { $in: batchIds } },
-          { populate: ["course", "batch"], sort: "startDate", order: "asc" }
-        )
-      : [],
+    liveClassRepository.findMany(
+      batchIds.length > 0
+        ? { $or: [{ teacher: teacher._id }, { batch: { $in: batchIds } }] }
+        : { teacher: teacher._id },
+      { populate: ["course", "batch"], sort: "startDate", order: "asc" }
+    ),
     assignmentRepository.findMany(
       { $or: [{ teacher: teacher._id }, { batch: { $in: batchIds } }] },
       { populate: ["course", "batch"] }
@@ -95,6 +96,8 @@ export default async function TeacherDashboardPage() {
       { populate: ["course", "batch"] }
     ),
   ]);
+
+  const liveClasses = (rawLiveClasses || []).map((lc: any) => AcademicResolver.resolveLiveClass(lc));
 
   const assignmentIds = assignments.map((a) => a._id);
   const submissions =
@@ -117,13 +120,70 @@ export default async function TeacherDashboardPage() {
     .populate("student", "firstName lastName");
 
   const now = new Date();
-  const upcomingClasses = liveClasses.filter((lc: any) => {
-    if (lc.status === "completed" || lc.status === "archived") return false;
-    const end = lc.endDateTime;
-    return end ? new Date(end) > now : true;
-  });
+  const nowMs = now.getTime();
 
-  const nextClass = upcomingClasses[0];
+  // Helper to extract safe start and end times for any live class
+  const getClassSchedule = (lc: any) => {
+    const rawStart = lc.startDate || lc.startDateTime || lc.scheduledAt;
+    const startDate = rawStart ? new Date(rawStart) : null;
+    const startMs = startDate && !isNaN(startDate.getTime()) ? startDate.getTime() : 0;
+
+    let endMs = 0;
+    const rawEnd = lc.endDate || lc.endDateTime;
+    if (rawEnd) {
+      const endDate = new Date(rawEnd);
+      if (!isNaN(endDate.getTime())) {
+        endMs = endDate.getTime();
+      }
+    }
+    if (!endMs && startMs) {
+      const durationMins = typeof lc.duration === "number" && lc.duration > 0 ? lc.duration : 60;
+      endMs = startMs + durationMins * 60 * 1000;
+    }
+    return {
+      startMs,
+      endMs,
+      startDate: startMs ? new Date(startMs) : null,
+      endDate: endMs ? new Date(endMs) : null,
+    };
+  };
+
+  // Filter eligible classes:
+  // - Exclude cancelled, completed, archived, missed, and deleted classes
+  // - Exclude classes whose scheduled end time has passed
+  // - Include classes that are upcoming or in progress (still within duration)
+  // - Sort ascending by scheduled start time
+  const upcomingClasses = liveClasses
+    .filter((lc: any) => {
+      if (!lc || lc.isDeleted) return false;
+      const status = (lc.status || "").toLowerCase();
+      if (
+        status === "completed" ||
+        status === "archived" ||
+        status === "cancelled" ||
+        status === "canceled" ||
+        status === "missed"
+      ) {
+        return false;
+      }
+      const { startMs, endMs } = getClassSchedule(lc);
+      if (!startMs || !endMs) return false;
+
+      // Class is eligible as long as its scheduled end time has not passed
+      return endMs > nowMs;
+    })
+    .sort((a: any, b: any) => {
+      const aSched = getClassSchedule(a);
+      const bSched = getClassSchedule(b);
+      return aSched.startMs - bSched.startMs;
+    });
+
+  const nextClass = upcomingClasses[0] || null;
+  const nextClassSched = nextClass ? getClassSchedule(nextClass) : null;
+  const isClassInProgress = Boolean(
+    nextClassSched &&
+    ((nowMs >= nextClassSched.startMs && nowMs <= nextClassSched.endMs) || nextClass?.status === "live")
+  );
   const totalStudents = batchStudents.length;
   const initials = `${teacher.firstName?.charAt(0) || ""}${teacher.lastName?.charAt(0) || ""}`;
   const todayStr = new Date().toLocaleDateString("en-US", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
@@ -157,26 +217,58 @@ export default async function TeacherDashboardPage() {
               {nextClass ? (
                 <div style={{ background: "rgba(255, 255, 255, 0.55)", backdropFilter: "blur(16px)", border: "1px solid rgba(255, 255, 255, 0.75)" }}
                   className="rounded-2xl p-3.5 flex items-center gap-3.5">
-                  <div className="w-11 h-11 rounded-xl bg-purple-100 text-[#7C3AED] flex items-center justify-center shrink-0">
+                  <div className={`w-11 h-11 rounded-xl ${isClassInProgress ? "bg-emerald-100 text-emerald-700" : "bg-purple-100 text-[#7C3AED]"} flex items-center justify-center shrink-0`}>
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/>
                     </svg>
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h4 className="text-xs font-bold text-slate-800 truncate">{(nextClass as any).classTitle || (nextClass as any).courseName || "Live Class"}</h4>
+                    <h4 className="text-xs font-bold text-slate-800 truncate">{(nextClass as any).classTitle || (nextClass as any).title || (nextClass as any).courseName || "Live Class"}</h4>
                     <p className="text-[10px] text-slate-500 flex items-center gap-1 mt-0.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                      {(() => {
-                        const raw = (nextClass as any).startDateTime || (nextClass as any).startDate || (nextClass as any).scheduledAt;
-                        const d = raw ? new Date(raw) : null;
-                        return d && !isNaN(d.getTime())
-                          ? d.toLocaleString("en-US", { weekday: "short", month: "short", day: "numeric", hour: "numeric", minute: "2-digit" })
-                          : "Scheduled Session";
-                      })()}
+                      <span className={`w-1.5 h-1.5 rounded-full ${isClassInProgress ? "bg-emerald-500 animate-ping" : "bg-emerald-500 animate-pulse"}`} />
+                      {isClassInProgress ? (
+                        <span className="font-bold text-emerald-700">In Progress</span>
+                      ) : (
+                        (() => {
+                          const d = nextClassSched?.startDate;
+                          const tz = (nextClass as any).timezone;
+                          const formatOpts: Intl.DateTimeFormatOptions = {
+                            weekday: "short",
+                            month: "short",
+                            day: "numeric",
+                            hour: "numeric",
+                            minute: "2-digit",
+                          };
+                          if (tz) {
+                            try {
+                              Intl.DateTimeFormat(undefined, { timeZone: tz });
+                              formatOpts.timeZone = tz;
+                            } catch {
+                              // ignore invalid timezone
+                            }
+                          }
+                          return d && !isNaN(d.getTime())
+                            ? d.toLocaleString("en-US", formatOpts)
+                            : "Scheduled Session";
+                        })()
+                      )}
                     </p>
                   </div>
                 </div>
-              ) : null}
+              ) : (
+                <div style={{ background: "rgba(255, 255, 255, 0.55)", backdropFilter: "blur(16px)", border: "1px solid rgba(255, 255, 255, 0.75)" }}
+                  className="rounded-2xl p-3.5 flex items-center gap-3.5">
+                  <div className="w-11 h-11 rounded-xl bg-slate-100 text-slate-400 flex items-center justify-center shrink-0">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/>
+                    </svg>
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h4 className="text-xs font-bold text-slate-800">No upcoming classes scheduled</h4>
+                    <p className="text-[10px] text-slate-500 mt-0.5">All cohort lectures are up to date</p>
+                  </div>
+                </div>
+              )}
 
               {/* Launch Live Class CTA */}
               <Link
@@ -342,10 +434,10 @@ export default async function TeacherDashboardPage() {
                 <p className="text-[10px] text-slate-400 font-medium">
                   {(() => {
                     if (!nextClass) return "No classes scheduled";
-                    const raw = (nextClass as any).startDateTime || (nextClass as any).startDate || (nextClass as any).scheduledAt;
-                    const parsed = raw ? new Date(raw) : null;
-                    return parsed && !isNaN(parsed.getTime())
-                      ? `Next: ${parsed.toLocaleString("en-US", { weekday: "short", hour: "numeric", minute: "2-digit" })}`
+                    if (isClassInProgress) return "Class in progress";
+                    const d = nextClassSched?.startDate;
+                    return d && !isNaN(d.getTime())
+                      ? `Next: ${d.toLocaleString("en-US", { weekday: "short", hour: "numeric", minute: "2-digit" })}`
                       : "No classes scheduled";
                   })()}
                 </p>
@@ -460,11 +552,11 @@ export default async function TeacherDashboardPage() {
                 </div>
               ) : (
                 upcomingClasses.slice(0, 4).map((lc) => {
-                  const raw = (lc as any).startDate || (lc as any).scheduledAt || (lc as any).startDateTime;
-                  const parsed = raw ? new Date(raw) : null;
-                  const scheduledDate = parsed && !isNaN(parsed.getTime()) ? parsed : new Date();
+                  const sched = getClassSchedule(lc);
+                  const scheduledDate = sched.startDate || new Date();
+                  const isRunning = nowMs >= sched.startMs && nowMs <= sched.endMs;
                   return (
-                    <div key={(lc as any)._id?.toString()}
+                    <div key={(lc as any)._id?.toString() || (lc as any).id}
                       style={{ background: "rgba(255, 255, 255, 0.55)", backdropFilter: "blur(16px)", border: "1px solid rgba(255, 255, 255, 0.75)" }}
                       className="flex items-center gap-3 p-3 rounded-2xl"
                     >
@@ -473,8 +565,14 @@ export default async function TeacherDashboardPage() {
                         <span className="block text-[9px] font-semibold text-slate-400 uppercase">{scheduledDate.toLocaleString("en-US", { month: "short" })}</span>
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="text-xs font-bold text-slate-800 truncate">{(lc as any).classTitle || (lc as any).courseName || "Live Class"}</p>
-                        <p className="text-[10px] text-slate-500">{scheduledDate.toLocaleString("en-US", { hour: "numeric", minute: "2-digit" })}</p>
+                        <p className="text-xs font-bold text-slate-800 truncate">{(lc as any).classTitle || (lc as any).title || (lc as any).courseName || "Live Class"}</p>
+                        <p className="text-[10px] text-slate-500 flex items-center gap-1">
+                          {isRunning ? (
+                            <span className="font-semibold text-emerald-600">In Progress</span>
+                          ) : (
+                            scheduledDate.toLocaleString("en-US", { hour: "numeric", minute: "2-digit" })
+                          )}
+                        </p>
                       </div>
                     </div>
                   );
